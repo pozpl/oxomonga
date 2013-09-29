@@ -40,13 +40,13 @@ sub find_near_markers(){
     my @markers = $self->markers_collection->find(
         {
             loc => {
-                '$near' => {
+                ' $near' => {
                     '$geometry' => {
                     type => "Point" ,
                     coordinates => [ $longitude , $latitude ]
                     }
                 },
-            '$maxDistance' => $max_distance,
+                '$maxDistance' => $max_distance,
             }
         })->all();
     return @markers;
