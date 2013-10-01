@@ -10,11 +10,11 @@ has mongo =>(
 has mongo_database_name => (
     is       => 'ro',
     isa      => 'Str',
-    default => 'markers',
+    default => 'development',
     lifecycle => 'Singleton',
 );
 
-has test_database => (
+has mongo_database => (
     is => 'ro',
     #isa => 'Misc::MongoDatabase',
     block => sub{
@@ -29,6 +29,26 @@ has test_database => (
     	'database_name' => 'mongo_database_name'
     },
     lifecycle => 'Singleton',
-    
 );
+
+has 'markers_collection' => (
+    'is' => 'ro',
+    'block' => sub{
+        my $s = shift;
+        $s->param('$database')->get_collection('markers');
+    },
+    dependencies => {
+    	'database' => 'mongo_database',
+    },
+    lifecycle => 'Singleton',
+);
+
+has 'markers_repository' => (
+    'is' => 'ro',
+    'isa' => 'Markers::MarkerRepository',
+    dependencies => {
+    	'markers_collection' => 'markers_collection',
+    },
+);
+
 1;
