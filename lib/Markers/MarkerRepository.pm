@@ -3,6 +3,7 @@ package Markers::MarkerRepository;
 use Moose;
 use MongoDB::OID;
 use Markers::Marker;
+use Tie::IxHash;
 
 has 'markers_collection' => (
     'is'=> 'ro',
@@ -37,18 +38,23 @@ sub find_by_id(){
 sub find_near_markers(){
     my ($self, $longitude, $latitude, $max_distance) = @_;
     
-    my @markers = $self->markers_collection->find(
+    
+    my $query = Tie::IxHash->new('loc' => Tie::IxHash->new(
+        '$near' => 
         {
-            loc => {
-                ' $near' => {
-                    '$geometry' => {
-                    type => "Point" ,
-                    coordinates => [ $longitude , $latitude ]
-                    }
-                },
-                '$maxDistance' => $max_distance,
+            '$geometry' => {
+                'coordinates' => [ $longitude , $latitude ],
+                'type' => 'Point',
             }
-        })->all();
+        },
+        '$maxDistance' => $max_distance
+    ));
+
+    my @raw_markers = $self->markers_collection->find($query)->all();
+    my @markers = ();
+    foreach my $raw_marker (@raw_markers) {
+        push @markers, $self->_hash_to_marker($raw_marker);
+    }
     return @markers;
 }
 
