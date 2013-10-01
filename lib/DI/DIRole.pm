@@ -1,5 +1,5 @@
 package DI::DIRole;
-use Moose::Role;
+use OX::Role;
 
 has mongo =>(
     is => 'ro',
