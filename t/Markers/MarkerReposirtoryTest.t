@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use Test::Simple tests=> 7;
+use Test::Simple tests=> 11;
 use warnings;
 use strict;
 use Test::MockObject;
@@ -41,11 +41,11 @@ ok(@{$marker->images} == 2, 'Images count is ok');
 ok(@{$marker->images}[0] eq 'image_1', 'Imagein array');
 
 
-my @near_markers =  $markers_repository->find_near_markers(131.894030, 43.124585, 100500);
-ok(@near_markers, 'Somthing is found');
-ok(@near_markers > 0, 'Somthing is found');
-ok($marker->longitude == $found_marker->longitude, 'longitude ok');
-ok($marker->latitude == $found_marker->latitude, 'latitude ok');
+my @near_markers = $markers_repository->find_near_markers(131.894030, 43.124584, 1000);
+ok(@near_markers, 'A marker found near the target point');
+ok(@near_markers > 0, 'Markers count is greater than zerro');
+ok($marker->longitude == $near_markers[0]->longitude, 'longitude ok');
+ok($marker->latitude == $near_markers[0]->latitude, 'latitude ok');
 
 
 $markers_collection->drop();
