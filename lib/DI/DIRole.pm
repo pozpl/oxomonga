@@ -51,4 +51,12 @@ has 'markers_repository' => (
     },
 );
 
+has 'markers_controller' => (
+    'is' => 'ro',
+    'isa' => 'Markers::MarkersController',
+    dependencies => {
+        'markers_repository' => 'markers_repository',
+    },
+);
+
 1;
