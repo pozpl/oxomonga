@@ -10,7 +10,10 @@ has 'markers_repository' => (
 );
 
 sub find_near_markers(){
-    my ($self, $longitude, $latitude, $radius) = @_;
+    my ($self, $request) = @_;
+    my $longitude = $request->param('lon') || 0;
+    my $latitude = $request->param('lat')  || 0;
+    my $radius = $request->param('radius') || 0;
     
     my @markers = $self->markers_repository->find_near_markers($longitude, $latitude, $radius);
     return encode_json(\@markers);
