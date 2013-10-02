@@ -19,10 +19,8 @@ has mongo_database => (
     #isa => 'Misc::MongoDatabase',
     block => sub{
     	my $s = shift;
-    	Misc::MongoDatabase->get_database(
-    	   $s->param('mongo'), 
-    	   $s->param('database_name')
-    	);
+    	my $mongo_client = $s->param('mongo');
+    	return $mongo_client->get_database($s->param('database_name'));
     },
     dependencies => {
     	'mongo' => 'mongo',
@@ -35,7 +33,7 @@ has 'markers_collection' => (
     'is' => 'ro',
     'block' => sub{
         my $s = shift;
-        $s->param('$database')->get_collection('markers');
+        return $s->param('database')->get_collection('markers');
     },
     dependencies => {
     	'database' => 'mongo_database',
@@ -51,7 +49,7 @@ has 'markers_repository' => (
     },
 );
 
-has 'markers_controller' => (
+has 'markers_rest_controller' => (
     'is' => 'ro',
     'isa' => 'Markers::MarkersController',
     dependencies => {
