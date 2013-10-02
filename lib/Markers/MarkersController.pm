@@ -5,7 +5,7 @@ use JSON;
 
 has 'markers_repository' => (
     'is' => 'ro',
-    'isa' => 'Markers::MarkersRepository',
+    'isa' => 'Markers::MarkerRepository',
     'required' => 1,
 );
 
