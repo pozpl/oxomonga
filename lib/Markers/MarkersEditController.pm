@@ -5,6 +5,13 @@ use JSON;
 has 'markers_repository' => (
     'is' => 'ro',
     'isa' => 'Markers::MarkerRepository',
+    'required' => 1,
+);
+
+has 'template_view_handler' => (
+    'is' => 'ro',
+    'isa' => 'System::View::TemplateViewHandler',
+    'required' => 1,
 );
 
 sub get_marker_by_id(){
