@@ -27,4 +27,10 @@ has xslate => (
     },
 );
 
+sub render_page {
+    my $self = shift;
+    my ($r, $page) = @_;
+    return $self->render("$page.tx", { r => $r });
+}
+
 1;
