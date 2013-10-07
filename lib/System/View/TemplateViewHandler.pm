@@ -1,7 +1,7 @@
 package System::View::TemplateViewHandler;
 
 use Moose;
-use TExt::Xslate;
+use Text::Xslate;
 
 has template_root => (
     is       => 'ro',
@@ -30,7 +30,7 @@ has xslate => (
 sub render_page {
     my $self = shift;
     my ($r, $page) = @_;
-    return $self->render("$page.tx", { r => $r });
+    return $self->xslate->render("$page.tx", { r => $r });
 }
 
 1;
