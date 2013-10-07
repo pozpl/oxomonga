@@ -29,4 +29,11 @@ sub edit_marker(){
     return 1;
 }
 
+sub show_form(){
+    my ($self, $request) = @_;
+
+    return $self->template_view_handler->render_page($request, 'layout');
+
+}
+
 1;
