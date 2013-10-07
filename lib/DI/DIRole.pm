@@ -57,4 +57,25 @@ has 'markers_rest_controller' => (
     },
 );
 
+has template_root => (
+    is    => 'ro',
+    isa   => 'Str',
+    value => '../views/',
+);
+
+has template_view_handler => (
+    is           => 'ro',
+    isa          => 'System::View::TemplateViewHandler',
+    dependencies => ['template_root'],
+);
+
+has markers_edit_controller =>(
+    'is' => 'ro',
+    'isa' => 'Markers::MarkersEditController',
+    dependencies => {
+       'markers_repository' => 'markers_repository',
+       'template_view_handler' => 'template_view_handler',
+    },
+);
+
 1;
