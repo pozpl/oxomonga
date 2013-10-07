@@ -60,7 +60,28 @@ has 'markers_rest_controller' => (
 has template_root => (
     is    => 'ro',
     isa   => 'Str',
-    value => '../views/',
+    value => 'resources/views/',
+);
+
+has xslate =>  (
+    is           => 'ro',
+    isa          => 'Text::Xslate',
+    lazy    => 1,
+    default => sub {
+        my $self = shift;
+        return Text::Xslate->new(
+        path     => [ $self->template_root ],
+        function => {
+            uri_for => sub {
+                my ($r, $spec) = @_;
+                        return $r->uri_for($spec);
+                },
+            },
+        );
+    },
+    dependencies => {
+        'template_root' => 'template_root',
+    },
 );
 
 has template_view_handler => (
@@ -75,6 +96,7 @@ has markers_edit_controller =>(
     dependencies => {
        'markers_repository' => 'markers_repository',
        'template_view_handler' => 'template_view_handler',
+       'xslate' => 'xslate',
     },
 );
 
