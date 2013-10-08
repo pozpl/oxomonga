@@ -4,12 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes" />
-     : block -> title{
+     : block title -> {
         <title>Contacts List Demo: Using dojox/app</title>
      :}
-    <script src="<:$static_path:>/js/dojox/mobile/deviceTheme.js"></script>
+     :block css -> {
+
+    :}
+    :block head_script -> {
+        <script>dojoConfig = {parseOnLoad: true}</script>
+        <script src="<:$static_path:>/js/dojo/dojo.js"></script>
+    :}
 </head>
-<body>
+<body class="claro">
 :block body ->{
     <script>
         // See the using Custom Modules with a CDN Tutorial for an explination of how
@@ -27,6 +33,9 @@
     <script>
         require(["contactsList/contacts"]);
     </script>
+:}
+:block footer_scripts ->{
+
 :}
 </body>
 </html>
