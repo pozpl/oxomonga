@@ -9,6 +9,13 @@ has template_root => (
     required => 1,
 );
 
+has static_path => (
+    'is' => 'ro',
+    'isa' => 'Str',
+    required => 1,
+    default => '/static'
+);
+
 has xslate => (
     is      => 'ro',
     isa     => 'Text::Xslate',
@@ -30,7 +37,11 @@ has xslate => (
 sub render_page {
     my $self = shift;
     my ($r, $page) = @_;
-    return $self->xslate->render("$page.tx", { r => $r });
+    return $self->xslate->render("$page.tx",
+        {
+            'r' => $r,
+            'static_path' => $self->static_path
+        });
 }
 
 1;
