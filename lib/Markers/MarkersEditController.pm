@@ -32,7 +32,7 @@ sub edit_marker(){
 sub show_form(){
     my ($self, $request) = @_;
 
-    return $self->template_view_handler->render_page($request, 'layout');
+    return $self->template_view_handler->render_page($request, 'edit_marker');
 
 }
 
