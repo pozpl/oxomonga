@@ -1,5 +1,6 @@
 package DI::DIRole;
 use OX::Role;
+use Text::Xslate;
 
 has mongo =>(
     is => 'ro',
@@ -66,11 +67,10 @@ has template_root => (
 has xslate =>  (
     is           => 'ro',
     isa          => 'Text::Xslate',
-    lazy    => 1,
-    default => sub {
-        my $self = shift;
+    block => sub {
+        my $s = shift;
         return Text::Xslate->new(
-        path     => [ $self->template_root ],
+        path     => [ $s->param('template_root') ],
         function => {
             uri_for => sub {
                 my ($r, $spec) = @_;
@@ -87,7 +87,10 @@ has xslate =>  (
 has template_view_handler => (
     is           => 'ro',
     isa          => 'System::View::TemplateViewHandler',
-    dependencies => ['template_root'],
+    dependencies => {
+        'xslate' => 'xslate',
+    },
+
 );
 
 has markers_edit_controller =>(
@@ -96,7 +99,6 @@ has markers_edit_controller =>(
     dependencies => {
        'markers_repository' => 'markers_repository',
        'template_view_handler' => 'template_view_handler',
-       'xslate' => 'xslate',
     },
 );
 
