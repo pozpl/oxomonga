@@ -11,25 +11,26 @@
 
     :}
     :block head_script -> {
-    <!-- dojo/javascript will go here -->
-    <script type="text/javascript">
-        var dojoConfig = (function(){
-            var base = location.href.split("/");
-            base.pop();
-            base = base.join("/");
+        <!-- dojo/javascript will go here -->
+        <script type="text/javascript">
+            var dojoConfig = (function(){
+                var base = location.href.split("/");
+                base.pop();
+                base = base.join("/");
 
-            return {
-                async: true,
-                isDebug: true,
-                packages: [{
-                    name: "photoreports",
-                    location: base + "<:$static_path:>/js"
-                }]
-            };
-        })();
+                return {
+                    async: true,
+                    isDebug: true,
+                    parseOnLoad: true,
+                    packages: [{
+                        name: "Markers",
+                        location: base + "<:$static_path:>/js"
+                     }]
+                };
+            })();
 
-    </script>
-        <script src="<:$static_path:>/js/dojo/dojo.js"></script>
+        </script>
+        <script src="<:$static_path:>/js/dojo/dojo.js" data-dojo-config="async:true"></script>
     :}
 </head>
 <body class="claro">
