@@ -75,7 +75,7 @@ has xslate =>  (
         function => {
             uri_for => sub {
                     my ($spec) = @_;
-                    return $router->uri_for(%$spec);
+                    return '/' . $router->uri_for(%$spec);
                 },
             },
         );
