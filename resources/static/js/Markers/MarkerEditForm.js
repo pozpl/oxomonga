@@ -6,7 +6,8 @@ define( "dojo/_base/declare", "dojo/_base/array",     "dojo/dom-class",
                 var formNodes = query('#markers-edit-form');
                 if (formNodes && formNodes.length > 0) {
                     var form = formNodes[0];
-
+                    var loadContentUrl = form.attr('data-url');
+                    console.log(loadContentUrl);
                 }
             }
         });
