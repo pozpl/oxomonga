@@ -9,19 +9,19 @@
     <script>
         require(["dojo/parser", "dijit/form/Form", "dijit/form/Button", "dijit/form/ValidationTextBox", "dijit/form/DateTextBox"]);
     </script>
-
-    <div data-dojo-type="dijit/form/Form" id="myForm" data-dojo-id="myForm"
-         encType="multipart/form-data" action="" method="">
+    : my $url_for_data =  uri_for({'name' => 'show_edit_form'});
+    <div data-dojo-type="dijit/form/Form" id="markers-edit-form" data-dojo-id="myForm"
+         encType="multipart/form-data" action="" method="" data-url="<:$url_for_data:>">
         <script type="dojo/on" data-dojo-event="reset">
             return confirm('Press OK to reset widget values');
         </script>
 
         <script type="dojo/on" data-dojo-event="submit">
             if(this.validate()){
-            return confirm('Form is valid, press OK to submit');
+                return confirm('Form is valid, press OK to submit');
             }else{
-            alert('Form contains invalid data.  Please correct first');
-            return false;
+                alert('Form contains invalid data.  Please correct first');
+                return false;
             }
             return true;
         </script>

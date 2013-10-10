@@ -69,18 +69,20 @@ has xslate =>  (
     isa          => 'Text::Xslate',
     block => sub {
         my $s = shift;
+        my $router = $s->param('router');
         return Text::Xslate->new(
         path     => [ $s->param('template_root') ],
         function => {
             uri_for => sub {
-                my ($r, $spec) = @_;
-                        return $r->uri_for($spec);
+                    my ($spec) = @_;
+                    return $router->uri_for(%$spec);
                 },
             },
         );
     },
     dependencies => {
         'template_root' => 'template_root',
+        'router' => 'Router'
     },
 );
 

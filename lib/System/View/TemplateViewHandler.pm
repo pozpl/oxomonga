@@ -36,7 +36,11 @@ has xslate => (
 
 sub render_page {
     my $self = shift;
-    my ($r, $page) = @_;
+    my ($r, $page, $bounds) = @_;
+    my @default_bounds = (
+        'r' => $r,
+        'static_path' => $self->static_path
+    );
     return $self->xslate->render("$page.tx",
         {
             'r' => $r,
