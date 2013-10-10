@@ -7,7 +7,13 @@
 :around body -> {
 
     <script>
-        require(["dojo/parser", "dijit/form/Form", "dijit/form/Button", "dijit/form/ValidationTextBox", "dijit/form/DateTextBox"]);
+        require(["dojo/parser", 'Markers/MarkerEditForm',"dijit/form/Form", "dijit/form/Button", "dijit/form/ValidationTextBox",
+            "dijit/form/DateTextBox",  "dojo/domReady!"],
+             function(parser, MarkerEditForm){
+                 parser.parse();
+                 var markerEditForm = new MarkerEditForm();
+                 markerEditForm.loadFormContent();
+             });
     </script>
     : my $url_for_data =  uri_for({'name' => 'show_edit_form'});
     <div data-dojo-type="dijit/form/Form" id="markers-edit-form" data-dojo-id="myForm"

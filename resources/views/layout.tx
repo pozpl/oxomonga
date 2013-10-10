@@ -21,10 +21,10 @@
                 return {
                     async: true,
                     isDebug: true,
-                    parseOnLoad: true,
+                    parseOnLoad: false,
                     packages: [{
                         name: "Markers",
-                        location: base + "<:$static_path:>/js"
+                        location: "<:$static_path:>/js/Markers"
                      }]
                 };
             })();

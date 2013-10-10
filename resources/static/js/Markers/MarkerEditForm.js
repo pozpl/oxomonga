@@ -1,12 +1,15 @@
-define( "dojo/_base/declare", "dojo/_base/array",     "dojo/dom-class",
-	"dojo/dom-attr", "dojo/io/script", "dojo/query",
-    function declare(declare, array, domClass, domAttr, script, query) {
-        return declare('Markers.MarkerEditForm', {
+define( ["dojo/_base/declare", "dojo/query", 'dojo/dom-attr'],
+    function (declare, query, domAttr) {
+        return declare(null,{
+
+            constructor: function(args){
+            },
+
             loadFormContent: function () {
                 var formNodes = query('#markers-edit-form');
                 if (formNodes && formNodes.length > 0) {
                     var form = formNodes[0];
-                    var loadContentUrl = form.attr('data-url');
+                    var loadContentUrl = domAttr.get(form, 'data-url');
                     console.log(loadContentUrl);
                 }
             }
@@ -14,3 +17,4 @@ define( "dojo/_base/declare", "dojo/_base/array",     "dojo/dom-class",
 
     }
 );
+
