@@ -3,18 +3,24 @@ package System::View::TemplateViewHandler;
 use Moose;
 use Text::Xslate;
 
+
+has default_bounds => (
+    'is' => 'ro',
+    'isa' => 'HashRef',
+);
+
 #has template_root => (
 #    is       => 'ro',
 #    isa      => 'Str',
 #    required => 1,
 #);
 
-has static_path => (
-    'is' => 'ro',
-    'isa' => 'Str',
-    required => 1,
-    default => '/static'
-);
+#has static_path => (
+#    'is' => 'ro',
+#    'isa' => 'Str',
+#    required => 1,
+#    default => '/static'
+#);
 
 has xslate => (
     is      => 'ro',
@@ -36,16 +42,12 @@ has xslate => (
 
 sub render_page {
     my $self = shift;
-    my ($r, $page, $bounds) = @_;
-    my @default_bounds = (
-        'r' => $r,
-        'static_path' => $self->static_path
-    );
-    return $self->xslate->render("$page.tx",
-        {
-            'r' => $r,
-            'static_path' => $self->static_path
-        });
+    my ($page, $bounds) = @_;
+    my $result_bounds = $self->default_bounds;
+    if($bounds){
+        $result_bounds->{keys $bounds} = values $bounds;
+    }
+    return $self->xslate->render("$page.tx", $result_bounds);
 }
 
 1;

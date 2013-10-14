@@ -91,6 +91,9 @@ has template_view_handler => (
     isa          => 'System::View::TemplateViewHandler',
     dependencies => {
         'xslate' => 'xslate',
+        'default_bounds' => literal({
+            'static_path' => '/static'
+        }),
     },
 
 );
