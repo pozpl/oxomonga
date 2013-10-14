@@ -18,7 +18,15 @@ sub get_marker_by_id(){
     my ($self, $marker_id) = @_;
     
     my $marker = $self->markers_repository->find_by_id($marker_id);
-    return encode_json($marker);
+    return encode_json({
+         'id' => $marker->id,
+         'user' => $marker->user,
+         'latitude' => $marker->latitude,
+         'longitude' => $marker->longitude,
+         'time_of_creation' => $marker->time_of_creation,
+         'description' => $marker->description,
+         'images' => $marker->images,
+    });
 }
 
 sub edit_marker(){
@@ -33,6 +41,11 @@ sub show_form(){
     my ($self, $request) = @_;
 
     return $self->template_view_handler->render_page('edit_marker');
+
+}
+
+sub list_markers(){
+    my ($self, $request) = @_;
 
 }
 
