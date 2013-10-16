@@ -1,0 +1,48 @@
+: cascade layout
+
+:around css->{
+
+:}
+
+:around body -> {
+
+<form>
+    <table style="border: 1px solid #9f9f9f;" cellspacing="10">
+        <tr>
+            <td>
+                <label >Name:</label>
+            </td>
+            <td>
+                <input type="text" name="user"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Широта</label>
+            </td>
+            <td>
+                <input type="text" name="latitude" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Долгота</label>
+            </td>
+            <td>
+                <input type="text" name="longitude" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Описание</label>
+            </td>
+            <td>
+                <input type="text" name="description" />
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="id"/>
+
+    <button type="submit" name="submitButton" value="Submit">Отправить</button>
+</form>
+:}
