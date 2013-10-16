@@ -14,6 +14,10 @@ router as {
     route '/markers/edit/show/form' => 'markers_edit_controller.show_form', (
         'name' => 'show_edit_form'
     );
+
+    route '/markers/edit/show/list' => 'markers_edit_controller.list_markers', (
+        'name' => 'show_edit_list'
+    );
     route '/markers/edit/get/marker/json/:id' => 'markers_edit_controller.get_marker_by_id',(
         'name' => 'marker_by_id_json',
     );
