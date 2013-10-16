@@ -17,7 +17,18 @@ has 'template_view_handler' => (
 sub show_form(){
     my ($self, $request) = @_;
 
-    return $self->template_view_handler->render_page('edit_marker_form');
+    my $form_variables = {
+        'id' => $request->param('id'),
+        'user' => $request->param('user'),
+        'latitude' => $request->param('latitude'),
+        'longitude' => $request->param('longitude'),
+        'description' => $request->param('description'),
+    };
+
+    return $self->template_view_handler->render_page('edit_marker_form',
+                        {
+                            'form' => $form_variables
+                        });
 
 }
 
