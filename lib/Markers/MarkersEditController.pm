@@ -14,6 +14,13 @@ has 'template_view_handler' => (
     'required' => 1,
 );
 
+has 'per_page' => (
+    'is' => 'ro',
+    'isa' => 'Int',
+    'default' => 30,
+    'required' => 1,
+);
+
 sub show_form(){
     my ($self, $request) = @_;
     my $marker;
@@ -35,17 +42,9 @@ sub show_form(){
                                    'description' => $request->param('description'));
     }
 
-    if($marker){#is valid condition
+    #if($marker){#is valid condition
         $marker = $self->markers_repository->save_marker($marker);
-    }
-
-#    my $form_variables = {
-#        'id' => $request->param('id'),
-#        'user' => $request->param('user'),
-#        'latitude' => $request->param('latitude'),
-#        'longitude' => $request->param('longitude'),
-#        'description' => $request->param('description'),
-#    };
+    #}
 
     return $self->template_view_handler->render_page('edit_marker_form',
                         {
@@ -55,6 +54,19 @@ sub show_form(){
 }
 
 
+sub list_markers(){
+    my ($self, $request) = @_;
 
+    my $page = $request->param('page') ? $request->param('page') : 1;
+    my $offset = ($page -1) * $self->per_page;
+    my ($markers_aref, $total_count) = $self->markers_repository->list_markers($offset, $self->per_page);
+
+
+    return $self->template_view_handler->render_page('list_markers',
+                                   {
+                                       'markers' => $markers_aref,
+                                       'total_count' => $total_count,
+                                   });
+}
 
 1;

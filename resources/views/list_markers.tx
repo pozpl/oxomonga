@@ -15,6 +15,10 @@
                 <td><:$marker.latitude:></td>
                 <td><:$marker.longitude:></td>
                 <td><:$marker.description:></td>
+                <td>
+                      :my $url_params = {'name' => 'show_edit_form_id', 'id' => $marker.id}
+                      <a href="<:uri_for($url_params):>">Редактировать</a>
+                </td>
             </tr>
         :}
     </table>
