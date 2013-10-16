@@ -64,7 +64,7 @@ sub list_markers(){
     my $raw_markers_cursor = $self->markers_collection->find()
                             ->skip($offset)
                             ->limit($limit);
-    $total_count = $raw_markers_cursor->count();
+    my $total_count = $raw_markers_cursor->count();
     my @markers = ();
     while( my $raw_marker = $raw_markers_cursor->next ){
        push @markers, $self->_hash_to_marker($raw_marker);
