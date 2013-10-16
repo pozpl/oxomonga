@@ -2,7 +2,7 @@ package System::View::TemplateViewHandler;
 
 use Moose;
 use Text::Xslate;
-
+use Data::Dump qw(dump);
 
 has default_bounds => (
     'is' => 'ro',
@@ -43,11 +43,12 @@ has xslate => (
 sub render_page {
     my $self = shift;
     my ($page, $bounds) = @_;
-    my $result_bounds = $self->default_bounds;
+    my %result_bounds = %{$self->default_bounds};
     if($bounds){
-        $result_bounds->{keys $bounds} = values $bounds;
+        my %bounds_hash = %{$bounds};
+        @result_bounds{keys %bounds_hash} = values %bounds_hash;
     }
-    return $self->xslate->render("$page.tx", $result_bounds);
+    return $self->xslate->render("$page.tx", \%result_bounds);
 }
 
 1;
