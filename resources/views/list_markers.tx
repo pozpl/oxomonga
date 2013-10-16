@@ -5,5 +5,15 @@
 :}
 
 :around body -> {
-
+    <table style="border: 1px solid #9f9f9f;" cellspacing="10">
+        :for $markers -> $marker
+            <tr>
+                <td><:$marker->id:></td>
+                <td><:$marker->user:></td>
+                <td><:$marker->latitude:></td>
+                <td><:$marker->longitude:></td>
+                <td><:$marker->description:></td>
+            </tr>
+        :}
+    </table>
 :}
