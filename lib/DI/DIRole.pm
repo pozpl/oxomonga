@@ -72,6 +72,7 @@ has xslate =>  (
         my $router = $s->param('router');
         return Text::Xslate->new(
         path     => [ $s->param('template_root') ],
+        html_builder_module => [ 'HTML::FillInForm::Lite' => [qw(fillinform)] ],
         function => {
             uri_for => sub {
                     my ($spec) = @_;
