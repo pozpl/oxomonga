@@ -107,4 +107,13 @@ has markers_edit_controller =>(
     },
 );
 
+has markers_edit_controller_json =>(
+    'is' => 'ro',
+    'isa' => 'Markers::MarkersEditControllerJson',
+    dependencies => {
+       'markers_repository' => 'markers_repository',
+       'template_view_handler' => 'template_view_handler',
+    },
+);
+
 1;

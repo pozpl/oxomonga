@@ -17,7 +17,7 @@ has 'template_view_handler' => (
 sub show_form(){
     my ($self, $request) = @_;
 
-    return $self->template_view_handler->render_page('edit_marker');
+    return $self->template_view_handler->render_page('edit_marker_form');
 
 }
 

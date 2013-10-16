@@ -61,10 +61,11 @@ sub find_near_markers(){
 sub list_markers(){
     my ($self, $offset, $limit) = @_;
 
-     my $raw_markers_cursor = $self->markers_collection->find($query)
+     my $raw_markers_cursor = $self->markers_collection->find()
                         ->skip($offset)
                         ->limit($limit);
-     while( my $raw_marker = $raw_markers->next ){
+     my @markers = ();
+     while( my $raw_marker = $raw_markers_cursor->next ){
         push @markers, $self->_hash_to_marker($raw_marker);
      }
      return @markers;
