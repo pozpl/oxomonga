@@ -16,6 +16,10 @@ router as {
             'name' => 'show_edit_form_id'
         );
 
+    route '/markers/edit/delete/:id' => 'markers_edit_controller.delete_marker', (
+        'name' => 'delete_marker_by_id'
+    );
+
     route '/markers/edit/show/form' => 'markers_edit_controller.show_form', (
         'name' => 'show_edit_form'
     );

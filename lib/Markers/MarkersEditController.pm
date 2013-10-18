@@ -42,9 +42,9 @@ sub show_form(){
                                    'description' => $request->param('description'));
     }
 
-    #if($marker){#is valid condition
+    if($marker->user){#is valid condition
         $marker = $self->markers_repository->save_marker($marker);
-    #}
+    }
 
     return $self->template_view_handler->render_page('edit_marker_form',
                         {
@@ -67,6 +67,15 @@ sub list_markers(){
                                        'markers' => $markers_aref,
                                        'total_count' => $total_count,
                                    });
+}
+
+sub delete_marker(){
+    my ($self, $request) = @_;
+
+    my $marker_id = $request->param('id');
+    $self->markers_repository->delete_by_id($marker_id);
+
+    return 'OK';
 }
 
 1;
