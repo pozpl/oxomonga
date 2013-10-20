@@ -1,6 +1,7 @@
 package Markers::MarkersEditController;
 use Moose;
 use Markers::Marker;
+use Data::Dump qw(dump);
 
 has 'markers_repository' => (
     'is' => 'ro',
@@ -22,10 +23,11 @@ has 'per_page' => (
 );
 
 sub show_form(){
-    my ($self, $request) = @_;
+    my ($self, $request, $id) = @_;
     my $marker;
-    if($request->param('id') ){
-         $marker = $self->markers_repository->find_by_id($request->param('id'));
+    if($id){
+         $marker = $self->markers_repository->find_by_id($id);
+         dump($marker);
          if($marker){
 
             $marker->user => $request->param('user'),
@@ -35,7 +37,6 @@ sub show_form(){
          }
     }else{
          $marker = Markers::Marker->new(
-                                   'id' => $request->param('id'),
                                    'user' => $request->param('user'),
                                    'latitude' => $request->param('latitude'),
                                    'longitude' => $request->param('longitude'),
@@ -70,12 +71,15 @@ sub list_markers(){
 }
 
 sub delete_marker(){
-    my ($self, $request) = @_;
+    my ($self, $request, $id) = @_;
 
-    my $marker_id = $request->param('id');
-    $self->markers_repository->delete_by_id($marker_id);
+    if($id){
+        $self->markers_repository->delete_by_id($id);
+        return 'OK';
+    }else{
+        return 'NOT OK';
+    }
 
-    return 'OK';
 }
 
 1;
