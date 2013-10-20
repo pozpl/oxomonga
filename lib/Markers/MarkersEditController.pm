@@ -1,7 +1,6 @@
 package Markers::MarkersEditController;
 use Moose;
 use Markers::Marker;
-use Data::Dump qw(dump);
 
 has 'markers_repository' => (
     'is' => 'ro',
