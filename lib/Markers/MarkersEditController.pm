@@ -26,7 +26,6 @@ sub show_form(){
     my $marker;
     if($id){
          $marker = $self->markers_repository->find_by_id($id);
-         dump($marker);
          if($marker){
 
             $marker->user => $request->param('user'),
