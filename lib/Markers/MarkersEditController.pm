@@ -71,7 +71,6 @@ sub list_markers(){
 
 sub delete_marker(){
     my ($self, $request, $id) = @_;
-
     if($id){
         $self->markers_repository->delete_by_id($id);
         return 'OK';
