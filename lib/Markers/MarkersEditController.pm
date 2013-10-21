@@ -28,10 +28,12 @@ sub show_form(){
          $marker = $self->markers_repository->find_by_id($id);
          if($marker){
 
-            $marker->user => $request->param('user'),
-            $marker->latitude => $request->param('latitude'),
-            $marker->longitude => $request->param('longitude'),
-            $marker->description => $request->param('description'),
+            $marker = Markers::Marker->new(
+                              'id' => $
+                              'user' => $request->param('user'),
+                              'latitude' => $request->param('latitude'),
+                              'longitude' => $request->param('longitude'),
+                              'description' => $request->param('description'));
          }
     }else{
          $marker = Markers::Marker->new(
@@ -41,7 +43,7 @@ sub show_form(){
                                    'description' => $request->param('description'));
     }
 
-    if($marker->user){#is valid condition
+    if($marker->user()){#is valid condition
         $marker = $self->markers_repository->save_marker($marker);
     }
 
