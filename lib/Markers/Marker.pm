@@ -10,10 +10,12 @@ has 'user' => (
 
 has 'latitude' => (
     'is' => 'ro',
+    'isa' => 'Num'
 );
 
 has 'longitude' => (
     'is' => 'ro',
+    'isa' => 'Num'
 );
 
 has 'time_of_creation' => (
