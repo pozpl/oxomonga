@@ -30,10 +30,11 @@ sub show_form(){
 
             $marker = Markers::Marker->new(
                               'id' => $id,
-                              'user' => $request->param('user'),
-                              'latitude' => $request->param('latitude'),
-                              'longitude' => $request->param('longitude'),
-                              'description' => $request->param('description'));
+                              'user' => $request->param('user') ? $request->param('user'): $marker->user(),
+                              'latitude' => $request->param('latitude') ? $request->param('latitude') : $marker->latitude(),
+                              'longitude' => $request->param('longitude') ? $request->param('longitude') : $marker->longitude(),
+                              'description' => $request->param('description') ? $request->param('description') : $marker->description()
+                          );
          }
     }else{
          $marker = Markers::Marker->new(
