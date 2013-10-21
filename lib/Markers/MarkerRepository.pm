@@ -112,7 +112,7 @@ sub _marker_to_hash(){
     }
     
     if ($marker->longitude() && $marker->latitude()) {
-        $hash_to_save->{loc} = {
+        $hash_to_save->{'loc'} = {
             'type' => 'Point',
             'coordinates' => [$marker->longitude() , $marker->latitude()]
         };
