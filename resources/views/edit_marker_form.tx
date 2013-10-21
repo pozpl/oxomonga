@@ -5,6 +5,10 @@
 :}
 
 :around body -> {
+     :my $list_parameters = {'name' => 'show_edit_list' }
+     <div><a href="<:uri_for($list_parameters):>">Назад к списку маркеров</a></div>
+
+
     : block form | fillinform($form) -> {
         <form>
             <table style="border: 1px solid #9f9f9f;" cellspacing="10">
