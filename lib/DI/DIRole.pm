@@ -34,7 +34,9 @@ has 'markers_collection' => (
     'is' => 'ro',
     'block' => sub{
         my $s = shift;
-        return $s->param('database')->get_collection('markers');
+        my $collection =  $s->param('database')->get_collection('markers');
+        $collection->ensure_index({'loc' => '2dsphere'});
+        return $collection;
     },
     dependencies => {
     	'database' => 'mongo_database',
