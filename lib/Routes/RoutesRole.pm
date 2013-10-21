@@ -10,7 +10,7 @@ use File::Basename;
 my $current_working_directory  = dirname(__FILE__);
 
 router as {
-    route '/markers/near/radius'  => 'markers_rest_controller.find_near_markers';
+    route '/markers/near/radius/:longitude/:latitude/:radius'  => 'markers_rest_controller.find_near_markers';
 
     route '/markers/edit/show/form/?:id' => 'markers_edit_controller.show_form', (
             'name' => 'show_edit_form_id'

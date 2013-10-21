@@ -41,7 +41,8 @@ sub show_form(){
                                    'user' => $request->param('user'),
                                    'latitude' => $request->param('latitude'),
                                    'longitude' => $request->param('longitude'),
-                                   'description' => $request->param('description'));
+                                   'description' => $request->param('description')
+                              );
     }
 
     if($marker->user()){#is valid condition
