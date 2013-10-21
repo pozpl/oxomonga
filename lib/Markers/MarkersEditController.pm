@@ -29,7 +29,7 @@ sub show_form(){
          if($marker){
 
             $marker = Markers::Marker->new(
-                              'id' => $
+                              'id' => $id,
                               'user' => $request->param('user'),
                               'latitude' => $request->param('latitude'),
                               'longitude' => $request->param('longitude'),
