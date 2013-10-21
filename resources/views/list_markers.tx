@@ -5,15 +5,24 @@
 :}
 
 :around body -> {
-    :my $name = {'name' => 'show_edit_form'}
+    :my $name = {'name' => 'show_edit_form_id'}
     <a href="<:uri_for($name):>">Создать</a>
     <table style="border: 1px solid #9f9f9f;" cellspacing="10">
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>user</td>
+                <td>longitude</td>
+                <td>latitude</td>
+                <td>description</td>
+            </tr>
+        </thead>
         :for $markers -> $marker {
             <tr>
                 <td><:$marker.id:></td>
                 <td><:$marker.user:></td>
-                <td><:$marker.latitude:></td>
                 <td><:$marker.longitude:></td>
+                <td><:$marker.latitude:></td>
                 <td><:$marker.description:></td>
                 <td>
                       :my $url_params = {'name' => 'show_edit_form_id', 'id' => $marker.id}
