@@ -43,11 +43,11 @@ sub find_near_markers(){
         '$near' => 
         {
             '$geometry' => {
-                'coordinates' => [ $longitude , $latitude ],
+                'coordinates' => [ $longitude + 0 , $latitude + 0],
                 'type' => 'Point',
             }
         },
-        '$maxDistance' => $max_distance
+        '$maxDistance' => $max_distance + 0
     ));
 
     my @raw_markers = $self->markers_collection->find($query)->all();
@@ -114,7 +114,7 @@ sub _marker_to_hash(){
     if ($marker->longitude() && $marker->latitude()) {
         $hash_to_save->{'loc'} = {
             'type' => 'Point',
-            'coordinates' => [$marker->longitude() , $marker->latitude()]
+            'coordinates' => [$marker->longitude() + 0 , $marker->latitude() + 0]
         };
     }
     
