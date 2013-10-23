@@ -45,14 +45,18 @@ sub show_form(){
                               );
     }
 #    dump($marker);
-    if($marker->user()){#is valid condition
+    if($marker && $marker->user()){#is valid condition
         $marker = $self->markers_repository->save_marker($marker);
     }
 
-    return $self->template_view_handler->render_page('edit_marker_form',
+    if($marker){
+        return $self->template_view_handler->render_page('edit_marker_form',
                         {
                             'form' => $marker
                         });
+    }else{
+        return $request->new_response->redirect($request->uri_fro('name' => 'show_edit_list'));
+    }
 
 }
 
