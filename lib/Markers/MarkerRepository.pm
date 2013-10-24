@@ -58,6 +58,26 @@ sub find_near_markers(){
     return @markers;
 }
 
+sub find_markers_in_rectangle(){
+    my ($self, $bl_longitude, $bl_latitude, $ur_longitude, $ur_latitude) = @_;
+
+    my $query = Tie::IxHash->new('loc' => Tie::IxHash->new(
+           '$geoWithin' => {
+                '$box' => [
+                    [$bl_longitude + 0 , $bl_latitude + 0],
+                    [$ur_longitude + 0 , $ur_latitude + 0],
+                ],
+           }
+        ));
+
+    my @raw_markers = $self->markers_collection->find($query)->all();
+    my @markers = ();
+    foreach my $raw_marker (@raw_markers) {
+        push @markers, $self->_hash_to_marker($raw_marker);
+    }
+    return @markers;
+}
+
 sub list_markers(){
     my ($self, $offset, $limit) = @_;
 
