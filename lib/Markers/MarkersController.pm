@@ -20,6 +20,23 @@ sub find_near_markers(){
     return encode_json(\@markers_hrefs);
 }
 
+sub find_markers_in_rectangle(){
+    my ($self, $request) = @_;
+    my $bl_longitude = $request->param('bl_lon');
+    my $bl_latitude = $request->param('bl_lat');
+    my $ur_longitude = $request->param('ur_lon');
+    my $ur_latitude = $request->param('ur_lat');
+
+    my @markers = $self->markers_repository->find_markers_in_rectangle(
+                                                $bl_longitude,
+                                                $bl_latitude,
+                                                $ur_longitude,
+                                                $ur_latitude
+                                            );
+    my @markers_hrefs = $self->_markers_to_struct(\@markers);
+    return encode_json(\@markers_hrefs);
+}
+
 sub _markers_to_struct(){
     my ($self, $markers) = @_;
 
