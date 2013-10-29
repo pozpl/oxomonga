@@ -55,7 +55,7 @@ sub show_form(){
                             'form' => $marker
                         });
     }else{
-        return $request->new_response->redirect($request->uri_fro('name' => 'show_edit_list'));
+        return $request->new_response->redirect($request->uri_from('name' => 'show_edit_list'));
     }
 
 }
