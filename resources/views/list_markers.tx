@@ -35,4 +35,6 @@
             </tr>
         :}
     </table>
+
+   :include "auxiliary/paginator.tx";
 :}
