@@ -73,6 +73,8 @@ sub list_markers(){
                                    {
                                        'markers' => $markers_aref,
                                        'total_count' => $total_count,
+                                       'per_page' => $self->per_page,
+                                       'page' => $page,
                                    });
 }
 
