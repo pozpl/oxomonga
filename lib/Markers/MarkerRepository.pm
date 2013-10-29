@@ -78,6 +78,22 @@ sub find_markers_in_rectangle(){
     return @markers;
 }
 
+sub count_markers_in_rectangle(){
+     my ($self, $bl_longitude, $bl_latitude, $ur_longitude, $ur_latitude) = @_;
+
+        my $query = Tie::IxHash->new('loc' => Tie::IxHash->new(
+               '$geoWithin' => {
+                    '$box' => [
+                        [$bl_longitude + 0 , $bl_latitude + 0],
+                        [$ur_longitude + 0 , $ur_latitude + 0],
+                    ],
+               }
+            ));
+
+        my $markers_count = $self->markers_collection->find($query)->count();
+        return $markers_count;
+}
+
 sub list_markers(){
     my ($self, $offset, $limit) = @_;
 
