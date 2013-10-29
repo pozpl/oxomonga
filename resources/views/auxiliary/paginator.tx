@@ -1,9 +1,6 @@
-:my $addition_page = $total_count % $per_page ? 1 : 0;
-:my $total_pages = int($total_count/$per_page) + $addition_page;
-
 <table>
     <tr>
-        :for (1..$total_pages) -> $page_counter{
+        :for $pages_list -> $page_counter{
             <td><: $page_counter :></td>
         :}
     </tr>

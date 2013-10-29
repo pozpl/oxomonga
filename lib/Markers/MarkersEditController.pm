@@ -55,7 +55,7 @@ sub show_form(){
                             'form' => $marker
                         });
     }else{
-        return $request->new_response->redirect($request->uri_from('name' => 'show_edit_list'));
+        return $request->new_response->redirect($request->uri_for('name' => 'show_edit_list'));
     }
 
 }
@@ -68,13 +68,16 @@ sub list_markers(){
     my $offset = ($page -1) * $self->per_page;
     my ($markers_aref, $total_count) = $self->markers_repository->list_markers($offset, $self->per_page);
 
-
+    my $addition_page = $total_count % $self->per_page > 0 ? 1 : 0;
+    my $total_pages = int($total_count/$self->per_page) + $addition_page;
+    my @pages_list = (1..$total_pages);
     return $self->template_view_handler->render_page('list_markers',
                                    {
                                        'markers' => $markers_aref,
                                        'total_count' => $total_count,
                                        'per_page' => $self->per_page,
                                        'page' => $page,
+                                       'pages_list' => \@pages_list,
                                    });
 }
 
