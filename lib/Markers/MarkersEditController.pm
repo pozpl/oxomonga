@@ -1,7 +1,9 @@
 package Markers::MarkersEditController;
 use Moose;
 use Markers::Marker;
+
 use Data::Dump qw(dump);
+
 has 'markers_repository' => (
     'is' => 'ro',
     'isa' => 'Markers::MarkerRepository',
@@ -33,7 +35,8 @@ sub show_form(){
                               'user' => $request->param('user') ? $request->param('user'): $marker->user(),
                               'latitude' => $request->param('latitude') ? $request->param('latitude') : $marker->latitude(),
                               'longitude' => $request->param('longitude') ? $request->param('longitude') : $marker->longitude(),
-                              'description' => $request->param('description') ? $request->param('description') : $marker->description()
+                              'description' => $request->param('description') ? $request->param('description') : $marker->description(),
+                              'time_of_creation' => $marker->time_of_creation(),
                           );
          }
     }else{
@@ -41,7 +44,8 @@ sub show_form(){
                                    'user' => $request->param('user'),
                                    'latitude' => $request->param('latitude'),
                                    'longitude' => $request->param('longitude'),
-                                   'description' => $request->param('description')
+                                   'description' => $request->param('description'),
+                                   'time_of_creation' => time(),
                               );
     }
 #    dump($marker);
