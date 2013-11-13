@@ -21,11 +21,11 @@ sub find_near_markers(){
 }
 
 sub find_markers_in_rectangle(){
-    my ($self, $request) = @_;
-    my $bl_longitude = $request->param('bl_lon');
-    my $bl_latitude = $request->param('bl_lat');
-    my $ur_longitude = $request->param('ur_lon');
-    my $ur_latitude = $request->param('ur_lat');
+    my ($self, $request, $bl_latitude, $bl_longitude, $ur_latitude, $ur_longitude) = @_;
+    $bl_latitude = $bl_latitude || 0;
+    $bl_longitude = $bl_longitude || 0;
+    $ur_latitude = $ur_latitude || 0;
+    $ur_longitude = $ur_longitude || 0;
 
     my @markers = $self->markers_repository->find_markers_in_rectangle(
                                                 $bl_longitude,
