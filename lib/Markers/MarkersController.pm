@@ -21,7 +21,7 @@ sub find_near_markers(){
 }
 
 sub find_markers_in_rectangle(){
-    my ($self, $request, $bl_latitude, $bl_longitude, $ur_latitude, $ur_longitude) = @_;
+    my ($self, $request, $bl_longitude, $bl_latitude, $ur_longitude,  $ur_latitude) = @_;
     $bl_latitude = $bl_latitude || 0;
     $bl_longitude = $bl_longitude || 0;
     $ur_latitude = $ur_latitude || 0;
