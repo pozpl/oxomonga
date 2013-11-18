@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('testAngularApp', [])
+angular.module('testAngularApp', ['ngRoute', 'yaMap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
