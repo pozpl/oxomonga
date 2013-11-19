@@ -29,6 +29,7 @@ router as {
     );
 
     mount '/static' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static');
+    mount '/js/app' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static/js/app');
     #mount '/static' => "Plack::App::File", (
     #    root     => '../resources/static',
     #    encoding => literal('UTF-8'),
