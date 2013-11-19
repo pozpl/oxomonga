@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('testAngularApp', ['ngRoute', 'yaMap'])
+angular.module('GeoHashingApp', ['ngRoute', 'yaMap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

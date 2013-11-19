@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('testAngularApp')
+angular.module('GeoHashingApp')
     .controller('MainCtrl', function ($scope) {
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
