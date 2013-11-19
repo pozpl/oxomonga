@@ -1,6 +1,10 @@
 <div class="center">
 </div>
 <div class="right">
-    <ya-map class="map_class" ya-zoom="8" ya-center="[37.64,55.76]" ya-after-init="afterMapInit($target)"></ya-map>
-    <button ng-click="del()">Удалить</button>
+    <ya-map class="map_class" center="map.center" zoom="map.zoom">
+        <!-- загружаем текст сообщения в атрибут properties -->
+        <ya-marker ng-repeat="marker in markers" index="$index+1"
+                   coordinates="marker.coordinates" properties="marker.properties">
+        </ya-marker>
+    </ya-map>
 </div>

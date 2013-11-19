@@ -8,6 +8,16 @@ angular.module('testAngularApp')
             'Karma'
         ];
 
+        $scope.markers = [
+            {coordinates:[56.56, 38.63], properties: {balloonContent: 'Здесь рыбы нет!'}},
+            {coordinates:[55.16, 39.89], properties: {balloonContent: 'Здесь рыбы тоже нет'}},
+            {coordinates:[55.08, 38.96], properties: {balloonContent: 'А здесь есть!'}}
+        ];
+
+        $scope.map = {
+            center: [55.55, 39.84], zoom: 12
+        };
+
         $scope.geoObjects =
         {
             geometry: {
