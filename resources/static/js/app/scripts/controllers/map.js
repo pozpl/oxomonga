@@ -12,8 +12,8 @@ angular.module('GeoHashingApp')
 
         $scope.reloadMarkersOnBoundsChange = function(event){
             var newBounds = event.get('newBounds');
-            $http({method: 'GET', url: '/markers/rectangle/' + newBounds[0][1] +'/' + newBounds[0][0] +'/'
-                                                             + newBounds[1][1] +'/' + newBounds[1][0]  }).
+            $http({method: 'GET', url: '/markers/rectangle/' + newBounds[0][0] +'/' + newBounds[0][1] +'/'
+                                                             + newBounds[1][0] +'/' + newBounds[1][1]  }).
                 success(function (data, status, headers, config) {
                     processMarkers(data);
                 }).
