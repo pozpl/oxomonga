@@ -14,7 +14,7 @@
             <table style="border: 1px solid #9f9f9f;" cellspacing="10">
                 <tr>
                     <td>
-                        <label >Name:</label>
+                        <label >User name:</label>
                     </td>
                     <td>
                         <input type="text" name="user"/>
