@@ -12,7 +12,8 @@ angular.module('GeoHashingApp')
 
         $scope.reloadMarkersOnBoundsChange = function(event){
             var newBounds = event.get('newBounds');
-            $http({method: 'GET', url: '/markers/rectangle/' + newBounds[0][1] +'/' + newBounds[0][0] +'/' + newBounds[1][1] +'/' + newBounds[1][1]  }).
+            $http({method: 'GET', url: '/markers/rectangle/' + newBounds[0][1] +'/' + newBounds[0][0] +'/'
+                                                             + newBounds[1][1] +'/' + newBounds[1][0]  }).
                 success(function (data, status, headers, config) {
                     processMarkers(data);
                 }).
@@ -23,7 +24,7 @@ angular.module('GeoHashingApp')
         };
 
         $scope.map = {
-            center: [37.64,55.76],
+//            center: [43, 123],
             zoom: 12
         };
 
@@ -76,9 +77,9 @@ angular.module('GeoHashingApp')
                     averageLongitude = averageLongitude / data.length;
 
 
-                    $scope.map = {
-                        center: [averageAltitude, averageLongitude]
-                    };
+//                    $scope.map = {
+//                        center: [averageAltitude, averageLongitude]
+//                    };
                     console.log('All loaded');
                 }
             };
