@@ -6,14 +6,18 @@ angular.module('GeoHashingApp')
 
         $scope.afterInit=function(map){
             _map = map;
-            var centerCoordinates = map.getCenter();
-            fetchMarkersRadius(centerCoordinates[0], centerCoordinates[1], 100);
+            var mapBounds = map.getBounds();
+            _fetchMarkersForBounds(mapBounds);
         };
 
         $scope.reloadMarkersOnBoundsChange = function(event){
             var newBounds = event.get('newBounds');
+            _fetchMarkersForBounds(newBounds);
+        };
+
+        var _fetchMarkersForBounds = function(newBounds){
             $http({method: 'GET', url: '/markers/rectangle/' + newBounds[0][0] +'/' + newBounds[0][1] +'/'
-                                                             + newBounds[1][0] +'/' + newBounds[1][1]  }).
+                + newBounds[1][0] +'/' + newBounds[1][1]  }).
                 success(function (data, status, headers, config) {
                     processMarkers(data);
                 }).
@@ -54,11 +58,8 @@ angular.module('GeoHashingApp')
                 console.log(data.length);
                 if (data && data.length > 0) {
                     $scope.geoObjects = [];
-                    var averageAltitude = 0;
-                    var averageLongitude = 0;
+
                     angular.forEach(data, function (index, marker) {
-                        averageAltitude = marker.latitude;
-                        averageLongitude = marker.longitude;
                         $scope.geoObjects.push(
                             {
                                 geometry: {
@@ -66,20 +67,14 @@ angular.module('GeoHashingApp')
                                     coordinates: [marker.latitude, marker.longitude]
                                 },
                                 properties: {
-                                    iconContent: 'Метка',
+                                    iconContent: marker.name,
                                     balloonContent: marker.description
                                 }
                             }
                         );
                     });
 
-                    averageAltitude = averageAltitude / data.length;
-                    averageLongitude = averageLongitude / data.length;
 
-
-//                    $scope.map = {
-//                        center: [averageAltitude, averageLongitude]
-//                    };
                     console.log('All loaded');
                 }
             };
