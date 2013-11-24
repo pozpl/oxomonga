@@ -42,8 +42,8 @@ sub show_form(){
     }else{
          $marker = Markers::Marker->new(
                                    'user' => $request->param('user'),
-                                   'latitude' => $request->param('latitude'),
-                                   'longitude' => $request->param('longitude'),
+                                   'latitude' => $request->param('latitude') ? $request->param('latitude') : 0,
+                                   'longitude' => $request->param('longitude') ? $request->param('longitude') : 0,
                                    'description' => $request->param('description'),
                                    'time_of_creation' => time(),
                               );
