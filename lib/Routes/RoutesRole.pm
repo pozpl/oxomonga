@@ -11,7 +11,7 @@ my $current_working_directory  = dirname(__FILE__);
 
 router as {
     route '/markers/near/radius/:longitude/:latitude/:radius'  => 'markers_rest_controller.find_near_markers';
-    route '/markers/rectangle/:bl_lon/:bl_lat/:ur_lon/:ur_lat'  => 'markers_rest_controller.find_markers_in_rectangle';
+    route '/markers/rectangle/:bl_lat/:bl_lon/:ur_lat/:ur_lon'  => 'markers_rest_controller.find_markers_in_rectangle';
 
     route '/markers/edit/show/form/?:id' => 'markers_edit_controller.show_form', (
             'name' => 'show_edit_form_id'
