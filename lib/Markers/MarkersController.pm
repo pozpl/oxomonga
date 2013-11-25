@@ -34,7 +34,7 @@ sub find_markers_in_rectangle(){
                                                 $ur_latitude
                                             );
     my @markers_hrefs = $self->_markers_to_struct(\@markers);
-    return encode_json(\@markers_hrefs);
+    return JSON->new->encode(\@markers_hrefs);
 }
 
 sub _markers_to_struct(){
