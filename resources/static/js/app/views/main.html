@@ -1,5 +1,14 @@
 <div class="center">
 </div>
+<div class="left">
+    <ol>
+        <li ng-repeat="(k,v) in shared.markers">
+            <div>{{marker.description}}</div>
+            <div>{{marker.name}}</div>
+
+        </li>
+    </ol>
+</div>
 <div class="right">
     <div ng-include="" src=" 'views/map.html' "></div></div>
 </div>
