@@ -64,7 +64,7 @@ angular.module('GeoHashingApp')
                             {
                                 geometry: {
                                     type: 'Point',
-                                    coordinates: [marker.latitude, marker.longitude]
+                                    coordinates: [marker.longitude, marker.latitude]
                                 },
                                 properties: {
                                     iconContent: marker.user,
