@@ -59,7 +59,7 @@ angular.module('GeoHashingApp')
                 if (data && data.length > 0) {
                     $scope.geoObjects = [];
 
-                    angular.forEach(data, function (index, marker) {
+                    angular.forEach(data, function (marker, index) {
                         $scope.geoObjects.push(
                             {
                                 geometry: {
@@ -67,7 +67,7 @@ angular.module('GeoHashingApp')
                                     coordinates: [marker.latitude, marker.longitude]
                                 },
                                 properties: {
-                                    iconContent: marker.name,
+                                    iconContent: marker.user,
                                     balloonContent: marker.description
                                 }
                             }
