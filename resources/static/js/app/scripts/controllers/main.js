@@ -1,5 +1,5 @@
 'use strict';
 
 angular.module('GeoHashingApp')
-    .controller('MainCtrl', function ($scope, $http) {
+    .controller('MarkersListCtrl', function ($scope, $http) {
     });
