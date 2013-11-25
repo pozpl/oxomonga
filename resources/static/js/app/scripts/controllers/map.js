@@ -80,7 +80,7 @@ angular.module('GeoHashingApp')
         var addMarkerToSharedMarkers = function(marker){
              if(! $scope.shared.markersIds[marker.id] ){
                 $scope.shared.markersIds[marker.id] = true;
-                $scope.shared.markers.push[marker];
+                $scope.shared.markers.push(marker);
              }
         };
 
