@@ -41,42 +41,48 @@ angular.module('GeoHashingApp')
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
                 });
-            };
+        };
 
-            var fetchMarkersReactangle = function(bl_lat, bl_lon, ur_lat, ur_lon){
-                $http({method: 'GET', url: '/markers/near/radius/123/43/100'}).
-                    success(function (data, status, headers, config) {
-                        processMarkers(data);
-                    }).
-                    error(function (data, status, headers, config) {
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
-                    });
-            };
+        var fetchMarkersReactangle = function (bl_lat, bl_lon, ur_lat, ur_lon) {
+            $http({method: 'GET', url: '/markers/near/radius/123/43/100'}).
+                success(function (data, status, headers, config) {
+                    processMarkers(data);
+                }).
+                error(function (data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+        };
 
-            var processMarkers = function(data){
-                console.log(data.length);
-                if (data && data.length > 0) {
-                    $scope.geoObjects = [];
+        var processMarkers = function (data) {
+            if (data && data.length > 0) {
+                $scope.geoObjects = [];
 
-                    angular.forEach(data, function (marker, index) {
-                        $scope.geoObjects.push(
-                            {
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [marker.longitude, marker.latitude]
-                                },
-                                properties: {
-                                    iconContent: marker.user,
-                                    balloonContent: marker.description
-                                }
+                angular.forEach(data, function (marker, index) {
+                    addMarkerToSharedMarkers(marker);
+                    $scope.geoObjects.push(
+                        {
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [marker.longitude, marker.latitude]
+                            },
+                            properties: {
+                                iconContent: marker.user,
+                                balloonContent: marker.description
                             }
-                        );
-                    });
+                        }
+                    );
+                });
+            }
+        };
 
 
-                    console.log('All loaded');
-                }
-            };
+        var addMarkerToSharedMarkers = function(marker){
+             if(! $scope.shared.markersIds[marker.id] ){
+                $scope.shared.markersIds[marker.id] = true;
+                $scope.shared.markers.push[marker];
+             }
+        };
+
     }
 );
