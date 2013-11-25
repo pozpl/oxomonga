@@ -5,7 +5,7 @@ angular.module('GeoHashingApp', ['ngRoute', 'yaMap'])
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MarkersListCtrl'
       })
       .otherwise({
         redirectTo: '/'
