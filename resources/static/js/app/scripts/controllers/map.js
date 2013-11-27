@@ -43,23 +43,14 @@ angular.module('GeoHashingApp')
                 });
         };
 
-        var fetchMarkersReactangle = function (bl_lat, bl_lon, ur_lat, ur_lon) {
-            $http({method: 'GET', url: '/markers/near/radius/123/43/100'}).
-                success(function (data, status, headers, config) {
-                    processMarkers(data);
-                }).
-                error(function (data, status, headers, config) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                });
-        };
 
         var processMarkers = function (data) {
             if (data && data.length > 0) {
                 $scope.geoObjects = [];
-
+                $scope.shared.markers = [];
                 angular.forEach(data, function (marker, index) {
-                    addMarkerToSharedMarkers(marker);
+//                    addMarkerToSharedMarkers(marker);
+                    $scope.shared.markers.push(marker);
                     $scope.geoObjects.push(
                         {
                             geometry: {
@@ -77,12 +68,14 @@ angular.module('GeoHashingApp')
         };
 
 
-        var addMarkerToSharedMarkers = function(marker){
-             if(! $scope.shared.markersIds[marker.id] ){
-                $scope.shared.markersIds[marker.id] = true;
-                $scope.shared.markers.push(marker);
-             }
-        };
+
+
+//        var addMarkerToSharedMarkers = function(marker){
+//             if(! $scope.shared.markersIds[marker.id] ){
+//                $scope.shared.markersIds[marker.id] = true;
+//                $scope.shared.markers.push(marker);
+//             }
+//        };
 
     }
 );
