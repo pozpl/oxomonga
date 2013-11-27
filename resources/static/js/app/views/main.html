@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-md-4 col-lg-4">
                 <ol>
-                    <li ng-repeat="(k,marker) in shared.markers">
+                    <li ng-repeat="(k,marker) in shared.markers" ng-click="runBalloon(marker)">
                         <div>{{marker.description}}</div>
                         <div>{{marker.name}}</div>
 

@@ -6,4 +6,9 @@ angular.module('GeoHashingApp')
         $scope.shared.markersIds = new Object();
         $scope.shared.markers = Array();
 
+
+        $scope.runBalloon = function(obj){
+            $scope.shared.showBallonIs = obj.id;
+        };
+
     });
