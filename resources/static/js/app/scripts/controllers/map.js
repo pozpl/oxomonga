@@ -58,8 +58,9 @@ angular.module('GeoHashingApp')
                                 coordinates: [marker.longitude, marker.latitude]
                             },
                             properties: {
-                                iconContent: marker.user,
-                                balloonContent: marker.description
+//                                iconContent: marker.id,
+                                balloonContent: marker.description,
+                                id : marker.id
                             }
                         }
                     );
