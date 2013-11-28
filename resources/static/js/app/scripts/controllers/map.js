@@ -69,7 +69,15 @@ angular.module('GeoHashingApp')
         };
 
 
-
+        $scope.balloonOpen = function($event, geoObject){
+            var foundGeoObject = $event.get('target');
+            console.log(geoObject.properties.id);
+            if(geoObject.properties.id == $scope.shared.showBalloonId){
+                geoObject.properties.balloonContent = 'Я здесь';
+            }else{
+                $scope.shared.showBalloonId =  geoObject.properties.id;
+            }
+        }
 
 //        var addMarkerToSharedMarkers = function(marker){
 //             if(! $scope.shared.markersIds[marker.id] ){

@@ -5,7 +5,8 @@
         <!-- загружаем текст сообщения в атрибут properties -->
         <geo-objects  ya-options="{preset:'twirl#blueIcon'}">
             <ya-geo-object ng-repeat="geoObject in geoObjects" index="$index+1" ya-source="geoObject"
-                           ya-show-balloon="geoObject.properties.id==shared.showBalloonId" ></ya-geo-object>
+                           ya-show-balloon="geoObject.properties.id==shared.showBalloonId"
+                           ya-event-balloonopen="balloonOpen($event, geoObject)"></ya-geo-object>
         </geo-objects>
     </ya-map>
 </div>
