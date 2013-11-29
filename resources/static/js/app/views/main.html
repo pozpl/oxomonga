@@ -24,7 +24,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-lg-4">
-                <ol>
+                <ul>
                     <li ng-repeat="(k,marker) in shared.markers" ng-click="runBalloon(marker)">
                         <div ng-if="marker.id==shared.showBalloonId">
                             <b>
@@ -38,7 +38,7 @@
                         </div>
 
                     </li>
-                </ol>
+                </ul>
             </div>
             <div class="col-md-8 col-lg-8">
                 <div ng-include="" src=" 'views/map.html' "></div>
