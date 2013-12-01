@@ -1,41 +1,30 @@
-<div>
-    <form>
-        <table class="table">
-            <tr>
-                <td>
-                    <label>User name:</label>
-                </td>
-                <td>
-                    <input type="text" name="user"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Широта</label>
-                </td>
-                <td>
-                    <input type="text" name="latitude"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Долгота</label>
-                </td>
-                <td>
-                    <input type="text" name="longitude"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Описание</label>
-                </td>
-                <td>
-                    <div name="description" text-angular ng-model="html"></div>
-                </td>
-            </tr>
-        </table>
-        <input type="hidden" name="id"/>
+<div class="container">
 
-        <button type="submit" name="submitButton" value="Submit">Отправить</button>
+    <form role="form">
+        <div class="form-group">
+            <label for="user">Имя пользователя</label>
+            <input type="text" class="form-control" id="user" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="longitude">Широта</label>
+            <input type="text" class="form-control" id="longitude" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="latitude">Долгота</label>
+            <input type="text" class="form-control" id="latitude" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="description">Password</label>
+            <div id="description" name="description" text-angular ng-model="html"></div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" id="exampleInputFile">
+            <p class="help-block">Поддерживаются только файлы jpeg, png, gif</p>
+        </div>
+        <button type="submit" class="btn btn-default">Сохранить изменения</button>
     </form>
 </div>
