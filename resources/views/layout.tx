@@ -1,59 +1,96 @@
 <!DOCTYPE HTML>
 <html lang="en">
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-     : block title -> {
-        <title>Contacts List Demo: Using dojox/app</title>
-     :}
-     :block css -> {
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    : block title -> {
+    <title>Where are kittens</title>
+    :}
+    :block css -> {
 
     :}
     :block head_script -> {
-        <!-- dojo/javascript will go here -->
-        <script type="text/javascript">
-            var dojoConfig = (function(){
-                var base = location.href.split("/");
-                base.pop();
-                base = base.join("/");
 
-                return {
-                    async: true,
-                    isDebug: true,
-                    parseOnLoad: false,
-                    packages: [{
-                        name: "Markers",
-                        location: "<:$static_path:>/js/Markers"
-                     }]
-                };
-            })();
-
-        </script>
-        <script src="<:$static_path:>/js/dojo/dojo.js" data-dojo-config="async:true"></script>
     :}
 </head>
-<body class="claro">
-:block body ->{
-    <script>
-        // See the using Custom Modules with a CDN Tutorial for an explination of how
-        // on how
-        var dojoConfig = {
-            async: true,
-            dojoBlankHtmlUrl: location.pathname.replace(/\/[^/]+$/, "") + "/blank.html",
-            packages: [{
-                name: "contactsList",
-                location: location.pathname.replace(/\/[^/]+$/, "") + "/"
-            }]
-        };
-    </script>
+<body>
 
-    <script>
-        require(["contactsList/contacts"]);
-    </script>
-:}
-:block footer_scripts ->{
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-:}
-</body>
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+
+    :block body ->{
+
+    :}
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <!--<script>-->
+    <!--(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
+    <!--(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
+    <!--m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
+    <!--})(window,document,'script','//www.google-analytics.com/analytics.js','ga');-->
+
+    <!--ga('create', 'UA-XXXXX-X');-->
+    <!--ga('send', 'pageview');-->
+    <!--</script>-->
+
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-yandex-map/ya-map.js"></script>
+
+    <!-- build:js scripts/plugins.js -->
+    <script src="bower_components/sass-bootstrap/js/affix.js"></script>
+    <script src="bower_components/sass-bootstrap/js/alert.js"></script>
+    <script src="bower_components/sass-bootstrap/js/button.js"></script>
+    <script src="bower_components/sass-bootstrap/js/carousel.js"></script>
+    <script src="bower_components/sass-bootstrap/js/transition.js"></script>
+    <script src="bower_components/sass-bootstrap/js/collapse.js"></script>
+    <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
+    <script src="bower_components/sass-bootstrap/js/modal.js"></script>
+    <script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
+    <script src="bower_components/sass-bootstrap/js/tab.js"></script>
+    <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
+    <script src="bower_components/sass-bootstrap/js/popover.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/markers_list.js"></script>
+    <script src="scripts/controllers/map.js"></script>
+    <!-- endbuild -->
+
+
+    :block footer_scripts ->{
+
+    :}
+    </body>
 </html>
