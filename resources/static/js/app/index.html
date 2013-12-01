@@ -14,6 +14,7 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/bootstrap.css">
         <link rel="stylesheet" href="styles/main.css">
+        <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
         <!-- endbuild -->
 </head>
   <body ng-app="GeoHashingApp" class="container">
@@ -25,6 +26,28 @@
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#/edit/marker">Add marker</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
 
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
@@ -43,6 +66,7 @@
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="bower_components/angular-yandex-map/ya-map.js"></script>
 
         <!-- build:js scripts/plugins.js -->
@@ -65,6 +89,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/markers_list.js"></script>
         <script src="scripts/controllers/map.js"></script>
+        <script src="scripts/controllers/edit_marker.js"></script>
         <!-- endbuild -->
 </body>
 </html>
