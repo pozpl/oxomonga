@@ -61,8 +61,16 @@ body {
 
 ya-map{
     width: 100%;
-    height: 400px;
+    min-height: 400px;
     display: block
+}
+
+.ta-editor{
+    min-height: 300px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
 }
 
 /* Responsive: Portrait tablets and up */
