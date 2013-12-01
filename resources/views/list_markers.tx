@@ -7,7 +7,7 @@
 :around body -> {
     :my $name = {'name' => 'show_edit_form_id'}
     <a href="<:uri_for($name):>">Создать</a>
-    <table style="border: 1px solid #9f9f9f;" cellspacing="10">
+    <table class="table">
         <thead>
             <tr>
                 <td>id</td>

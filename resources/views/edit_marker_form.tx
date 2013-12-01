@@ -11,7 +11,7 @@
 
     : block form | fillinform($form) -> {
         <form>
-            <table style="border: 1px solid #9f9f9f;" cellspacing="10">
+            <table class="table">
                 <tr>
                     <td>
                         <label >User name:</label>
