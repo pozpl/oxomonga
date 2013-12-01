@@ -13,7 +13,22 @@ angular.module('GeoHashingApp')
                 textEditor: 'form-control',
                 htmlEditor: 'form-control'
             }
-        }
+        };
+
+        $scope.user = '';
+        $scope.latitude = '';
+        $scope.longitude = '';
+        $scope.description = '';
+
+        $scope.submit = function(){
+            var data = {
+                'user' : $scope.user,
+                'latitude' : $scope.latitude,
+                'longitude' : $scope.longitude,
+                'description' : $scope.description
+            };
+            console.log(data);
+        };
 
     });
 
