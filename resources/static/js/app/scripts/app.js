@@ -7,7 +7,7 @@ angular.module('GeoHashingApp', ['ngRoute', 'yaMap', 'textAngular'])
         templateUrl: 'views/main.html',
         controller: 'MarkersListCtrl'
       })
-        .when('/edit/marker/(:id?)',{
+        .when('/edit/marker/:id?',{
             templateUrl: 'views/edit_marker.html',
             controller: 'EditMarkerCtrl'
         })
