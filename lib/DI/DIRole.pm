@@ -95,7 +95,7 @@ has template_view_handler => (
     dependencies => {
         'xslate' => 'xslate',
         'default_bounds' => literal({
-            'static_path' => '/static'
+            'static_path' => '/js/app'
         }),
     },
 

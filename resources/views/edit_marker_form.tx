@@ -51,3 +51,7 @@
         </form>
     :}
 :}
+
+:around footer_scripts -> {
+
+:}
