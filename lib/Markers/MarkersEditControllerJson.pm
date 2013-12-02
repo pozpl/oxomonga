@@ -1,6 +1,7 @@
 package Markers::MarkersEditControllerJson;
 use Moose;
 use JSON;
+use Markers::Marker;
 
 has 'markers_repository' => (
     'is' => 'ro',
@@ -19,10 +20,10 @@ sub edit_marker(){
     my ($self, $request) = @_;
     my $marker_json_string = $request->param('marker');
 
-    $marker_json = JSON->new->decode($marker_json_string);
-    $marker_to_save = $self->_hash_to_marker($marker_json);
+    my $marker_json = JSON->new->decode($marker_json_string);
+    my $marker_to_save = $self->_hash_to_marker($marker_json);
 
-    $saved_marker = $self->markers_repository->save_marker($marker_to_save);
+    my $saved_marker = $self->markers_repository->save_marker($marker_to_save);
     return $self->_marker_to_hash($saved_marker);
 }
 
@@ -36,7 +37,7 @@ sub list_markers(){
 sub _hash_to_marker(){
     my($self, $marker_json) = @_;
 
-    Markers::Marker->new(
+    return Markers::Marker->new(
              'id' => $marker_json->{'id'},
              'user' => $marker_json->{'user'},
              'latitude' => $marker_json->{'latitude}',
@@ -58,6 +59,8 @@ sub _marker_to_hash(){
         'description' => $marker->description,
         'images' => $marker->images,
     };
+
+    return $marker_hash;
 }
 
 1;
