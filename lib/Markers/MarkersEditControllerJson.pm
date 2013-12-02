@@ -10,7 +10,7 @@ has 'markers_repository' => (
 );
 
 sub get_marker_by_id(){
-    my ($self, $marker_id) = @_;
+    my ($self, $request, $marker_id) = @_;
     
     my $marker = $self->markers_repository->find_by_id($marker_id);
     return JSON->new->encode($self->_marker_to_hash($marker));
@@ -40,11 +40,11 @@ sub _hash_to_marker(){
     return Markers::Marker->new(
              'id' => $marker_json->{'id'},
              'user' => $marker_json->{'user'},
-             'latitude' => $marker_json->{'latitude}',
+             'latitude' => $marker_json->{'latitude'},
              'longitude' => $marker_json->{'longitude'},
              'description' => $marker_json->{'description'},
              'time_of_creation' => $marker_json->{'time_of_creation'},
-             'images' => $marker_json->{'images'},
+             'images' => $marker_json->{'images'}
          );
 }
 
