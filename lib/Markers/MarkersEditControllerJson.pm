@@ -8,12 +8,6 @@ has 'markers_repository' => (
     'required' => 1,
 );
 
-has 'template_view_handler' => (
-    'is' => 'ro',
-    'isa' => 'System::View::TemplateViewHandler',
-    'required' => 1,
-);
-
 sub get_marker_by_id(){
     my ($self, $marker_id) = @_;
     
@@ -32,12 +26,7 @@ sub edit_marker(){
     return $self->_marker_to_hash($saved_marker);
 }
 
-sub show_form(){
-    my ($self, $request) = @_;
 
-    return $self->template_view_handler->render_page('edit_marker');
-
-}
 
 sub list_markers(){
     my ($self, $request) = @_;
