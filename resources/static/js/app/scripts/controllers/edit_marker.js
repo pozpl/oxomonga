@@ -15,19 +15,57 @@ angular.module('GeoHashingApp')
             }
         };
 
+        $scope.id = $route.current.params.id;
         $scope.user = '';
         $scope.latitude = '';
         $scope.longitude = '';
         $scope.description = '';
 
+        var getMarker = function(markerId){
+            $http({method: 'GET', url: '/markers/get/marker/json/' + markerId}).
+                success(function (data, status, headers, config) {
+                    if(data && data.id){
+                        showMarker(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+        };
+
+        if($scope.id){
+            getMarker($scope.id);
+        }
+
         $scope.submit = function(){
-            var data = {
+            var markerJson = {
                 'user' : $scope.user,
                 'latitude' : $scope.latitude,
                 'longitude' : $scope.longitude,
                 'description' : $scope.description
             };
-            console.log(data);
+
+            $http({method: 'POST', url: '/markers/edit/json', 'data' : {'marker' : markerJson} }).
+                success(function (data, status, headers, config) {
+                    if(data && data.id){
+                        showMarker(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+        };
+
+
+
+        var showMarker = function(markerJson){
+            $scope.id = markerJson.id;
+            $scope.user = markerJson.user;
+            $scope.latitude = markerJson.latitude;
+            $scope.longitude = markerJson.longitude;
+            $scope.description = markerJson.description;
         };
 
     });
