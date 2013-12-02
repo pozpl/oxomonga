@@ -24,9 +24,15 @@ router as {
     route '/markers/edit/show/list' => 'markers_edit_controller.list_markers', (
         'name' => 'show_edit_list'
     );
-    route '/markers/edit/get/marker/json/:id' => 'markers_edit_controller.get_marker_by_id',(
+    route '/markers/edit/get/marker/json/:id' => 'markers_edit_controller_json.get_marker_by_id',(
         'name' => 'marker_by_id_json',
     );
+
+    route '/markers/edit/json' => 'markers_edit_controller_json.edit_marker',(
+        'name' => 'edit_marker_json',
+    );
+
+
 
     mount '/static' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static');
     mount '/js/app' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static/js/app');
