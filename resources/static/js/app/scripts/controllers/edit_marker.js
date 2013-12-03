@@ -40,13 +40,14 @@ angular.module('GeoHashingApp')
 
         $scope.submit = function(){
             var markerJson = {
+                'id' : $scope.id,
                 'user' : $scope.user,
                 'latitude' : $scope.latitude,
                 'longitude' : $scope.longitude,
                 'description' : $scope.description
             };
 
-            $http({method: 'POST', url: '/markers/edit/json', 'data' : {'marker' : markerJson} }).
+            $http({method: 'POST', url: '/markers/edit/json', data:  markerJson }).
                 success(function (data, status, headers, config) {
                     if(data && data.id){
                         showMarker(data);

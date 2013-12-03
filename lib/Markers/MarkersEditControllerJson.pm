@@ -2,7 +2,7 @@ package Markers::MarkersEditControllerJson;
 use Moose;
 use JSON;
 use Markers::Marker;
-
+use Data::Dump qw(dump);
 has 'markers_repository' => (
     'is' => 'ro',
     'isa' => 'Markers::MarkerRepository',
@@ -18,8 +18,8 @@ sub get_marker_by_id(){
 
 sub edit_marker(){
     my ($self, $request) = @_;
-    my $marker_json_string = $request->param('marker');
-
+    my $marker_json_string =  $request->content;#param('marker');
+    dump($request->content);
     my $marker_json = JSON->new->decode($marker_json_string);
     my $marker_to_save = $self->_hash_to_marker($marker_json);
 
