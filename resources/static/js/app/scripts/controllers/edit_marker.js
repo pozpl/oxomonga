@@ -4,7 +4,10 @@ angular.module('GeoHashingApp')
     .controller('EditMarkerCtrl', function ($scope, $rootScope, $route, $http) {
 
         $rootScope.textAngularOpts = {
-            toolbar: [['h1', 'h2', 'h3', 'p', 'pre', 'bold', 'italics', 'ul', 'ol', 'redo', 'undo', 'clear'],['html', 'insertImage', 'insertLink']],
+            toolbar: [
+                ['h1', 'h2', 'h3', 'p', 'pre', 'bold', 'italics', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                ['html', 'insertImage', 'insertLink']
+            ],
             classes: {
                 toolbar: "btn-toolbar",
                 toolbarGroup: "btn-group",
@@ -21,10 +24,10 @@ angular.module('GeoHashingApp')
         $scope.longitude = '';
         $scope.description = '';
 
-        var getMarker = function(markerId){
+        var getMarker = function (markerId) {
             $http({method: 'GET', url: '/markers/get/marker/json/' + markerId}).
                 success(function (data, status, headers, config) {
-                    if(data && data.id){
+                    if (data && data.id) {
                         showMarker(data);
                     }
                 }).
@@ -34,22 +37,22 @@ angular.module('GeoHashingApp')
                 });
         };
 
-        if($scope.id){
+        if ($scope.id) {
             getMarker($scope.id);
         }
 
-        $scope.submit = function(){
+        $scope.submit = function () {
             var markerJson = {
-                'id' : $scope.id,
-                'user' : $scope.user,
-                'latitude' : $scope.latitude,
-                'longitude' : $scope.longitude,
-                'description' : $scope.description
+                'id': $scope.id,
+                'user': $scope.user,
+                'latitude': $scope.latitude,
+                'longitude': $scope.longitude,
+                'description': $scope.description
             };
 
-            $http({method: 'POST', url: '/markers/edit/json', data:  markerJson }).
+            $http({method: 'POST', url: '/markers/edit/json', data: markerJson }).
                 success(function (data, status, headers, config) {
-                    if(data && data.id){
+                    if (data && data.id) {
                         showMarker(data);
                     }
                 }).
@@ -60,8 +63,7 @@ angular.module('GeoHashingApp')
         };
 
 
-
-        var showMarker = function(markerJson){
+        var showMarker = function (markerJson) {
             $scope.id = markerJson.id;
             $scope.user = markerJson.user;
             $scope.latitude = markerJson.latitude;
