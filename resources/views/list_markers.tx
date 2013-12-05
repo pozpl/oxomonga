@@ -10,11 +10,13 @@
     <table class="table">
         <thead>
             <tr>
-                <td>id</td>
-                <td>user</td>
-                <td>longitude</td>
-                <td>latitude</td>
-                <td>description</td>
+                <th class="col-sm-1">id</th>
+                <th>user</th>
+                <th>longitude</th>
+                <th>latitude</th>
+                <th class="col-sm-4">description</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         :for $markers -> $marker {
