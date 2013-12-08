@@ -6,12 +6,12 @@
                     <li ng-repeat="(k,marker) in shared.markers" ng-click="runBalloon(marker)">
                         <div ng-if="marker.id==shared.showBalloonId">
                             <b>
-                                <div>{{marker.description}}</div>
+                                <div ng-bind-html="marker.description"></div>
                                 <div>{{marker.name}}</div>
                             </b>
                         </div>
                         <div ng-if="marker.id!=shared.showBalloonId">
-                            <div>{{marker.description}}</div>
+                            <div ng-bind-html="marker.description"></div>
                             <div>{{marker.name}}</div>
                         </div>
 
