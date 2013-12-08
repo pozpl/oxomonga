@@ -73,8 +73,6 @@ angular.module('GeoHashingApp')
             var foundGeoObject = $event.get('target');
             console.log(geoObject.properties.id);
             if(geoObject.properties.id == $scope.shared.showBalloonId){
-                geoObject.properties.balloonContent = 'Я здесь';
-            }else{
                 $scope.shared.showBalloonId =  geoObject.properties.id;
             }
         }
