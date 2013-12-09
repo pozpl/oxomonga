@@ -3,8 +3,7 @@
 var geoHashingApp = angular.module('GeoHashingApp', ['ngRoute', 'yaMap', 'textAngular', 'ui.router']);
 
 geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
-    //
-    // For any unmatched url, redirect to /state1
+
     $urlRouterProvider.otherwise("/");
     //
     // Now set up the states
@@ -14,11 +13,13 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'views/main.html',
             controller: 'MarkersListCtrl'
         })
-        .state('/edit/marker/:id?', {
+        .state('edit_marker', {
+            url: '/edit/marker/:id',
             templateUrl: 'views/edit_marker.html',
             controller: 'EditMarkerCtrl'
         })
         .state('show_marker',{
+            url: '/show/:id',
             templateUrl: 'views/single_marker_view.html',
             controller: 'SingleMarkerViewCtrl'
         });
