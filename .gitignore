@@ -1,6 +1,7 @@
 .project
 .includepath
 .idea
+.idea/
 WhereIsKittens.iml
 resources/static/js/dojo
 resources/static/js/dijit
