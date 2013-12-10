@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('GeoHashingApp')
-    .controller('SingleMarkerViewCtrl', function ($scope, $route, $http) {
+    .controller('SingleMarkerViewCtrl', function ($scope, $stateParams, $http) {
 
-        $scope.markerId = $route.current.params.id;
+        $scope.markerId = $stateParams.id;
         $scope.user = '';
         $scope.latitude = '';
         $scope.longitude = '';
@@ -24,12 +24,12 @@ angular.module('GeoHashingApp')
                 });
         };
 
-        if ($scope.id) {
-            getMarker($scope.id);
+        if ($scope.markerId) {
+            getMarker($scope.markerId);
         }
 
         var showMarker = function (markerJson) {
-            $scope.id = markerJson.id;
+            $scope.markerId = markerJson.id;
             $scope.user = markerJson.user;
             $scope.latitude = markerJson.latitude;
             $scope.longitude = markerJson.longitude;
