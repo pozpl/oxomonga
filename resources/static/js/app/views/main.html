@@ -9,6 +9,7 @@
                                 <div ng-bind-html="marker.description"></div>
                                 <div>{{marker.name}}</div>
                             </b>
+                            <a ui-sref="show_marker({id: marker.id})">Показать подробнее</a>
                         </div>
                         <div ng-if="marker.id!=shared.showBalloonId">
                             <div ng-bind-html="marker.description"></div>
