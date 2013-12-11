@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('GeoHashingApp')
-    .controller('EditMarkerCtrl', function ($scope, $rootScope, $route, $http) {
+    .controller('EditMarkerCtrl', function ($scope, $rootScope, $stateParams, $http) {
 
         $rootScope.textAngularOpts = {
             toolbar: [
@@ -18,7 +18,7 @@ angular.module('GeoHashingApp')
             }
         };
 
-        $scope.id = $route.current.params.id;
+        $scope.id = $stateParams.id;
         $scope.user = '';
         $scope.latitude = '';
         $scope.longitude = '';

@@ -18,6 +18,11 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'views/edit_marker.html',
             controller: 'EditMarkerCtrl'
         })
+        .state('add_marker', {
+            url: '/add/marker',
+            templateUrl: 'views/edit_marker.html',
+            controller: 'EditMarkerCtrl'
+        })
         .state('show_marker',{
             url: '/show/:id',
             templateUrl: 'views/single_marker_view.html',
