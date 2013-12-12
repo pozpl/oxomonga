@@ -6,7 +6,7 @@ use File::DigestStore;
 has 'root_path' => {
     'is' => 'ro',
     'isa' => 'Str',
-}
+};
 
 has 'url_base' => {
     'is' => 'ro',
@@ -15,7 +15,7 @@ has 'url_base' => {
 
 has 'store_provider' => {
     'is' => 'ro',
-    'isa' => 'File::DigestStore'
+    'isa' => 'File::DigestStore',
     lazy    => 1,
     default => sub {
         my $self = shift;
@@ -23,7 +23,7 @@ has 'store_provider' => {
             'root' => $self->root_path
         );
     },
-}
+};
 
 sub store_file(){
     my($self, $path) = @_;
