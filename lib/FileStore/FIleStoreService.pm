@@ -16,6 +16,13 @@ has 'url_base' => {
 has 'store_provider' => {
     'is' => 'ro',
     'isa' => 'File::DigestStore'
+    lazy    => 1,
+    default => sub {
+        my $self = shift;
+        return File::DigestStore->new(
+            'root' => $self->root_path
+        );
+    },
 }
 
 sub store_file(){
