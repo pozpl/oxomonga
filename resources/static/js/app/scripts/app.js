@@ -42,7 +42,7 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
         });
 });
 
-geoHashingApp.config(function ($httpProvider) {
+geoHashingApp.config(function ($httpProvider, AuthenticationService) {
 
     var logsOutUserOn401 = ['$q', '$location', function ($q, $location) {
         var success = function (response) {
@@ -52,6 +52,7 @@ geoHashingApp.config(function ($httpProvider) {
         var error = function (response) {
             if (response.status === 401) {
                 //redirect them back to login page
+                AuthenticationService.setLoggedIn(false);
                 $location.path('/login');
 
                 return $q.reject(response);
