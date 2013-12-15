@@ -11,38 +11,55 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
         .state('main_state', {
             url: "/",
             templateUrl: 'views/main.html',
-            controller: 'MarkersListCtrl'
+            controller: 'MarkersListCtrl',
+            data:{
+                needAuth:  false
+            }
         })
         .state('edit_marker', {
             url: '/edit/marker/:id',
             templateUrl: 'views/edit_marker.html',
-            controller: 'EditMarkerCtrl'
+            controller: 'EditMarkerCtrl',
+            data:{
+                needAuth:  true
+            }
         })
         .state('add_marker', {
             url: '/add/marker',
             templateUrl: 'views/edit_marker.html',
-            controller: 'EditMarkerCtrl'
+            controller: 'EditMarkerCtrl',
+            data:{
+                needAuth:  true
+            }
         })
         .state('show_marker',{
             url: '/show/:id',
             templateUrl: 'views/single_marker_view.html',
-            controller: 'SingleMarkerViewCtrl'
+            controller: 'SingleMarkerViewCtrl',
+            data:{
+                needAuth:  false
+            }
         });
 });
 
-//    config(function ($routeProvider) {
-//    $routeProvider
-//        .when('/', {
-//            templateUrl: 'views/main.html',
-//            controller: 'MarkersListCtrl'
-//        })
-//        .when('/edit/marker/:id?', {
-//            templateUrl: 'views/edit_marker.html',
-//            controller: 'EditMarkerCtrl'
-//        })
-//        .when('/show/:id')
-//        .otherwise({
-//            redirectTo: 'views/single_marker_view.html',
-//            controller: 'SingleMarkerViewCtrl'
-//        });
-//});
+geoHashingApp.run(function($rootScope, $location, AuthenticationService) {
+
+    // enumerate routes that don't need authentication
+    var routesThatDontRequireAuth = ['/login'];
+
+    // check if current location matches route
+    var routeClean = function (route) {
+        return _.find(routesThatDontRequireAuth,
+            function (noAuthRoute) {
+                return _.str.startsWith(route, noAuthRoute);
+            });
+    };
+
+    $rootScope.$on('$stateChangeStart', function (ev, to, toParams, from, fromParams) {
+        // if route requires auth and user is not logged in
+        if (!routeClean($location.url()) && !AuthenticationService.isLoggedIn()) {
+            // redirect back to login
+            $location.path('/login');
+        }
+    });
+});
