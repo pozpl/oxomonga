@@ -5,11 +5,11 @@
 angular.module('GeoHashingApp').service('AuthenticationService', function(){
     var userIsAuthenticated = false;
 
-    this.setUserAuthenticated = function(value){
+    this.setLoggedIn = function(value){
         userIsAuthenticated = value;
     };
 
-    this.getUserAuthenticated = function(){
+    this.isLoggedIn = function(){
         return userIsAuthenticated;
     };
 });
