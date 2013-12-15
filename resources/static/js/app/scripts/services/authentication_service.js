@@ -2,14 +2,15 @@
  * Created by pozpl on 16.12.13.
  */
 
-angular.module('GeoHashingApp').service('AuthenticationService', function(){
+angular.module('GeoHashingApp').factory('AuthenticationService', [function () {
     var userIsAuthenticated = false;
 
-    this.setLoggedIn = function(value){
+    this.setLoggedIn = function (value) {
         userIsAuthenticated = value;
     };
 
-    this.isLoggedIn = function(){
+    this.isLoggedIn = function () {
         return userIsAuthenticated;
     };
-});
+}]
+);

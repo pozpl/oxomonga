@@ -42,9 +42,9 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
         });
 });
 
-geoHashingApp.config(function ($httpProvider, AuthenticationService) {
+geoHashingApp.config(function ($httpProvider) {
 
-    var logsOutUserOn401 = ['$q', '$location', function ($q, $location) {
+    var logsOutUserOn401 = ['$q', '$location', '$rootScope', function ($q, $location, rootScope) {
         var success = function (response) {
             return response;
         };
@@ -52,8 +52,15 @@ geoHashingApp.config(function ($httpProvider, AuthenticationService) {
         var error = function (response) {
             if (response.status === 401) {
                 //redirect them back to login page
-                AuthenticationService.setLoggedIn(false);
-                $location.path('/login');
+                rootScope.$broadcast('event:loginRequired');
+//                var deferred = $q.defer();
+//                var req = {
+//                    config: response.config,
+//                    deferred: deferred
+//                }
+//                scope.$broadcast('event:loginRequired');
+//                return deferred.promise;
+
 
                 return $q.reject(response);
             }
@@ -70,13 +77,26 @@ geoHashingApp.config(function ($httpProvider, AuthenticationService) {
     $httpProvider.responseInterceptors.push(logsOutUserOn401);
 });
 
-geoHashingApp.run(function($rootScope, $location, AuthenticationService) {
+geoHashingApp.run([ '$rootScope', '$location', 'AuthenticationService',
+    function ($rootScope, $location, AuthenticationService) {
 
-   $rootScope.$on('$stateChangeStart', function (ev, to, toParams, from, fromParams) {
-        // if route requires auth and user is not logged in
-        if (to.data.needAuth && !AuthenticationService.isLoggedIn()) {
-            // redirect back to login
-            $location.path('/login');
-        }
-    });
-});
+        $rootScope.$on('event:loginRequired', function(){
+            AuthenticationService.setLoggedIn(false);
+
+            //Only redirect if we aren't on create or login pages.
+            if($location.path() == "/create" || $location.path() == "/login")
+                return;
+            scope.pageWhen401 = $location.path();
+
+            //go to the login page
+            $location.path('/login').replace();
+        });
+
+        $rootScope.$on('$stateChangeStart', function (ev, to, toParams, from, fromParams) {
+            // if route requires auth and user is not logged in
+            if (to.data.needAuth && !AuthenticationService.isLoggedIn()) {
+                // redirect back to login
+                $location.path('/login');
+            }
+        });
+    }]);
