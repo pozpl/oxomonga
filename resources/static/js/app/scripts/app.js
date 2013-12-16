@@ -104,6 +104,7 @@ geoHashingApp.run([ '$rootScope', '$location', 'AuthenticationService',
             // if route requires auth and user is not logged in
             if (to.data.needAuth && !AuthenticationService.isLoggedIn()) {
                 // redirect back to login
+                AuthenticationService.setLastUnauthenticatedState(to);
                 $location.path('/login');
             }
         });
