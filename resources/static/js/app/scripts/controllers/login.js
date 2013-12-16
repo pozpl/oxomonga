@@ -15,6 +15,8 @@ angular.module('GeoHashingApp')
                 AuthenticationService.setLoggedIn(true);
                 if (AuthenticationService.getLastUnauthenticatedState()) {
                     $state.go(AuthenticationService.getLastUnauthenticatedState());
+                } else{
+                    $state.go('main_state');
                 }
             };
 

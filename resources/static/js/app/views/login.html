@@ -1,9 +1,9 @@
 <div class="container">
 
-    <form class="form-signin" role="form">
+    <form class="form-signin" role="form" ng-submit="submit()">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
+        <input type="text" class="form-control" placeholder="Email address" required autofocus ng-model="user">
+        <input type="password" class="form-control" placeholder="Password" required ng-model="password">
         <label class="checkbox">
             <input type="checkbox" value="remember-me"> Remember me
         </label>
