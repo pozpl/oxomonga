@@ -16,6 +16,14 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
                 needAuth:  false
             }
         })
+        .state('login_state', {
+            url: "/login",
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl',
+            data:{
+                needAuth:  false
+            }
+        })
         .state('edit_marker', {
             url: '/edit/marker/:id',
             templateUrl: 'views/edit_marker.html',
