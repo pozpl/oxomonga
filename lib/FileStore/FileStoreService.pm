@@ -3,17 +3,17 @@ package FileStore::FileStoreService;
 use Moose;
 use File::DigestStore;
 
-has 'root_path' => {
+has 'root_path' => (
     'is' => 'ro',
     'isa' => 'Str',
-};
+);
 
-has 'url_base' => {
+has 'url_base' => (
     'is' => 'ro',
     'isa' => 'Str',
-};
+);
 
-has 'store_provider' => {
+has 'store_provider' => (
     'is' => 'ro',
     'isa' => 'File::DigestStore',
     lazy    => 1,
@@ -23,7 +23,7 @@ has 'store_provider' => {
             'root' => $self->root_path
         );
     },
-};
+);
 
 sub store_file(){
     my($self, $path) = @_;
