@@ -42,7 +42,9 @@ sub get_url_for_id(){
     my($self, $id) = @_;
 
     my $file_path = $self->store_provider->fetch_file($id);
-    my $url = qr/$file_path/$self->root_path/$self->url_base;
+    my $root_path = $self->root_path;
+    my $url_base = $self->url_base;
+    my $url = qr/$file_path/$root_path/$url_base/;
 
     return $url;
 }
@@ -62,7 +64,7 @@ sub get_urls_for_ids(){
 sub delete_file_by_id(){
     my ($self, $id) =@_;
 
-    $self-store_provider->delete($id);
+    return $self-store_provider->delete($id);
 }
 
 
