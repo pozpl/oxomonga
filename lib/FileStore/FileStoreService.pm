@@ -44,7 +44,8 @@ sub get_url_for_id(){
     my $file_path = $self->store_provider->fetch_file($id);
     my $root_path = $self->root_path;
     my $url_base = $self->url_base;
-    my $url = qr/$file_path/$root_path/$url_base/;
+    my $url = $file_path;
+    $url =~ s/$root_path/$url_base/g;
 
     return $url;
 }
