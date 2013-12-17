@@ -59,4 +59,11 @@ sub get_urls_for_ids(){
     return @urls;
 }
 
+sub delete_file_by_id(){
+    my ($self, $id) =@_;
+
+    $self-store_provider->delete($id);
+}
+
+
 1;
