@@ -1,4 +1,4 @@
-use Test::Simple tests=> 2;
+use Test::Simple tests=> 3;
 use warnings;
 use strict;
 use Test::MockObject;
@@ -19,7 +19,7 @@ my  $file_id = $file_store->store_file($file_initial_path);
 ok(length($file_id) > 0, 'File id is no null');
 
 my $url_for_file = $file_store->get_url_for_id($file_id);
-ok($url_for_file =~ qr/$url_for_file/);
+ok($url_for_file =~ qr/$url_for_file/, 'Url is build properly');
 
 
 my $is_existed = $file_store->delete_file_by_id($file_id);
