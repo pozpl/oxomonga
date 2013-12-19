@@ -41,7 +41,7 @@ sub get_file_path(){
 sub get_url_for_id(){
     my($self, $id) = @_;
 
-    my $file_path = $self->store_provider->fetch_file($id);
+    my $file_path = $self->store_provider->fetch_path($id);
     my $root_path = $self->root_path;
     my $url_base = $self->url_base;
     my $url = $file_path;
