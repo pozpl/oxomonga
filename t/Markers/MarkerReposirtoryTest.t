@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use Test::Simple tests=> 15;
+use Test::Simple tests=> 16;
 use warnings;
 use strict;
 use Test::MockObject;
@@ -48,7 +48,7 @@ ok($marker->longitude == $near_markers[0]->longitude, 'longitude ok');
 ok($marker->latitude == $near_markers[0]->latitude, 'latitude ok');
 
 
-my @near_markers = $markers_repository->find_markers_in_rectangle(130, 42, 132, 44,);
+@near_markers = $markers_repository->find_markers_in_rectangle(130, 42, 132, 44,);
 ok(@near_markers, 'A marker found near the target point');
 ok(@near_markers > 0, 'Markers count is greater than zerro');
 ok($marker->longitude == $near_markers[0]->longitude, 'longitude ok');
@@ -57,12 +57,12 @@ ok($marker->latitude == $near_markers[0]->latitude, 'latitude ok');
 my $image_id_1 = "1488666100500";
 my $image_id_2 = "1488666100501";
 my $image_id_3 = "1488666100500";
-$markers_repository->add_image_to_marker($saved_marker->id(), $image_image_id_1);
-$markers_repository->add_image_to_marker($saved_marker->id(), $image_image_id_2);
-$markers_repository->add_image_to_marker($saved_marker->id(), $image_image_id_3);
+$markers_repository->add_image_to_marker($saved_marker->id(), $image_id_1);
+$markers_repository->add_image_to_marker($saved_marker->id(), $image_id_2);
+$markers_repository->add_image_to_marker($saved_marker->id(), $image_id_3);
 
-my $marker_with_images = $markers_markers_repository->find_by_id($saved_marker->id());
-ok(@{$marker_marker_with_images->images()} == 2, 'Unique images are 2');
+my $marker_with_images = $markers_repository->find_by_id($saved_marker->id());
+ok(@{$marker_with_images->images()} == 2, 'Unique images are 2');
 
 
 $markers_collection->drop();
