@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use Test::Simple tests=> 16;
+use Test::Simple tests=> 18;
 use warnings;
 use strict;
 use Test::MockObject;
@@ -11,7 +11,7 @@ use MongoDB::OID;
 
 use Markers::MarkerRepository;
 use Markers::Marker;
-
+use Data::Dump qw(dump);
 
 
 my $marker =  Markers::Marker->new(
@@ -54,6 +54,7 @@ ok(@near_markers > 0, 'Markers count is greater than zerro');
 ok($marker->longitude == $near_markers[0]->longitude, 'longitude ok');
 ok($marker->latitude == $near_markers[0]->latitude, 'latitude ok');
 
+
 my $image_id_1 = "1488666100500";
 my $image_id_2 = "1488666100501";
 my $image_id_3 = "1488666100500";
@@ -62,7 +63,11 @@ $markers_repository->add_image_to_marker($saved_marker->id(), $image_id_2);
 $markers_repository->add_image_to_marker($saved_marker->id(), $image_id_3);
 
 my $marker_with_images = $markers_repository->find_by_id($saved_marker->id());
-ok(@{$marker_with_images->images()} == 2, 'Unique images are 2');
-
+#print dump $marker_with_images;
+ok(@{$marker_with_images->images()} == 4, 'Unique images are 2');
+my @grep_res =grep {$_ eq $image_id_1 } @{$marker_with_images->images()};
+ok($grep_res[0], 'image_1 is present' );
+@grep_res =grep {$_ eq $image_id_1 } @{$marker_with_images->images()};
+ok($grep_res[0], 'image_2 is present' );
 
 $markers_collection->drop();
