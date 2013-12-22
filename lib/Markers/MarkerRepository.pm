@@ -108,6 +108,17 @@ sub list_markers(){
     return (\@markers, $total_count);
 }
 
+sub add_image_to_marker(){
+    my ($self, $marker_id, $image_id) = @_;
+
+     my $find_query = Tie::IxHash->new({'_id' => MongoDB::OID->new('value' => $id)});
+     my $update_query = {
+                            $addToSet: { 'images': { $image_id } }
+                        };
+
+     $self->markers_collection->update($query, );
+}
+
 sub delete_by_id(){
     my ($self, $id) = @_;
     
