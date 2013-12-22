@@ -113,7 +113,7 @@ sub add_image_to_marker(){
 
      my $find_query = Tie::IxHash->new({'_id' => MongoDB::OID->new('value' => $marker_id)});
      my $update_query = {
-                            '$addToSet': { 'images': { $image_id } }
+                            '$addToSet' => { 'images' => $image_id  }
                         };
 
      $self->markers_collection->update($query, $update_query);
@@ -123,7 +123,7 @@ sub delete_image_from_marker(){
     my ($self, $marker_id, $image_id) = @_;
 
     my $find_query = Tie::IxHash->new({'_id' => MongoDB::OID->new('value' => $marker_id)});
-    my $delete_query = {'$pull': 'images' : $image_id};
+    my $delete_query = {'$pull' => 'images' => $image_id};
     $self->markers_collection->update($query, $delete_query);
 }
 
