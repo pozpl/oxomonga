@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use Test::Simple tests=> 18;
+use Test::Simple tests=> 19;
 use warnings;
 use strict;
 use Test::MockObject;
@@ -64,10 +64,16 @@ $markers_repository->add_image_to_marker($saved_marker->id(), $image_id_3);
 
 my $marker_with_images = $markers_repository->find_by_id($saved_marker->id());
 #print dump $marker_with_images;
-ok(@{$marker_with_images->images()} == 4, 'Unique images are 2');
+ok(@{$marker_with_images->images()} == 4, 'Unique images are 4');
 my @grep_res =grep {$_ eq $image_id_1 } @{$marker_with_images->images()};
 ok($grep_res[0], 'image_1 is present' );
 @grep_res =grep {$_ eq $image_id_1 } @{$marker_with_images->images()};
 ok($grep_res[0], 'image_2 is present' );
+
+$markers_repository->delete_image_from_marker($saved_marker->id(), $image_id_2);
+$marker_with_images = $markers_repository->find_by_id($saved_marker->id());
+#print dump $marker_with_images;
+ok(@{$marker_with_images->images()} == 3, 'Unique images are 3');
+
 
 $markers_collection->drop();

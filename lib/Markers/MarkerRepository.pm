@@ -123,7 +123,7 @@ sub delete_image_from_marker(){
     my ($self, $marker_id, $image_id) = @_;
 
     my $find_query = Tie::IxHash->new({'_id' => MongoDB::OID->new('value' => $marker_id)});
-    my $delete_query = {'$pull' => 'images' => $image_id};
+    my $delete_query = {'$pull' => {'images' => $image_id} };
     $self->markers_collection->update($find_query, $delete_query);
 }
 
