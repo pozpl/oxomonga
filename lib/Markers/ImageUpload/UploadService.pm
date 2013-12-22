@@ -14,7 +14,7 @@ has 'markers_repository' => (
 #########################################################################
 # Usage      : @files_ids = save_uploads($uploads_aref);
 # Purpose    : save uploads to file storage and get ids of files
-# Returns    : none
+# Returns    : urls array for uploaded files
 # Parameters : $marker_id - id of a marker to add images to
 #               $uplads_aref array reference for Wev::Request::Upload
 # Throws     : no exceptions
@@ -25,6 +25,8 @@ sub save_upload(){
 
     my @uploaded_files_ids = _save_to_store($uploads_aref);
     $self->markers_repository->add_images_to_marker($marker_id, \@uploaded_files_ids);
+
+    return $self->file_store->get_urls_for_ids(\@uploaded_files_ids);
 }
 
 sub _save_to_store(){
