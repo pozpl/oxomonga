@@ -31,15 +31,15 @@ sub _save_to_store(){
     my ($self, $uploads_aref) =@_;
 
     my @uploaded_files_ids = ();
-        foreach my $tmp_file (@{$uploads_aref}){
-            my $tmp_file_name = $tmp_file->tempname;
-            if(-e $tmp_file_name){ #here will be proper validation
-                my $file_id = $self->file_store->store_file($tmp_file_name);
-                push @uploaded_files_ids, $file_id;
-            }
+    foreach my $tmp_file (@{$uploads_aref}){
+        my $tmp_file_name = $tmp_file->tempname;
+        if(-e $tmp_file_name){ #here will be proper validation
+            my $file_id = $self->file_store->store_file($tmp_file_name);
+            push @uploaded_files_ids, $file_id;
         }
+    }
 
-        return @uploaded_files_ids;
+    return @uploaded_files_ids;
 }
 
 1;
