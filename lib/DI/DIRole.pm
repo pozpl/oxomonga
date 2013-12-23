@@ -57,6 +57,7 @@ has 'markers_rest_controller' => (
     'isa' => 'Markers::MarkersController',
     dependencies => {
         'markers_repository' => 'markers_repository',
+        'file_store' => 'file_store',
     },
 );
 
@@ -117,6 +118,15 @@ has markers_edit_controller_json =>(
        'markers_repository' => 'markers_repository',
        'template_view_handler' => 'template_view_handler',
     },
+);
+
+has 'file_store' => (
+    'is' => 'ro',
+    'isa' => 'FileStore::FileStoreService',
+    'dependencies' => {
+        'root_path' => '/tmp',
+        'url_base' =>'http://127.0.0.1/'
+    }
 );
 
 1;
