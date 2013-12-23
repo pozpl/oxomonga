@@ -129,4 +129,13 @@ has 'file_store' => (
     }
 );
 
+has 'upload_service' => (
+    'is' => 'ro',
+    'isa' => 'Markers::ImageUpload::UploadService',
+    'dependencies' => {
+        'file_store' => 'file_store',
+        'markers_repository' =>'markers_repository',
+    }
+);
+
 1;
