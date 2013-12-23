@@ -138,4 +138,12 @@ has 'upload_service' => (
     }
 );
 
+has 'upload_controller' => (
+    'is' => 'ro',
+    'isa' => 'Markers::ImageUpload::UploadController',
+    'dependencies' => {
+        'upload_service' => 'upload_service',
+    }
+);
+
 1;
