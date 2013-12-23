@@ -6,11 +6,13 @@ use File::DigestStore;
 has 'root_path' => (
     'is' => 'ro',
     'isa' => 'Str',
+    'required' => 1,
 );
 
 has 'url_base' => (
     'is' => 'ro',
     'isa' => 'Str',
+    'required' => 1,
 );
 
 has 'store_provider' => (

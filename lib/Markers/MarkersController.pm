@@ -9,6 +9,12 @@ has 'markers_repository' => (
     'required' => 1,
 );
 
+has 'file_store' => (
+    'is' => 'ro',
+    'isa' -> 'FileStore::FileStoreService';
+    'required' => 1,
+);
+
 sub find_near_markers(){
     my ($self, $request, $longitude, $latitude, $radius) = @_;
     $longitude = $longitude || 0;

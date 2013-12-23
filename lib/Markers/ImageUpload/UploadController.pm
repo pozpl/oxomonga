@@ -5,6 +5,7 @@ use JSON;
 has 'upload_service' => (
     'is' => 'ro',
     'isa' => 'Markers::ImageUpload::UploadService',
+    'required' => 1,
 );
 
 
