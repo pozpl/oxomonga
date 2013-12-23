@@ -32,6 +32,10 @@ router as {
         'name' => 'edit_marker_json',
     );
 
+    route '/marker/upload/images' => 'upload_controller.process_upload',(
+        'name' => 'upload_images'
+    );
+
 
 
     mount '/static' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static');
