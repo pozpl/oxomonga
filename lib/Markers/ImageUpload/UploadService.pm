@@ -4,11 +4,13 @@ use Moose;
 has 'file_store' => (
     'is' => 'ro',
     'isa' => 'FileStore::FileStoreService',
+    'required' => 1,
 );
 
 has 'markers_repository' => (
     'is' => 'ro',
     'isa' => 'Markers::MarkerRepository',
+    'required' => 1,
 );
 
 #########################################################################
