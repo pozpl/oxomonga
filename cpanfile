@@ -1,0 +1,10 @@
+requires 'MongoDB::OID','> 0.01';
+requires 'Tie::IxHash', '> 0.01';
+requires 'Text::Xslate', '> 0.01';
+requires 'Plack', '> 0.01';
+requires 'OX', '> 0.01';
+requires 'File::DigestStore', '> 0.01';
+requires 'Data::Dump', '> 0.01';
+requires 'File::Basename', '> 0.01';
+requires 'JSON', '> 0.01';
+requires 'Moose', '> 0.01';
