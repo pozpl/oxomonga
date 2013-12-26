@@ -11,7 +11,7 @@ has 'markers_repository' => (
 
 has 'file_store' => (
     'is' => 'ro',
-    'isa' -> 'FileStore::FileStoreService',
+    'isa' => 'FileStore::FileStoreService',
     'required' => 1,
 );
 
