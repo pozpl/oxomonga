@@ -16,7 +16,7 @@ sub process_upload(){
     my $uploads_href = $request->all_uploads();
     my @images_urls = ();
     if(exits($uploads_href->{'up_image'})){
-        @images_urls = $this->upload_service->save( $uploads_href->{'up_image'} );
+        @images_urls = $self->upload_service->save( $uploads_href->{'up_image'} );
     }
 
     return JSON->new()->encode(\@images_urls);
