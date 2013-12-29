@@ -14,9 +14,10 @@ sub process_upload(){
     my ($self, $request) = @_;
 
     my $uploads_href = $request->all_uploads();
+    my $marker_id = $request->param('marker_id');
     my @images_urls = ();
-    if(exits($uploads_href->{'up_image'})){
-        @images_urls = $self->upload_service->save( $uploads_href->{'up_image'} );
+    if(exits($uploads_href->{'file'})){
+        @images_urls = $self->upload_service->save( $uploads_href->{'file'} );
     }
 
     return JSON->new()->encode(\@images_urls);

@@ -14,7 +14,7 @@ has 'markers_repository' => (
 );
 
 #########################################################################
-# Usage      : @files_ids = save_uploads($uploads_aref);
+# Usage      : @files_ids = save_uploads($marker_id, $uploads_aref);
 # Purpose    : save uploads to file storage and get ids of files
 # Returns    : urls array for uploaded files
 # Parameters : $marker_id - id of a marker to add images to
