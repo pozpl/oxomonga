@@ -106,6 +106,8 @@ geoHashingApp.run([ '$rootScope', '$location', 'AuthenticationService',
             if (to.data.needAuth && !AuthenticationService.isLoggedIn()) {
                 // redirect back to login
                 AuthenticationService.setLastUnauthenticatedState(to);
+                AuthenticationService.setLastUnauthenticatedStateParams(toParams);
+
                 $location.path('/login');
             }
         });

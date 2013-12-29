@@ -14,7 +14,7 @@ angular.module('GeoHashingApp')
             $scope.submit = function () {
                 AuthenticationService.setLoggedIn(true);
                 if (AuthenticationService.getLastUnauthenticatedState()) {
-                    $state.go(AuthenticationService.getLastUnauthenticatedState());
+                    $state.go(AuthenticationService.getLastUnauthenticatedState(), AuthenticationService.getLastUnauthenticatedStateParams());
                 } else{
                     $state.go('main_state');
                 }
