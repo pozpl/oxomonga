@@ -124,8 +124,8 @@ has 'file_store' => (
     'is' => 'ro',
     'isa' => 'FileStore::FileStoreService',
     'dependencies' => {
-        'root_path' => '/tmp',
-        'url_base' =>'http://127.0.0.1/'
+        'root_path' => literal('/tmp'),
+        'url_base' => literal('http://127.0.0.1/'),
     }
 );
 
