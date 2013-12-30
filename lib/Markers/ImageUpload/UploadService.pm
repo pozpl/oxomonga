@@ -25,7 +25,7 @@ has 'markers_repository' => (
 sub save_upload(){
     my ($self, $marker_id, $uploads_aref) = @_;
 
-    my @uploaded_files_ids = _save_to_store($uploads_aref);
+    my @uploaded_files_ids = $self->_save_to_store($uploads_aref);
     $self->markers_repository->add_images_to_marker($marker_id, \@uploaded_files_ids);
 
     return $self->file_store->get_urls_for_ids(\@uploaded_files_ids);
