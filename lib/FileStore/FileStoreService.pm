@@ -56,7 +56,7 @@ sub get_url_for_id(){
 sub get_urls_for_ids(){
     my ($self, $ids_aref) = @_;
 
-    my @urls = [];
+    my @urls = ();
     foreach my $id (@{$ids_aref}){
         push @urls, $self->get_url_for_id($id);
     }
