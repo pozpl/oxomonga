@@ -1,4 +1,4 @@
-requires 'MongoDB::OID','> 0.01';
+requires 'MongoDB','> 0.01';
 requires 'Tie::IxHash', '> 0.01';
 requires 'Text::Xslate', '> 0.01';
 requires 'Plack', '> 0.01';
