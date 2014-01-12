@@ -57,16 +57,17 @@ sub _hash_to_marker(){
 
 sub _marker_to_hash(){
     my ($self, $marker) = @_;
+    my @marker_images_urls =  $self->file_store_service->get_urls_for_ids($marker->images);
     my $marker_hash = {
         'id' => $marker->id,
         'user' => $marker->user,
         'latitude' => $marker->latitude,
         'longitude' => $marker->longitude,
-        'time_of_creation' => $marker->time_of_creation,
+        'time_of_creation' => $marker->time_of_creation ? $marker->time_of_creation : time(),
         'description' => $marker->description,
-        'images' => $self->file_store_service->get_urls_for_ids($marker->images),
+        'images' => \@marker_images_urls,
     };
-
+    print dump($marker_hash);
     return $marker_hash;
 }
 

@@ -2,6 +2,7 @@ package FileStore::FileStoreService;
 
 use Moose;
 use File::DigestStore;
+use Data::Dump qw(dump);
 
 has 'root_path' => (
     'is' => 'ro',
@@ -47,8 +48,9 @@ sub get_url_for_id(){
     my $root_path = $self->root_path;
     my $url_base = $self->url_base;
     my $url = $file_path;
-    $url =~ s/$root_path/$url_base/g;
-
+    if($url){
+        $url =~ s/$root_path/$url_base/g;
+    }
     return $url;
 }
 
@@ -58,8 +60,13 @@ sub get_urls_for_ids(){
 
     my @urls = ();
     foreach my $id (@{$ids_aref}){
-        push @urls, $self->get_url_for_id($id);
+        my $url_for_id = $self->get_url_for_id($id);
+        if($url_for_id){
+            push (@urls, $url_for_id);
+        }
     }
+
+    print dump(@urls);
 
     return @urls;
 }
