@@ -124,7 +124,7 @@ has 'file_store' => (
     'is' => 'ro',
     'isa' => 'FileStore::FileStoreService',
     'dependencies' => {
-        'root_path' => literal('/tmp'),
+        'root_path' => literal('/home/pozpl/tmp/image_store'),
         'url_base' => literal('http://127.0.0.1/'),
     }
 );
