@@ -40,6 +40,10 @@ router as {
 
     mount '/static' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static');
     mount '/js/app' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static/js/app');
+
+    #image_store root url
+    mount '/user/images' => Plack::App::File->new(root => $current_working_directory . '/../../../../tmp/image_store');
+
     #mount '/static' => "Plack::App::File", (
     #    root     => '../resources/static',
     #    encoding => literal('UTF-8'),

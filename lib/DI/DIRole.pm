@@ -116,6 +116,7 @@ has markers_edit_controller_json =>(
     'isa' => 'Markers::MarkersEditControllerJson',
     dependencies => {
        'markers_repository' => 'markers_repository',
+       'file_store_service' => 'file_store',
        'template_view_handler' => 'template_view_handler',
     },
 );
@@ -125,7 +126,7 @@ has 'file_store' => (
     'isa' => 'FileStore::FileStoreService',
     'dependencies' => {
         'root_path' => literal('/home/pozpl/tmp/image_store'),
-        'url_base' => literal('http://127.0.0.1/'),
+        'url_base' => literal('http://127.0.0.1/user/images'),
     }
 );
 
