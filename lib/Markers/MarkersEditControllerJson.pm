@@ -3,9 +3,16 @@ use Moose;
 use JSON;
 use Markers::Marker;
 use Data::Dump qw(dump);
+
 has 'markers_repository' => (
     'is' => 'ro',
     'isa' => 'Markers::MarkerRepository',
+    'required' => 1,
+);
+
+has 'file_store_service' => (
+    'is'  => 'ro',
+    'isa' => 'FileStore::FileStoreService',
     'required' => 1,
 );
 
@@ -57,7 +64,7 @@ sub _marker_to_hash(){
         'longitude' => $marker->longitude,
         'time_of_creation' => $marker->time_of_creation,
         'description' => $marker->description,
-        'images' => $marker->images,
+        'images' => $self->file_store_service->get_urls_for_ids($marker->images),
     };
 
     return $marker_hash;
