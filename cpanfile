@@ -9,3 +9,4 @@ requires 'File::Basename', '> 0.01';
 requires 'JSON', '> 0.01';
 requires 'Moose', '> 0.01';
 requires 'HTML::FillInForm::Lite', '> 0.01';
+requires 'Test::MockObject', '>= 1.20120301';
