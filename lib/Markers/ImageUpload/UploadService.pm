@@ -26,9 +26,12 @@ sub save_upload(){
     my ($self, $marker_id, $uploads_aref) = @_;
 
     my @uploaded_files_ids = $self->_save_to_store($uploads_aref);
-    $self->markers_repository->add_images_to_marker($marker_id, \@uploaded_files_ids);
-
-    return $self->file_store->get_urls_for_ids(\@uploaded_files_ids);
+    my $image_add_status = $self->markers_repository->add_images_to_marker($marker_id, \@uploaded_files_ids);
+    my @image_urls = ();
+    if($image_add_status){
+        @image_urls = $self->file_store->get_urls_for_ids(\@uploaded_files_ids);
+    }
+    return  @image_urls;
 }
 
 sub _save_to_store(){
