@@ -1,9 +1,11 @@
 <div class="container">
     <div class="col-md-12">
         <div ng-bind-html="description"></div>
-        <div ng-repeat="image in images">
-            <img ng-src="{{image}}"><img>
-        </div>
+        <ul class="media-grid">
+            <li ng-repeat="image in images">
+                <img class="thumbnail" ng-src="{{image}}"><img>
+            </li>
+        </ul>
 
         <div>
             <a ui-sref="edit_marker({id: markerId})" >Редактировать</a>
