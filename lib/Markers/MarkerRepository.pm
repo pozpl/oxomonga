@@ -138,7 +138,7 @@ sub delete_image_from_marker(){
 
     my $find_query = {'_id' => MongoDB::OID->new('value' => $marker_id)};
     my $delete_query = {'$pull' => {'images' => $image_id} };
-    $self->markers_collection->update($find_query, $delete_query);
+    return $self->markers_collection->update($find_query, $delete_query);
 }
 
 sub delete_by_id(){
