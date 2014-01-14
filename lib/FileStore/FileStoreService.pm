@@ -57,11 +57,11 @@ sub get_url_for_id(){
 sub get_urls_for_ids(){
     my ($self, $ids_aref) = @_;
 
-    my %id_url_map = ();
+    my @ids_urls_array = ();
     foreach my $id (@{$ids_aref}){
         my $url_for_id = $self->get_url_for_id($id);
         if($url_for_id){
-            $id_url_map{$id} =  $url_for_id;
+            push @ids_urls_array , {$id => $url_for_id};
         }
     }
 
