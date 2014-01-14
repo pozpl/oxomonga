@@ -57,15 +57,15 @@ sub get_url_for_id(){
 sub get_urls_for_ids(){
     my ($self, $ids_aref) = @_;
 
-    my @urls = ();
+    my %id_url_map = ();
     foreach my $id (@{$ids_aref}){
         my $url_for_id = $self->get_url_for_id($id);
         if($url_for_id){
-            push (@urls, $url_for_id);
+            $id_url_map{$id} =  $url_for_id;
         }
     }
 
-    return @urls;
+    return %id_url_map;
 }
 
 sub delete_file_by_id(){
