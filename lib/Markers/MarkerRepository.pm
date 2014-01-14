@@ -122,7 +122,7 @@ sub add_image_to_marker(){
 sub add_images_to_marker(){
     my ($self, $marker_id, $images_aref) = @_;
 
-     my $find_query = {'_id' => MongoDB::OID->new( $marker_id)};
+     my $find_query = Tie::IxHash->new ('_id' => MongoDB::OID->new( $marker_id));
      my $update_query = {
                             '$addToSet' => { 'images' => {'$each' => $images_aref}  }
                         };
