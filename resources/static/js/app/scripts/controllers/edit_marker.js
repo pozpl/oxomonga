@@ -93,7 +93,14 @@ angular.module('GeoHashingApp')
                             console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
                         }).success(function (data, status, headers, config) {
                             // file is uploaded successfully
-                            console.log(data);
+                            angular.forEach(data, function(image, key){
+                                if($scope.images){
+                                    $scope.images.push(image);
+                                }else{
+                                    $scope.images = [image];
+                                }
+                            });
+
                         });
                     //.error(...)
                     //.then(success, error, progress);
