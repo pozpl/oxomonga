@@ -29,6 +29,8 @@ my $markers_collection = $test_database->get_collection('markers_collection');
 $markers_collection->drop();
 $markers_collection->ensure_index({'loc' => '2dsphere'});
 my $markers_repository = Markers::MarkerRepository->new('markers_collection' => $markers_collection);
+
+my $fictional_saved_marker = $markers_repository->save_marker($marker);
 my $saved_marker = $markers_repository->save_marker($marker);
 my $found_marker = $markers_repository->find_by_id($saved_marker->id());
 
