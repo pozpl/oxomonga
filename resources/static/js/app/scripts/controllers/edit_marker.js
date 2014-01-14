@@ -70,6 +70,7 @@ angular.module('GeoHashingApp')
                 $scope.latitude = markerJson.latitude;
                 $scope.longitude = markerJson.longitude;
                 $scope.description = markerJson.description;
+                $scope.images = markerJson.images;
             };
 
 
