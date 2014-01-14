@@ -3,7 +3,7 @@
         <div ng-bind-html="description"></div>
         <ul class="media-grid">
             <li ng-repeat="image in images">
-                <img class="thumbnail" ng-src="{{image}}"><img>
+                <img class="thumbnail" ng-src="{{image['url']}}"><img>
             </li>
         </ul>
 

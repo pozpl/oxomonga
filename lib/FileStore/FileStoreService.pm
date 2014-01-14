@@ -61,11 +61,11 @@ sub get_urls_for_ids(){
     foreach my $id (@{$ids_aref}){
         my $url_for_id = $self->get_url_for_id($id);
         if($url_for_id){
-            push @ids_urls_array , {$id => $url_for_id};
+            push @ids_urls_array , {'id' => $id, 'url' => $url_for_id};
         }
     }
 
-    return %id_url_map;
+    return @ids_urls_array;
 }
 
 sub delete_file_by_id(){
