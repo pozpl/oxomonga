@@ -4,7 +4,7 @@ use Moose;
 use MongoDB::OID;
 use Markers::Marker;
 use Tie::IxHash;
-use Data::Dump qw(dump);
+
 has 'markers_collection' => (
     'is'=> 'ro',
     'isa' => 'MongoDB::Collection',
@@ -111,7 +111,7 @@ sub list_markers(){
 sub add_image_to_marker(){
     my ($self, $marker_id, $image_id) = @_;
 
-     my $find_query = Tie::IxHash->new({'_id' => MongoDB::OID->new('value' => $marker_id)});
+     my $find_query = {'_id' => MongoDB::OID->new('value' => $marker_id)};
      my $update_query = {
                             '$addToSet' => { 'images' => $image_id  }
                         };
@@ -128,11 +128,7 @@ sub add_images_to_marker(){
                         };
 
      my $update_status = $self->markers_collection->update($find_query, $update_query, {safe => 1});
-     print dump($update_status);
-     print dump($find_query);
-     print dump($update_query);
      my @marker_with_images =  $self->markers_collection->find($find_query)->all();
-     print dump(@marker_with_images);
 
      return $update_status;
 }
@@ -140,7 +136,7 @@ sub add_images_to_marker(){
 sub delete_image_from_marker(){
     my ($self, $marker_id, $image_id) = @_;
 
-    my $find_query = Tie::IxHash->new({'_id' => MongoDB::OID->new('value' => $marker_id)});
+    my $find_query = {'_id' => MongoDB::OID->new('value' => $marker_id)};
     my $delete_query = {'$pull' => {'images' => $image_id} };
     $self->markers_collection->update($find_query, $delete_query);
 }
