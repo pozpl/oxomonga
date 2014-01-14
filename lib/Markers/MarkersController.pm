@@ -48,6 +48,7 @@ sub _markers_to_struct(){
 
     my @markers_hrefs_array = ();
     foreach my $marker (@{$markers}){
+        my @marker_images_urls =  $self->file_store->get_urls_for_ids($marker->images);
         my $marker_hash = {
              'id' => $marker->id(),
              'user' => $marker->user(),
@@ -55,7 +56,7 @@ sub _markers_to_struct(){
              'longitude' => $marker->longitude(),
              'time_of_creation' => $marker->time_of_creation(),
              'description' => $marker->description(),
-             'images' => $marker->images(),
+             'images' => \@marker_images_urls,
         };
         push  @markers_hrefs_array,  $marker_hash;
     }
