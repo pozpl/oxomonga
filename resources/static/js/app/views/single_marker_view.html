@@ -1,12 +1,14 @@
 <div class="container">
     <div class="col-md-12">
         <div ng-bind-html="description"></div>
-        <ul class="media-grid">
-            <li ng-repeat="image in images">
-                <img class="thumbnail" ng-src="{{image['url']}}"><img>
+        <ul class="thumbnails">
+            <li ng-repeat="image in images"  class="col-md-3">
+                <div class="image-wrapper" style="display: block; overflow: hidden">
+                    <div class="img-thumbnail" style="background-position: center; background-size: cover; background-image: url({{image['url']}});width: 100%; height: 180px;" ></div>
+                </div>
             </li>
         </ul>
-
+        <div style="clear: both"></div>
         <div>
             <a ui-sref="edit_marker({id: markerId})" >Редактировать</a>
         </div>
