@@ -107,29 +107,31 @@ angular.module('GeoHashingApp')
                 }
             };
 
-            $scope.deleteImage = function(markerId, imageId){
-                $http({method: 'POST', url: '/markers/edit/json',
-                    data: {
-                        'marker_id' : markerId,
-                        'image_id' : imageId
-                    } }
-                ).
-                    success(function (data, status, headers, config) {
-                        if (data.status) {
-                            var filteredImages = [];
-                            angular.forEach($scope.images, function(image, key){
-                                 if(image.id != imageId){
-                                      this.push(image);
-                                 }
-                            }, filteredImages);
+            $scope.deleteImage = function (imageId) {
+                if ($scope.id) {
+                    $http({method: 'POST', url: '/markers/edit/json',
+                            data: {
+                                'marker_id': $scope.id,
+                                'image_id': imageId
+                            } }
+                    ).
+                        success(function (data, status, headers, config) {
+                            if (data.status) {
+                                var filteredImages = [];
+                                angular.forEach($scope.images, function (image, key) {
+                                    if (image.id != imageId) {
+                                        this.push(image);
+                                    }
+                                }, filteredImages);
 
-                            $scope.images = filteredImages;
-                        }
-                    }).
-                    error(function (data, status, headers, config) {
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
-                    });
+                                $scope.images = filteredImages;
+                            }
+                        }).
+                        error(function (data, status, headers, config) {
+                            // called asynchronously if an error occurs
+                            // or server returns response with an error status.
+                        });
+                }
             }
 
         }]);
