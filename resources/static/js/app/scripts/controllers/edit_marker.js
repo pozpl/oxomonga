@@ -109,7 +109,7 @@ angular.module('GeoHashingApp')
 
             $scope.deleteImage = function (imageId) {
                 if ($scope.id) {
-                    $http({method: 'POST', url: '/markers/edit/json',
+                    $http({method: 'POST', url: '/delete/marker/image',
                             data: {
                                 'marker_id': $scope.id,
                                 'image_id': imageId

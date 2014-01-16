@@ -36,6 +36,10 @@ router as {
         'name' => 'upload_images'
     );
 
+    route '/delete/marker/image' => 'markers_edit_controller_json.delete_image_from_marker',(
+        'name' => 'delete_image_from_marker'
+    );
+
 
 
     mount '/static' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static');
