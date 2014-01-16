@@ -18,11 +18,11 @@
             <div id="description" name="description" text-angular ng-model="description"></div>
         </div>
 
-        <ul>
-            <li ng-repeat="image in images">
-                <img class="thumbnail" ng-src="{{image['url']}}" image_id="{{image['id']}}"><img>
-            </li>
-        </ul>
+        <div class="thumbnails row">
+            <div ng-repeat="image in images"  class="col-md-3">
+                <img class="img-thumbnail" ng-src="{{image['url']}}" image_id="{{image['id ']}}" ><img>
+            </div>
+        </div>
 
         <div ng-show="id">
             <input type="file" ng-file-select="onFileSelect($files)">

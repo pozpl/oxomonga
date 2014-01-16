@@ -127,8 +127,8 @@ ya-map{
 /**
 ========================= PHOTOS THUMBNAILS ==================================
 */
-.thumbnails .image-wrapper {display: block; overflow: hidden}
-.thumbnails .image-wrapper.img-thumbnail {
+
+.thumbnails .img-thumbnail {
     background-position: center;
     background-size: cover;
     width: 100%;

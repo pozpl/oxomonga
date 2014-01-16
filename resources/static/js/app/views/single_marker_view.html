@@ -1,13 +1,11 @@
 <div class="container">
     <div class="col-md-12">
         <div ng-bind-html="description"></div>
-        <ul class="thumbnails">
-            <li ng-repeat="image in images"  class="col-md-3">
-                <div class="image-wrapper">
-                    <div class="img-thumbnail" style="background-image: url({{image['url']}});" ></div>
-                </div>
-            </li>
-        </ul>
+        <div class="thumbnails row">
+            <div ng-repeat="image in images"  class="col-md-3">
+                <div class="img-thumbnail" style="background-image: url({{image['url']}});" ></div>
+            </div>
+        </div>
         <div style="clear: both"></div>
         <div>
             <a ui-sref="edit_marker({id: markerId})" >Редактировать</a>
