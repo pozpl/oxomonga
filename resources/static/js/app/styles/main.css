@@ -127,6 +127,13 @@ ya-map{
 /**
 ========================= PHOTOS THUMBNAILS ==================================
 */
+.thumbnails .image-wrapper {display: block; overflow: hidden}
+.thumbnails .image-wrapper.img-thumbnail {
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 180px;
+}
 
 /**
 ========================= END PHOTOS THUMBNAILS ==================================
