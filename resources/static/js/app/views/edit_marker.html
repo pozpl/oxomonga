@@ -20,7 +20,12 @@
 
         <div class="thumbnails row">
             <div ng-repeat="image in images"  class="col-md-3">
-                <img class="img-thumbnail" ng-src="{{image['url']}}" image_id="{{image['id ']}}" ><img>
+                <div class="thumbnail">
+                    <img class="img-thumbnail" ng-src="{{image['url']}}" image_id="{{image['id ']}}" ><img>
+                    <div class="caption">
+                       <p><a href="#" class="btn btn-default" role="button">Удалить</a></p>
+                    </div>
+                </div>
             </div>
         </div>
 
