@@ -46,7 +46,10 @@ sub delete_image_from_marker(){
 
     my $marker_id = $request->param('marker_id');
     my $image_id = $request->param('image_id');
-    my $delete_status = $self->markers_repository->delete_image_from_marker($marker_id, $image_id);
+    my $delete_status = 0;
+    if($marker_id && $image_id){
+        $delete_status = $self->markers_repository->delete_image_from_marker($marker_id, $image_id);
+    }
 
     return JSON->new->encode({
         'status' => $delete_status

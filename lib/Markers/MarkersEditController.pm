@@ -96,17 +96,4 @@ sub delete_marker(){
 
 }
 
-sub delete_marker_image(){
-    my ($self, $request) = @_;
-    my $image_id = $request->param('image_id');
-    my $marker_id = $request->param('marker_id');
-
-    my $delete_status = 0;
-    if($marker_id && $image_id){
-        $delete_status = $self->markers_repository->delete_image_from_marker($marker_id, $image_id);
-    }
-
-    return $delete_status ? 'ok' : 'error';
-}
-
 1;
