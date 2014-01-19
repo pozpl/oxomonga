@@ -44,8 +44,11 @@ sub list_markers(){
 sub delete_image_from_marker(){
     my ($self, $request) = @_;
 
-    my $marker_id = $request->param('marker_id');
-    my $image_id = $request->param('image_id');
+    my $marker_json_string =  $request->content;
+    my $request_json = JSON->new->decode($marker_json_string);
+
+    my $marker_id = $request_json->{'marker_id'};
+    my $image_id = $request_json->{'image_id'};
     my $delete_status = 0;
     if($marker_id && $image_id){
         $delete_status = $self->markers_repository->delete_image_from_marker($marker_id, $image_id);
