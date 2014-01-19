@@ -113,7 +113,8 @@ angular.module('GeoHashingApp')
                             data: {
                                 'marker_id': $scope.id,
                                 'image_id': imageId
-                            } }
+                            }
+                        }
                     ).
                         success(function (data, status, headers, config) {
                             if (data.status) {
