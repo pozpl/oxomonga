@@ -86,16 +86,27 @@ sub list_markers(){
 }
 
 sub delete_marker(){
-    my ($self, $request) = @_;
-    my $marker_id = $request->param('marker_id') || 0;
-    my $image_id = $request->param('image_id') || 0;
-    if($image_id && $marker_id){
-        $self->markers_repository->delete_by_id($marker_id, $image_id);
+    my ($self, $request, $id) = @_;
+    if($id){
+        $self->markers_repository->delete_by_id($id);
         return 'OK';
     }else{
         return 'NOT OK';
     }
 
+}
+
+sub delete_marker_image(){
+    my ($self, $request) = @_;
+    my $image_id = $request->param('image_id');
+    my $marker_id = $request->param('marker_id');
+
+    my $delete_status = 0;
+    if($marker_id && $image_id){
+        $delete_status = $self->markers_repository->delete_image_from_marker($marker_id, $image_id);
+    }
+
+    return $delete_status ? 'ok' : 'error';
 }
 
 1;
