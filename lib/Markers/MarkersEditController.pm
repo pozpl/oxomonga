@@ -87,10 +87,10 @@ sub list_markers(){
 
 sub delete_marker(){
     my ($self, $request) = @_;
-    my $marker_id = $request->param('marker_id')| 0;
-    my $image_id = $request->param('image_id') | 0;
-    if($id){
-        $self->markers_repository->delete_by_id($id);
+    my $marker_id = $request->param('marker_id') || 0;
+    my $image_id = $request->param('image_id') || 0;
+    if($image_id && $marker_id){
+        $self->markers_repository->delete_by_id($marker_id, $image_id);
         return 'OK';
     }else{
         return 'NOT OK';
