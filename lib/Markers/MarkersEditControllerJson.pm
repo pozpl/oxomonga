@@ -55,7 +55,7 @@ sub delete_image_from_marker(){
     }
 
     return JSON->new->encode({
-        'status' => $delete_status
+        'status' => $delete_status ? 1 : 0
     });
 
 }

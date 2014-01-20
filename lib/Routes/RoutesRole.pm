@@ -33,11 +33,11 @@ router as {
     );
 
     route '/marker/upload/images' => 'upload_controller.process_upload',(
-        'name' => 'upload_images'
+        'name' => 'upload_images',
     );
 
     route '/delete/marker/image' => 'markers_edit_controller_json.delete_image_from_marker',(
-        'name' => 'delete_image_from_marker'
+        'name' => 'delete_image_from_marker',
     );
 
 
