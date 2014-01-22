@@ -2,7 +2,6 @@ package Markers::MarkersEditControllerJson;
 use Moose;
 use JSON;
 use Markers::Marker;
-use Data::Dump qw(dump);
 
 has 'markers_repository' => (
     'is' => 'ro',
@@ -87,7 +86,6 @@ sub _marker_to_hash(){
         'description' => $marker->description,
         'images' => \@marker_images_urls,
     };
-    print dump($marker_hash);
     return $marker_hash;
 }
 
