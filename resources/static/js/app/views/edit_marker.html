@@ -21,7 +21,7 @@
         <div class="thumbnails row">
             <div ng-repeat="image in images"  class="col-md-3">
                 <div class="thumbnail">
-                    <img class="img-thumbnail" ng-src="{{image['url']}}" image_id="{{image['id']}}" ><img>
+                    <img class="list-thumbnail img-thumbnail" ng-src="{{image['url']}}" image_id="{{image['id']}}" ><img>
                     <div class="caption">
                        <p><div class="btn btn-default" role="button" ng-click="deleteImage(image.id)">Удалить</div></p>
                     </div>
