@@ -8,7 +8,7 @@ angular.module('GeoHashingApp')
         $scope.shared.showBalloonId = 0;
 
         $scope.runBalloon = function(obj){
-            if($scope.shared.showBalloonId == obj.id){
+            if($scope.shared.showBalloonId != obj.id){
                 $scope.shared.showBalloonId = obj.id;
             }else{
                 $scope.shared.showBalloonId = -1;
