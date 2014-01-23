@@ -2,8 +2,8 @@
     <div class="container map_list_view">
         <div class="row">
             <div class="col-md-4 col-lg-4 markers_list">
-                <ul>
-                    <li ng-repeat="(k,marker) in shared.markers" ng-click="runBalloon(marker)">
+                <div class="list-group">
+                    <div class="list-group-item" ng-repeat="(k,marker) in shared.markers" ng-click="runBalloon(marker)">
                         <div ng-if="marker.id==shared.showBalloonId">
                             <b>
                                 <div ng-if="marker.images && marker.images[0]">
@@ -22,8 +22,8 @@
                             <div>{{marker.name}}</div>
                         </div>
 
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
             <div class="col-md-8 col-lg-8">
                 <div ng-include="" src=" 'views/map.html' "></div>
