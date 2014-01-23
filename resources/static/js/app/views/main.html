@@ -15,6 +15,9 @@
                             <a ui-sref="show_marker({id: marker.id})">Показать подробнее</a>
                         </div>
                         <div ng-if="marker.id!=shared.showBalloonId">
+                            <div ng-if="marker.images && marker.images[0]">
+                                <div><img class="img-thumbnail" ng-src="{{marker.images[0]['url']}}"><img></div>
+                            </div>
                             <div ng-bind-html="marker.description"></div>
                             <div>{{marker.name}}</div>
                         </div>
