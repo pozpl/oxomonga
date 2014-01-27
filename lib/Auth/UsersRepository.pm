@@ -103,7 +103,7 @@ sub _user_to_hash(){
     if ($user->email){$hash_to_save->{'email'} = $user->email;}
     if ($user->friendly_name){$hash_to_save->{'friendly_name'} = $user->friendly_name;}
     if ($user->provider){$hash_to_save->{'provider'} = $user->provider;}
-    if ($user->provider){$hash_to_save->{'provider'} = $user->avatar;}
+    if ($user->provider){$hash_to_save->{'avatar'} = $user->avatar;}
     if ($user->password){
         $hash_to_save->{'password'} = $self->password_crypt->generate($user->password);
     }
@@ -116,12 +116,11 @@ sub _hash_to_user(){
     
     my $user = users::user->new({
         'id' => $user_doc_hash_ref->{'_id'}->to_string(),
-        'user' => $user_doc_hash_ref->{'user'},
-        'latitude' => $user_doc_hash_ref->{'loc'}->{'coordinates'}[1],
-        'longitude' => $user_doc_hash_ref->{'loc'}->{'coordinates'}[0],
-        'time_of_creation' => $user_doc_hash_ref->{'time_of_creation'},
-        'description' => $user_doc_hash_ref->{'description'},
-        'images' => $user_doc_hash_ref->{'images'},
+        'login' => $user_doc_hash_ref->{'user'},
+        'email' => $user_doc_hash_ref->{'email'},
+        'friendly_name' => $user_doc_hash_ref->{'friendly_name'},
+        'provider' => $user_doc_hash_ref->{'provider'},
+        'avatar' => $user_doc_hash_ref->{'avatar'},
     });
                                    
     return $user;
