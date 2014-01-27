@@ -99,29 +99,15 @@ sub _user_to_hash(){
     
     my $hash_to_save = {};
     
-    if ($user->user()) {
-        $hash_to_save->{'user'} = $user->user();
+    if ($user->login){$hash_to_save->{'login'} = $user->login;}
+    if ($user->email){$hash_to_save->{'email'} = $user->email;}
+    if ($user->friendly_name){$hash_to_save->{'friendly_name'} = $user->friendly_name;}
+    if ($user->provider){$hash_to_save->{'provider'} = $user->provider;}
+    if ($user->provider){$hash_to_save->{'provider'} = $user->avatar;}
+    if ($user->password){
+        $hash_to_save->{'password'} = $self->password_crypt->generate($user->password);
     }
-    
-    if ($user->longitude() && $user->latitude()) {
-        $hash_to_save->{'loc'} = {
-            'type' => 'Point',
-            'coordinates' => [$user->longitude() + 0 , $user->latitude() + 0]
-        };
-    }
-    
-    if ($user->time_of_creation()) {
-        $hash_to_save->{'time_of_creation'} = $user->time_of_creation();
-    }
-    
-    if ($user->description()) {
-        $hash_to_save->{'description'} = $user->description();
-    }
-    
-    if ($user->images()) {
-        $hash_to_save->{'images'} = $user->images();
-    }
-    
+
     return $hash_to_save;
 }
 
