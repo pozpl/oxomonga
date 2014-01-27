@@ -49,6 +49,14 @@ sub find_by_id(){
     return $user;
 }
 
+sub check_user_password(){
+    my ($self, $user_id, $user_password) = @_;
+
+    my $users_hash = $self->users_collection->find_one({'_id' => MongoDB::OID->new('value' => $id)});
+    my $password_hash = $user_hash->{'password'};
+    my $check_status = $self->password_crypt->validate($password_hash, $user_password);
+    return $check_status;
+}
 
 sub list_users(){
     my ($self, $offset, $limit) = @_;
