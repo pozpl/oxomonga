@@ -3,6 +3,7 @@ package Auth::UserRepository;
 use MongoDB::OID;
 use Auth::User;
 use Tie::IxHash;
+use Crypt::PBKDF2
 
 has 'users_collection' => (
     'is'=> 'ro',
@@ -12,6 +13,15 @@ has 'users_collection' => (
 has 'password_crypt' => (
     'is' => 'ro',
     'isa' => 'Crypt::PBKDF2',
+    'default' => sub{
+        return Crypt::PBKDF2->new(
+        	hash_class => 'HMACSHA2',
+        	hash_args => {
+        		sha_size => 512,
+        	},
+            salt_len => 4,
+        );
+    },
 );
 
 sub save_user(){
