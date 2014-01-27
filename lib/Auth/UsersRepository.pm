@@ -3,7 +3,7 @@ package Auth::UserRepository;
 use MongoDB::OID;
 use Auth::User;
 use Tie::IxHash;
-use Crypt::PBKDF2
+use Crypt::PBKDF2;
 
 has 'users_collection' => (
     'is'=> 'ro',
