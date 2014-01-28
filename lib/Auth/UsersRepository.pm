@@ -1,5 +1,6 @@
-package Auth::UserRepository;
+package Auth::UsersRepository;
 
+use Moose;
 use MongoDB::OID;
 use Auth::User;
 use Tie::IxHash;
@@ -52,7 +53,7 @@ sub find_by_id(){
 sub check_user_password(){
     my ($self, $user_id, $user_password) = @_;
 
-    my $users_hash = $self->users_collection->find_one({'_id' => MongoDB::OID->new('value' => $id)});
+    my $user_hash = $self->users_collection->find_one({'_id' => MongoDB::OID->new('value' => $user_id)});
     my $password_hash = $user_hash->{'password'};
     my $check_status = $self->password_crypt->validate($password_hash, $user_password);
     return $check_status;
@@ -122,9 +123,9 @@ sub _user_to_hash(){
 sub _hash_to_user(){
     my ($self, $user_doc_hash_ref) = @_;
     
-    my $user = users::user->new({
+    my $user = Auth::User->new({
         'id' => $user_doc_hash_ref->{'_id'}->to_string(),
-        'login' => $user_doc_hash_ref->{'user'},
+        'login' => $user_doc_hash_ref->{'login'},
         'email' => $user_doc_hash_ref->{'email'},
         'friendly_name' => $user_doc_hash_ref->{'friendly_name'},
         'provider' => $user_doc_hash_ref->{'provider'},

@@ -4,38 +4,38 @@ use Moose;
 
 
 has 'id' => (
-    'is' => 'ro',
-    'isa' => 'Int',
+    'is' => 'rw',
+    'isa' => 'Str',
 );
 
 
 has 'login' => (
-    'is' => 'ro',
+    'is' => 'rw',
     'isa' => 'Str',
 );
 
 has 'email' => (
-    'is' => 'ro',
+    'is' => 'rw',
     'isa' => 'Str',
 );
 
 has 'friendly_name' => (
-    'is' => 'ro',
+    'is' => 'rw',
     'isa' => 'Str',
 );
 
 has 'provider' => (
-    'is' => 'ro',
+    'is' => 'rw',
     'isa' => 'Str'
 );
 
 has 'avatar' => (
-    'is' => 'ro',
+    'is' => 'rw',
     'isa' => 'Str'
 );
 
 has 'password' => (
-    'is' => 'ro',
+    'is' => 'rw',
     'isa' => 'Str',
 );
 

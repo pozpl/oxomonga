@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use Test::Simple tests=> 21;
+use Test::Simple tests=> 9;
 use warnings;
 use strict;
 use Test::MockObject;
@@ -43,6 +43,6 @@ ok($users_repository->check_user_password($found_user->id, $user->password), 'pa
 ok(!$users_repository->check_user_password($found_user->id, 'gibberish'), 'password ok');
 
 
-ok($users_repository->delete_by_id($found_marker->id), 'user delete ok');
+ok($users_repository->delete_by_id($found_user->id), 'user delete ok');
 
 $users_collection->drop();
