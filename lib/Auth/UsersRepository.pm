@@ -9,6 +9,7 @@ use Crypt::PBKDF2;
 has 'users_collection' => (
     'is'=> 'ro',
     'isa' => 'MongoDB::Collection',
+    'required' => 1,
 );
 
 has 'password_crypt' => (
