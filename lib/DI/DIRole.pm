@@ -44,6 +44,20 @@ has 'markers_collection' => (
     lifecycle => 'Singleton',
 );
 
+has 'users_collection' => (
+    'is' => 'ro',
+    'block' => sub{
+        my $s = shift;
+        my $collection =  $s->param('database')->get_collection('users');
+        $collection->ensure_index({'loc' => '2dsphere'});
+        return $collection;
+    },
+    dependencies => {
+    	'database' => 'mongo_database',
+    },
+    lifecycle => 'Singleton',
+);
+
 has 'markers_repository' => (
     'is' => 'ro',
     'isa' => 'Markers::MarkerRepository',
@@ -144,6 +158,23 @@ has 'upload_controller' => (
     'isa' => 'Markers::ImageUpload::UploadController',
     'dependencies' => {
         'upload_service' => 'upload_service',
+    }
+);
+
+
+has 'users_repository' => (
+    'is' => 'ro',
+    'isa' => 'Auth::UsersRepository',
+    'dependencies' => {
+        'users_collection' => 'users_collection',
+    }
+);
+
+has 'registration_controller' => (
+    'is' => 'ro',
+    'isa' => 'Auth::Login::RegistrationController',
+    'dependencies' => {
+        'user_repository' => 'users_repository',
     }
 );
 
