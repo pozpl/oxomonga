@@ -1,6 +1,9 @@
 package Auth::User;
 
 use Moose;
+use MooseX::ClassAttribute;
+
+class_has 'internal_provider' => ( is => 'ro', init_arg => undef, default => 'internal' );
 
 
 has 'id' => (
@@ -39,5 +42,7 @@ has 'password' => (
     'isa' => 'Str',
 );
 
+
+__PACKAGE__->meta()->make_immutable();
 
 1;
