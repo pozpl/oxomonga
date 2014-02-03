@@ -40,7 +40,9 @@ router as {
         'name' => 'delete_image_from_marker',
     );
 
-
+     route '/user/:id' => 'registration_controller.get_user_info', (
+            'name' => 'get_user_info'
+     );
 
     mount '/static' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static');
     mount '/js/app' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static/js/app');
