@@ -1,0 +1,46 @@
+<div class="container">
+
+    <form role="form" ng-submit="submit()">
+        <div class="form-group">
+            <label for="user">Login</label>
+            <input type="text" class="form-control" id="user" placeholder="" ng-model="login">
+        </div>
+        <div class="form-group">
+            <label for="longitude">Email</label>
+            <input type="text" class="form-control" id="longitude" placeholder="" ng-model="email">
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label for="latitude">Имя которое будет видно</label>-->
+            <!--<input type="text" class="form-control" id="latitude" placeholder="" ng-model="latitude">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="description">Описание</label>-->
+            <!--<div id="description" name="description" text-angular ng-model="description"></div>-->
+        <!--</div>-->
+
+        <div class="thumbnails row">
+            <div ng-repeat="image in images"  class="col-md-3">
+                <div class="thumbnail">
+                    <img class="list-thumbnail img-thumbnail" ng-src="{{image['url']}}" image_id="{{image['id']}}" ><img>
+                    <div class="caption">
+                        <p><div class="btn btn-default" role="button" ng-click="deleteImage(image.id)">Удалить</div></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="id">
+            <input type="file" ng-file-select="onFileSelect($files)">
+            <input type="file" ng-file-select="onFileSelect($files)" multiple>
+
+            <div ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class"
+                 ng-show="dropSupported">drop files here
+            </div>
+            <div ng-file-drop-available="dropSupported=true"
+                 ng-show="!dropSupported">HTML5 Drop File is not supported!
+            </div>
+            <button ng-click="upload.abort()">Cancel Upload</button>
+        </div>
+        <button type="submit" class="btn btn-default">Сохранить изменения</button>
+    </form>
+</div>
