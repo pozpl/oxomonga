@@ -48,13 +48,21 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
             data:{
                 needAuth:  false
             }
-        }).
-        state('register_user', {
+        })
+        .state('register_user', {
             url: "/registration",
             templateUrl: 'views/register_user.html',
             controller: 'RegisterUserCtrl',
             data:{
                 needAuth:  false
+            }
+        })
+        .state('edit_user',{
+            url: "/userinfo",
+            templateUrl: 'views/edit_user.html',
+            controller: 'EditUserCtrl',
+            data:{
+                needAuth:  true
             }
         });
 });
