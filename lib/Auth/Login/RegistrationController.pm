@@ -23,6 +23,16 @@ sub register_user(){
     return JSON->new->encode($self->_user_to_hash($saved_user));
 }
 
+sub get_user_info(){
+    my ($self, $user_id) = @_;
+
+    my $user = $self->user_repository->find_by_id($user_id);
+    my $user_hash = $self->_user_to_hash($user);
+
+    return JSON->new->encode($self->_user_to_hash($saved_user));
+}
+
+
 sub _hash_to_user(){
     my ($self, $user_hash) = @_;
 
@@ -32,7 +42,7 @@ sub _hash_to_user(){
         'email' => $user_hash->{'email'},
         'friendly_name' => $user_hash->{'friendly_name'},
         'provider' => Auth::User->internal_provider,
-        'password' => $user_hash->{'password'}
+        'password' => $user_hash->{'password'},
     );
 
     return $user;
@@ -47,6 +57,7 @@ sub _user_to_hash(){
         'email' => $user->email,
         'friendly_name' => $user->friendly_name,
         'provider' => $user->provider,
+        'avatar' => $user->avatar,
     };
 
 
