@@ -51,6 +51,12 @@ sub find_by_id(){
     return $user;
 }
 
+sub check_login_existence(){
+    my ($self, $user_login, $provider) = @_;
+    $user = $self->users_collection->find_one({'login' => $user_login, 'provider' => $provider});
+    return $user ? 1 : 0;
+}
+
 sub check_user_password(){
     my ($self, $user_id, $user_password) = @_;
 
