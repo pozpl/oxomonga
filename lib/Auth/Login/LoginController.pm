@@ -1,7 +1,7 @@
 package Auth::Login::LoginController;
 
 use Moose;
-use Auth::UserRepository;
+use Auth::UsersRepository;
 use Auth::User;
 
 sub login {

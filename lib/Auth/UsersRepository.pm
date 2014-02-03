@@ -53,7 +53,7 @@ sub find_by_id(){
 
 sub check_login_existence(){
     my ($self, $user_login, $provider) = @_;
-    $user = $self->users_collection->find_one({'login' => $user_login, 'provider' => $provider});
+    my $user = $self->users_collection->find_one({'login' => $user_login, 'provider' => $provider});
     return $user ? 1 : 0;
 }
 

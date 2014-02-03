@@ -41,8 +41,18 @@ router as {
     );
 
      route '/user/:id' => 'registration_controller.get_user_info', (
-            'name' => 'get_user_info'
+            'name' => 'get_user_info',
      );
+
+     route '/user/register' => 'registration_controller.register_user', (
+            'name' => 'register_user',
+     );
+
+     route '/user/login/exists' => 'registration_controller.is_user_with_login_exists', (
+            'name' => 'is_user_exists',
+     );
+
+
 
     mount '/static' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static');
     mount '/js/app' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static/js/app');

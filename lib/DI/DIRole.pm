@@ -49,7 +49,7 @@ has 'users_collection' => (
     'block' => sub{
         my $s = shift;
         my $collection =  $s->param('database')->get_collection('users');
-        $collection->ensure_index({'loc' => '2dsphere'});
+#        $collection->ensure_index({'loc' => '2dsphere'});
         return $collection;
     },
     dependencies => {

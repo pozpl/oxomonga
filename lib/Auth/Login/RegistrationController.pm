@@ -3,12 +3,12 @@ package Auth::Login::RegistrationController;
 use Moose;
 use JSON;
 
-use Auth::UserRepository;
+use Auth::UsersRepository;
 use Auth::User;
 
 has 'user_repository' => (
     'is'  => 'ro',
-    'isa' => 'Auth::UserRepository',
+    'isa' => 'Auth::UsersRepository',
     'required' => 1,
 );
 
@@ -16,8 +16,8 @@ sub register_user(){
     my ($self, $request) = @_;
     my $user_json_string =  $request->content;
 
-    my $user_json = JSON->new->decode($marker_json_string);
-    my $user_to_save = $self->_user_to_marker($user_json);
+    my $user_json = JSON->new->decode($user_json_string);
+    my $user_to_save = $self->_hash_to_user($user_json);
 
     my $saved_user = $self->user_repository->save_user($user_to_save);
     return JSON->new->encode($self->_user_to_hash($saved_user));
@@ -29,14 +29,14 @@ sub get_user_info(){
     my $user = $self->user_repository->find_by_id($user_id);
     my $user_hash = $self->_user_to_hash($user);
 
-    return JSON->new->encode($self->_user_to_hash($saved_user));
+    return JSON->new->encode($user_hash);
 }
 
 sub is_user_with_login_exists(){
     my ($self, $request) = @_;
 
     my $user_login = $request->param('login');
-    $is_user_exists = $this->user_repository
+    my $is_user_exists = $self->user_repository
                         ->check_login_existence(
                             $user_login,
                             Auth::User->internal_provider
@@ -47,7 +47,7 @@ sub is_user_with_login_exists(){
 sub _hash_to_user(){
     my ($self, $user_hash) = @_;
 
-    $user = Auth::User->new(
+    my $user = Auth::User->new(
         'id' => $user_hash->{'id'},
         'login' => $user_hash->{'login'},
         'email' => $user_hash->{'email'},
@@ -62,7 +62,7 @@ sub _hash_to_user(){
 sub _user_to_hash(){
     my ($self, $user) = @_;
 
-    $user_hash = {
+    my $user_hash = {
         'id'    => $user->id,
         'login' => $user->login,
         'email' => $user->email,
@@ -74,3 +74,7 @@ sub _user_to_hash(){
 
     return $user_hash;
 }
+
+
+
+1;
