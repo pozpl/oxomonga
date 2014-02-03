@@ -32,6 +32,17 @@ sub get_user_info(){
     return JSON->new->encode($self->_user_to_hash($saved_user));
 }
 
+sub is_user_with_login_exists(){
+    my ($self, $request) = @_;
+
+    my $user_login = $request->param('login');
+    $is_user_exists = $this->user_repository
+                        ->check_login_existence(
+                            $user_login,
+                            Auth::User->internal_provider
+                        );
+    return JSON->new->encode({'login_exists' => $is_user_exists});
+}
 
 sub _hash_to_user(){
     my ($self, $user_hash) = @_;
