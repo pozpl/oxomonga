@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('GeoHashingApp')
-    .controller('RegisterUserCtrl', ['$scope', '$rootScope', '$stateParams', '$http', '$upload',
+    .controller('RegisterUserCtrl', ['$scope', '$http', '$state', 'AuthenticationService',
         function ($scope, $http, $state, AuthenticationService) {
 
             $scope.submit = function () {
@@ -28,7 +28,6 @@ angular.module('GeoHashingApp')
                         });
                 }
             };
-
         }
     ]);
 
