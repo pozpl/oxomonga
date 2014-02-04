@@ -15,7 +15,9 @@ angular.module('GeoHashingApp')
                         success(function (data, status, headers, config) {
                             if (data && data.id) {
                                 AuthenticationService.setLoggedIn(true);
-                                $state.go('main_state');
+                                $state.go('edit_user', {
+                                    'id' : data.id
+                                });
                             }
                         }).
                         error(function (data, status, headers, config) {
