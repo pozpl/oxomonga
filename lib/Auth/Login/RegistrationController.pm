@@ -26,9 +26,15 @@ sub register_user(){
                              );
     unless($is_user_exists){
         my $saved_user = $self->user_repository->save_user($user_to_save);
+        return JSON->new->encode($self->_user_to_hash($saved_user));
+    }else{
+        return JSON->new->encode({
+            status: 'error',
+            error_message: 'user with such login exists'
+        })
     }
 
-    return JSON->new->encode($self->_user_to_hash($saved_user));
+
 }
 
 sub get_user_info(){
