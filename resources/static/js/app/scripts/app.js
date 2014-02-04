@@ -58,7 +58,7 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
             }
         })
         .state('edit_user',{
-            url: "/userinfo",
+            url: "/userprofile/:id",
             templateUrl: 'views/edit_user.html',
             controller: 'EditUserCtrl',
             data:{
