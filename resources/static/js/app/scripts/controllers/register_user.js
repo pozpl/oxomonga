@@ -18,6 +18,8 @@ angular.module('GeoHashingApp')
                                 $state.go('edit_user', {
                                     'id' : data.id
                                 });
+                            }else if(data.error){
+                                alert(data.error_message);
                             }
                         }).
                         error(function (data, status, headers, config) {

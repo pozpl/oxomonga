@@ -29,8 +29,8 @@ sub register_user(){
         return JSON->new->encode($self->_user_to_hash($saved_user));
     }else{
         return JSON->new->encode({
-            status: 'error',
-            error_message: 'user with such login exists'
+            'status': 'error',
+            'error_message': 'user with such login exists',
         })
     }
 
