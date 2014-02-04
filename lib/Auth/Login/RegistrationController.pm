@@ -18,8 +18,16 @@ sub register_user(){
 
     my $user_json = JSON->new->decode($user_json_string);
     my $user_to_save = $self->_hash_to_user($user_json);
+    my $user_login = $request->param('login');
+    my $is_user_exists = $self->user_repository
+                            ->check_login_existence(
+                                 $user_login,
+                                 Auth::User->internal_provider
+                             );
+    unless($is_user_exists){
+        my $saved_user = $self->user_repository->save_user($user_to_save);
+    }
 
-    my $saved_user = $self->user_repository->save_user($user_to_save);
     return JSON->new->encode($self->_user_to_hash($saved_user));
 }
 
@@ -43,6 +51,7 @@ sub is_user_with_login_exists(){
                         );
     return JSON->new->encode({'login_exists' => $is_user_exists});
 }
+
 
 sub _hash_to_user(){
     my ($self, $user_hash) = @_;
