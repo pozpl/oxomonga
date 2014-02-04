@@ -2,7 +2,8 @@
 .includepath
 .idea
 .idea/
-WhereIsKittens.iml
+WhereAreKittens.iml
+./WhereAreKittens.iml
 resources/static/js/dojo
 resources/static/js/dijit
 resources/static/js/dojox
