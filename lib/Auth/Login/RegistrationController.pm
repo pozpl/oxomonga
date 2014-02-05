@@ -61,15 +61,12 @@ sub is_user_with_login_exists(){
 
 sub _hash_to_user(){
     my ($self, $user_hash) = @_;
-
-    my $user = Auth::User->new(
-        'id' => $user_hash->{'id'},
-        'login' => $user_hash->{'login'},
-        'email' => $user_hash->{'email'},
-        'friendly_name' => $user_hash->{'friendly_name'},
-        'provider' => Auth::User->internal_provider,
-        'password' => $user_hash->{'password'},
-    );
+    my $user = Auth::User->new();
+    if($user_hash->{'id'}){$user->id( $user_hash->{'id'} );}
+    if($user_hash->{'login'}){$user->id( $user_hash->{'login'} );}
+    if($user_hash->{'email'}){$user->id( $user_hash->{'email'} );}
+    if($user_hash->{'friendly_name'}){$user->id( $user_hash->{'friendly_name'} );}
+    if($user_hash->{'password'}){$user->id( $user_hash->{'password'} );}
 
     return $user;
 }
