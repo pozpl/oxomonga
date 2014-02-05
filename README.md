@@ -33,6 +33,7 @@ bower install
 
 When all dependencies are installed application can be run with this command from project directory
 perl -I ~/perl5/lib/perl5/ -I lib/ ~/perl5/bin/plackup -R ./lib/ -R scripts/  scripts/app_dev.
+This run command assumes that all your dependencies are installed by non root user via cpanm + liblocal
 It will appear by address http://127.0.0.1:5000/js/app/index.html
 
 LICENSE
