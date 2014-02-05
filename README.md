@@ -15,7 +15,7 @@ TECHNOLOGIES
 PREREQUISITES
 -------------
 In order to run backend part you need perl installation >= 5.10, and mongodb.
-To run and develop frontend we need node and yeoman.
+To run and develop frontend you need node and yeoman.
 
 
 INSTALLATION
