@@ -1,7 +1,7 @@
 where_are_kittens
 =================
 
-Geohashing application boilerplate on Perl and AngularJS.
+Geohashing application boilerplate for Perl and AngularJS.
 
 This code can be useful as a start for geohashing applications. From the box it provides API for markers manipulation  and simple AngularJS frontend, that can be styled for
 different kinds of specialized applications.
@@ -24,17 +24,22 @@ Go to the project directory
 cd project_folder
 
 Install dependencies via cpanm
+
 cpanm --installdeps .
 
 If you want to use JS frontend,  you have to populate dependencies in  resources/static/js
 with help of bower tool.
+
 cd resources/static/js
+
 bower install
 
 When all dependencies are installed application can be run with this command from project directory
-perl -I ~/perl5/lib/perl5/ -I lib/ ~/perl5/bin/plackup -R ./lib/ -R scripts/  scripts/app_dev.
+
+perl -I ~/perl5/lib/perl5/ -I lib/ ~/perl5/bin/plackup -R ./lib/ -R scripts/  scripts/app_dev.psgi
+
 This run command assumes that all your dependencies are installed by non root user via cpanm + liblocal
-It will appear by address http://127.0.0.1:5000/js/app/index.html
+It will appear on address http://127.0.0.1:5000/js/app/index.html
 
 LICENSE
 --------
