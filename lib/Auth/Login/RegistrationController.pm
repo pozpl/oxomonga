@@ -15,7 +15,6 @@ has 'user_repository' => (
 sub register_user(){
     my ($self, $request) = @_;
     my $user_json_string =  $request->content;
-
     my $user_json = JSON->new->decode($user_json_string);
     my $user_to_save = $self->_hash_to_user($user_json);
     my $user_login = $request->param('login');
@@ -24,6 +23,7 @@ sub register_user(){
                                  $user_login,
                                  Auth::User->internal_provider
                              );
+
     unless($is_user_exists){
         my $saved_user = $self->user_repository->save_user($user_to_save);
         return JSON->new->encode($self->_user_to_hash($saved_user));
@@ -38,8 +38,8 @@ sub register_user(){
 }
 
 sub get_user_info(){
-    my ($self, $user_id) = @_;
-
+    my ($self, $request, $id) = @_;
+    my $user_id = $id;
     my $user = $self->user_repository->find_by_id($user_id);
     my $user_hash = $self->_user_to_hash($user);
 
@@ -63,11 +63,12 @@ sub _hash_to_user(){
     my ($self, $user_hash) = @_;
     my $user = Auth::User->new();
     if($user_hash->{'id'}){$user->id( $user_hash->{'id'} );}
-    if($user_hash->{'login'}){$user->id( $user_hash->{'login'} );}
-    if($user_hash->{'email'}){$user->id( $user_hash->{'email'} );}
-    if($user_hash->{'friendly_name'}){$user->id( $user_hash->{'friendly_name'} );}
-    if($user_hash->{'password'}){$user->id( $user_hash->{'password'} );}
+    if($user_hash->{'login'}){$user->login( $user_hash->{'login'} );}
+    if($user_hash->{'email'}){$user->email( $user_hash->{'email'} );}
+    if($user_hash->{'friendly_name'}){$user->friendly_name( $user_hash->{'friendly_name'} );}
+    if($user_hash->{'password'}){$user->password( $user_hash->{'password'} );}
 
+    $user->provider(Auth::User->internal_provider);
     return $user;
 }
 
