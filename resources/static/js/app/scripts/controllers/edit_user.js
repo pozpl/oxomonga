@@ -20,13 +20,13 @@ angular.module('GeoHashingApp')
             };
 
             $scope.id = $stateParams.id;
-            $scope.user = '';
-            $scope.latitude = '';
-            $scope.longitude = '';
-            $scope.description = '';
+            $scope.login = '';
+            $scope.friendlyName = '';
+            $scope.email = '';
+
 
             var getUser = function (userId) {
-                $http({method: 'GET', url: '/users/get/user/json/' + userId}).
+                $http({method: 'GET', url: '/user/get/' + userId}).
                     success(function (data, status, headers, config) {
                         if (data && data.id) {
                             showUser(data);

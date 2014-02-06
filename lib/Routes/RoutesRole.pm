@@ -40,7 +40,7 @@ router as {
         'name' => 'delete_image_from_marker',
     );
 
-     route '/user/:id' => 'registration_controller.get_user_info', (
+     route '/user/get/:id' => 'registration_controller.get_user_info', (
             'name' => 'get_user_info',
      );
 
