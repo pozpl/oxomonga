@@ -13,17 +13,15 @@
             <label for="friendly-name">Имя, Фамилия</label>
             <input type="text" class="form-control" id="friendly-name" placeholder="" ng-model="friendlyName">
         </div>
-        <!--<div class="form-group">-->
-            <!--<label for="description">Провайдер</label>-->
-            <!--<div id="description" name="description" text-angular ng-model="description"></div>-->
-        <!--</div>-->
 
         <div class="thumbnails row">
-            <div ng-repeat="image in images"  class="col-md-3">
+            <div ng-if="avatar">
                 <div class="thumbnail">
-                    <img class="list-thumbnail img-thumbnail" ng-src="{{avatar['url']}}" image_id="{{avatar['id']}}" ><img>
+                    <img class="list-thumbnail img-thumbnail" ng-src="{{avatar['url']}}" image_id="{{avatar['id']}}"><img>
                     <div class="caption">
-                        <p><div class="btn btn-default" role="button" ng-click="deleteImage(image.id)">Удалить</div></p>
+                        <p>
+                            <div class="btn btn-default" role="button" ng-click="deleteImage(image.id)">Удалить</div>
+                        </p>
                     </div>
                 </div>
             </div>
