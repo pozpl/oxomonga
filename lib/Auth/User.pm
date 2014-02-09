@@ -8,38 +8,38 @@ class_has 'internal_provider' => ( is => 'ro', init_arg => undef, default => 'in
 
 has 'id' => (
     'is' => 'rw',
-    'isa' => 'Str',
+#    'isa' => 'Str',
 );
 
 
 has 'login' => (
     'is' => 'rw',
-    'isa' => 'Str',
+#    'isa' => 'Str',
 );
 
 has 'email' => (
     'is' => 'rw',
-    'isa' => 'Str',
+#    'isa' => 'Str',
 );
 
 has 'friendly_name' => (
     'is' => 'rw',
-    'isa' => 'Str',
+#    'isa' => 'Str',
 );
 
 has 'provider' => (
     'is' => 'rw',
-    'isa' => 'Str'
+#    'isa' => 'Str'
 );
 
 has 'avatar' => (
     'is' => 'rw',
-    'isa' => 'Str'
+#    'isa' => 'Str'
 );
 
 has 'password' => (
     'is' => 'rw',
-    'isa' => 'Str',
+#    'isa' => 'Str',
 );
 
 
