@@ -12,6 +12,12 @@ has 'user_repository' => (
     'required' => 1,
 );
 
+has 'file_store_service' => (
+    'is'  => 'ro',
+    'isa' => 'FileStore::FileStoreService',
+    'required' => 1,
+);
+
 sub register_user(){
     my ($self, $request) = @_;
     my $user_json_string =  $request->content;
@@ -81,7 +87,7 @@ sub _user_to_hash(){
         'email' => $user->email,
         'friendly_name' => $user->friendly_name,
         'provider' => $user->provider,
-        'avatar' => $user->avatar,
+        'avatar' => $self->file_store_service->get_url_for_id($user->avatar),
     };
 
 

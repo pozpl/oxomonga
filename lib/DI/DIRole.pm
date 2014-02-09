@@ -175,6 +175,7 @@ has 'registration_controller' => (
     'isa' => 'Auth::Login::RegistrationController',
     'dependencies' => {
         'user_repository' => 'users_repository',
+        'file_store_service' => 'file_store',
     }
 );
 
