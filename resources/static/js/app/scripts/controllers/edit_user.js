@@ -66,11 +66,11 @@ angular.module('GeoHashingApp')
 
             var showUser = function (userJson) {
                 $scope.id = userJson.id;
-                $scope.user = userJson.user;
-                $scope.latitude = userJson.latitude;
-                $scope.longitude = userJson.longitude;
-                $scope.description = userJson.description;
-                $scope.images = userJson.images;
+                $scope.login = userJson.login;
+                $scope.email = userJson.email;
+                $scope.friendlyName = userJson.friendly_name;
+                $scope.provider = userJson.provider;
+                $scope.avatar = userJson.avatar;
             };
 
 
