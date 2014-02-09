@@ -66,6 +66,18 @@ sub check_user_password(){
     return $check_status;
 }
 
+sub change_user_password(){
+    my  ($self, $user_id,$old_password, $new_password) = @_;
+
+    if($self->check_user_password($user_id, $old_password)){
+        $self->users_collection->update(
+            {'_id' => MongoDB::OID->new('value' => $user_id)},
+            {'password' =>  $self->password_crypt->generate($user->password) }
+        );
+    }
+
+}
+
 sub list_users(){
     my ($self, $offset, $limit) = @_;
 
