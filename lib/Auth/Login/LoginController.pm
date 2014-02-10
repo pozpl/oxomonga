@@ -26,10 +26,7 @@ sub login {
     if ( $self->user_repository->check_login_password($username, $password, Auth::User->internal_provider)) {
       my $user = $self->user_repository->find_by_login_provider($username, Auth::User->internal_provider);
 
-      my $userToken = Auth::UserToken->new(
-                               'user_id' => $user->id();
-                           );
-      $req->session->{'user_token'} = $user_token;
+      $req->session->{'user_id'} = $user->id();
 
       $authentication_status = {
             'status' => '0k',
