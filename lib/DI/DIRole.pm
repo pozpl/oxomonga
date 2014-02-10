@@ -179,4 +179,12 @@ has 'registration_controller' => (
     }
 );
 
+has 'login_controller' => (
+    'is' => 'ro',
+    'isa' => 'Auth::Login::LoginController',
+    'dependencies' => {
+         'user_repository' => 'users_repository',
+    }
+);
+
 1;
