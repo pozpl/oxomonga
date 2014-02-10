@@ -65,6 +65,29 @@ sub is_user_with_login_exists(){
 }
 
 
+sub edit_user(){
+    my ($self, $request) = @_;
+    my $user_json_string = $request->content;
+    my $user_json = JSON->new->decode($user_json_string);
+    my $user_to_save = $self->_hash_to_user($user_json);
+    my $user_login = $request->param('login');
+    my $is_user_exists = $self->user_repository
+                            ->check_login_existence(
+                                 $user_login,
+                                 Auth::User->internal_provider
+                            );
+
+    if($is_user_exists){
+        my $saved_user = $self->user_repository->save_user($user_to_save);
+        return JSON->new->encode($self->_user_to_hash($saved_user));
+    }else{
+        return JSON->new->encode({
+            'status'=> 'error',
+            'error_message' => 'no user with such login',
+        })
+    }
+}
+
 sub _hash_to_user(){
     my ($self, $user_hash) = @_;
     my $user = Auth::User->new();
