@@ -3,33 +3,43 @@ package Auth::Login::LoginController;
 use Moose;
 use Auth::UsersRepository;
 use Auth::User;
+use JSON;
+has 'user_repository' => (
+    'is'  => 'ro',
+    'isa' => 'Auth::UsersRepository',
+    'required' => 1,
+);
 
 sub login {
   my( $self , $req ) = @_;
 
   my $login_error;
 
-  my $username = $req->param( 'username' ) // '';
+  my $user_credentials_json_string = $request->content;
+  my $user_credentials = JSON->new->decode($user_credentials_json_string);
+  my $username = $user_credentials->{'login'} // '';
+  my $password = $user_credentials->{'password'} // '';
+
+  my $authentication_status = {'status' => 'login error'};
 
   if ( $req->method eq 'POST' ) {
-    my $user = $self->model->resultset('Users')->find({ username => $username });
-    if ( $user and $user->check_passphrase( $req->param( 'password' ))) {
-      $req->session->{user_id} = $username;
+    if ( $self->user_repository->check_login_password($username, $password, Auth::User->internal_provider)) {
+      my $user = $self->user_repository->find_by_login_provider($username, Auth::User->internal_provider);
 
-      my $redir = delete $req->session->{redir_to};
-      $redir //= '/';
+      $req->session->{user_id} = $user->id();
 
-      http_throw( Found => { location => $redir });
+      $authentication_status = {
+            'status' => '0k',
+            'user_id' => $user->id(),
+      };
     }
-    else { $login_error = 'Wrong user or password' }
   }
 
-  return $self->render(
-    'login.tx' , {
-      error => $login_error ,
-      title => 'Login' ,
-      username => $username
-    });
+  return JSON->new->encode($authentication_status);
+}
+
+sub logout(){
+
 }
 
 1;

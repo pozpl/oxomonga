@@ -37,7 +37,7 @@ sub register_user(){
         return JSON->new->encode({
             'status'=> 'error',
             'error_message' => 'user with such login exists',
-        })
+        });
     }
 
 
