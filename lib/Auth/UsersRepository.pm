@@ -51,6 +51,18 @@ sub find_by_id(){
     return $user;
 }
 
+sub find_by_login_provider(){
+    my ($self, $user_login, $user_password, $user_provider) = @_;
+    my $user_hash = $self->users_collection->find_one({'login' =>  $user_login, 'provider' => $user_provider });
+
+    my $user = undef;
+    if ($users_hash) {
+        $user = $self->_hash_to_user($users_hash);
+    }
+
+    return $user;
+}
+
 sub check_login_existence(){
     my ($self, $user_login, $provider) = @_;
     my $user = $self->users_collection->find_one({'login' => $user_login, 'provider' => $provider});
@@ -58,12 +70,12 @@ sub check_login_existence(){
 }
 
 sub check_login_password(){
-        my ($self, $user_login, $user_password, $user_provider) = @_;
+    my ($self, $user_login, $user_password, $user_provider) = @_;
 
-        my $user_hash = $self->users_collection->find_one({'login' =>  $user_login, 'provider' => $user_provider });
-        my $password_hash = $user_hash->{'password'};
-        my $check_status = $self->password_crypt->validate($password_hash, $user_password);
-        return $check_status;
+    my $user_hash = $self->users_collection->find_one({'login' =>  $user_login, 'provider' => $user_provider });
+    my $password_hash = $user_hash->{'password'};
+    my $check_status = $self->password_crypt->validate($password_hash, $user_password);
+    return $check_status;
 
 }
 
