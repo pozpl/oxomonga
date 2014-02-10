@@ -57,6 +57,16 @@ sub check_login_existence(){
     return $user ? 1 : 0;
 }
 
+sub check_login_password(){
+        my ($self, $user_login, $user_password, $user_provider) = @_;
+
+        my $user_hash = $self->users_collection->find_one({'login' =>  $user_login, 'provider' => $user_provider });
+        my $password_hash = $user_hash->{'password'};
+        my $check_status = $self->password_crypt->validate($password_hash, $user_password);
+        return $check_status;
+
+}
+
 sub check_user_password(){
     my ($self, $user_id, $user_password) = @_;
 
