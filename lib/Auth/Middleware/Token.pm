@@ -18,7 +18,7 @@ sub call {
 
   my $req = OX::Request->new(env => $env);
 
-  $route_mapping = $req->mapping;
+  my $route_mapping = $req->mapping;
   if($route_mapping->{'auth'}){
       # load the user data if there's a user_id set in the session
       if ( my $id = $req->session->{'user_id'} ) {
