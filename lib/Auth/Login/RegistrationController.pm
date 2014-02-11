@@ -110,8 +110,11 @@ sub _user_to_hash(){
         'email' => $user->email,
         'friendly_name' => $user->friendly_name,
         'provider' => $user->provider,
-        'avatar' => $self->file_store_service->get_url_for_id($user->avatar),
     };
+
+    if($user->avatar){
+        $user_hash->{'avatar'} = $self->file_store_service->get_url_for_id($user->avatar);
+    }
 
 
     return $user_hash;
