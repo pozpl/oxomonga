@@ -15,7 +15,7 @@ sub login {
 
   my $login_error;
 
-  my $user_credentials_json_string = $request->content;
+  my $user_credentials_json_string = $req->content;
   my $user_credentials = JSON->new->decode($user_credentials_json_string);
   my $username = $user_credentials->{'login'} // '';
   my $password = $user_credentials->{'password'} // '';
@@ -39,6 +39,7 @@ sub login {
 }
 
 sub logout(){
+    my ($self, $req) = @_;
     delete($req->session->{'user_id'});
 }
 
