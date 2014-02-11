@@ -29,7 +29,7 @@ sub login {
       $req->session->{'user_id'} = $user->id();
 
       $authentication_status = {
-            'status' => '0k',
+            'status' => 'ok',
             'user_id' => $user->id(),
       };
     }
@@ -41,6 +41,8 @@ sub login {
 sub logout(){
     my ($self, $req) = @_;
     delete($req->session->{'user_id'});
+
+    return JSON->new->encode({'status' => 'ok'});
 }
 
 1;
