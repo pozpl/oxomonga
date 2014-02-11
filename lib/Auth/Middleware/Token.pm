@@ -27,7 +27,7 @@ sub call {
             $req->session->{'user'} = $user;
         }
       }else{
-          return $req->new_response('status' => '403');
+         http_exception('Forbidden');
       }
   }
 
