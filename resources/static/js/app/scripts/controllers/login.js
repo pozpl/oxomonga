@@ -5,7 +5,7 @@ angular.module('GeoHashingApp')
         , function ($scope, $rootScope, $http, $state, AuthenticationService) {
 
             var showLoginPage = function () {
-                $scope.userName = '';
+                $scope.login = '';
                 $scope.password = '';
             };
 
@@ -13,7 +13,7 @@ angular.module('GeoHashingApp')
 
             $scope.submit = function () {
                 var authData = {
-                    'login': $scope.userName,
+                    'login': $scope.login,
                     'password': $scope.password
                 };
                 $http({method: 'POST', url: '/login', data: authData}).
