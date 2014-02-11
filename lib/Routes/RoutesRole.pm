@@ -49,6 +49,7 @@ router as {
 
      route '/user/get/:id' => 'registration_controller.get_user_info', (
             'name' => 'get_user_info',
+            'auth' => 1,
      );
 
      route '/user/register' => 'registration_controller.register_user', (
