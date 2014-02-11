@@ -26,7 +26,7 @@ sub call {
     my $userToken = Auth::UserToken->new(
         'user_id' => $id;
     );
-    $req->session->{'user_token'} = $user_token;
+    $req->env->{'user_token'} = $user_token;
   }
 
   # if we have a user or if we're trying to login, carry on
