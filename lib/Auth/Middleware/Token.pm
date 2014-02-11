@@ -7,36 +7,28 @@ extends 'Plack::Middleware';
 use HTTP::Throwable::Factory 'http_exception';
 use OX::Request;
 use Auth::UserToken;
-#has model => (
-#  is => 'ro',
-#  isa => 'OXauth::Schema' ,
-#  required => 1,
-#  handles => [ qw/ load_user / ] ,
-#);
+
+has 'user_repository' => (
+    'is'  => 'ro',
+    'isa' => 'Auth::UsersRepository',
+    'required' => 1,
+);
 
 sub call {
   my( $self , $env ) = @_;
 
   my $req = OX::Request->new(env => $env);
 
-  #my $login_url = $req->uri_for('login');
-
   # load the user data if there's a user_id set in the session
   if ( my $id = $req->session->{'user_id'} ) {
-    my $userToken = Auth::UserToken->new(
-        'user_id' => $id;
-    );
-    $req->env->{'user_token'} = $user_token;
+    my $user = $self->user_repository->find_by_id($id);
+    if($user){
+        $req->session->{'user'} = $user;
+    }
   }
 
-  # if we have a user or if we're trying to login, carry on
-#  if ( $req->session->{user} || $req->uri->path eq $login_url) {
-#    return $self->app->($env);
-#  }
-#  # otherwise redirect to the login url
-#  else {
-#    return $req->new_response->redirect( $login_url );
-#  }
+  return $self->app->($env);
+
 }
 
 __PACKAGE__->meta->make_immutable;
