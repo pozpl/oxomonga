@@ -56,8 +56,8 @@ sub find_by_login_provider(){
     my $user_hash = $self->users_collection->find_one({'login' =>  $user_login, 'provider' => $user_provider });
 
     my $user = undef;
-    if ($users_hash) {
-        $user = $self->_hash_to_user($users_hash);
+    if ($user_hash) {
+        $user = $self->_hash_to_user($user_hash);
     }
 
     return $user;
