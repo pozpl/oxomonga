@@ -52,6 +52,14 @@ router as {
             'name' => 'is_user_exists',
      );
 
+     route '/login' => 'login_controller.login', (
+            'name' => 'login',
+     );
+
+     route '/logout' => 'login_controller.logout', (
+            'name' => 'logout',
+     );
+
 
 
     mount '/static' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static');
