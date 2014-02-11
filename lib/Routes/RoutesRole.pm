@@ -15,15 +15,18 @@ router as {
     route '/markers/rectangle/:bl_lon/:bl_lat/:ur_lon/:ur_lat'  => 'markers_rest_controller.find_markers_in_rectangle';
 
     route '/markers/edit/show/form/?:id' => 'markers_edit_controller.show_form', (
-            'name' => 'show_edit_form_id'
+            'name' => 'show_edit_form_id',
+            'auth' => 1,
         );
 
     route '/markers/edit/delete/:id' => 'markers_edit_controller.delete_marker', (
-        'name' => 'delete_marker_by_id'
+        'name' => 'delete_marker_by_id',
+        'auth' => 1,
     );
 
     route '/markers/edit/show/list' => 'markers_edit_controller.list_markers', (
-        'name' => 'show_edit_list'
+        'name' => 'show_edit_list',
+        'auth' => 1,
     );
     route '/markers/get/marker/json/:marker_id' => 'markers_edit_controller_json.get_marker_by_id',(
         'name' => 'marker_by_id_json',
@@ -31,14 +34,17 @@ router as {
 
     route '/markers/edit/json' => 'markers_edit_controller_json.edit_marker',(
         'name' => 'edit_marker_json',
+        'auth' => 1,
     );
 
     route '/marker/upload/images' => 'upload_controller.process_upload',(
         'name' => 'upload_images',
+        'auth' => 1,
     );
 
     route '/delete/marker/image' => 'markers_edit_controller_json.delete_image_from_marker',(
         'name' => 'delete_image_from_marker',
+        'auth' => 1,
     );
 
      route '/user/get/:id' => 'registration_controller.get_user_info', (
