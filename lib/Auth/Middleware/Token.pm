@@ -18,12 +18,17 @@ sub call {
 
   my $req = OX::Request->new(env => $env);
 
-  # load the user data if there's a user_id set in the session
-  if ( my $id = $req->session->{'user_id'} ) {
-    my $user = $self->user_repository->find_by_id($id);
-    if($user){
-        $req->session->{'user'} = $user;
-    }
+  $route_mapping = $req->mapping;
+  if($route_mapping->{'auth'}){
+      # load the user data if there's a user_id set in the session
+      if ( my $id = $req->session->{'user_id'} ) {
+        my $user = $self->user_repository->find_by_id($id);
+        if($user){
+            $req->session->{'user'} = $user;
+        }
+      }else{
+          return $req->new_response('status' => '403');
+      }
   }
 
   return $self->app->($env);
