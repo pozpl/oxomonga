@@ -20,17 +20,18 @@ sub call {
 
   my $router  = $env->{'ox.router'};
   my $route_match = $router->match($env->{'REQUEST_URI'});
-  my $route_mapping = $route_match->mapping();
-
-  if($route_mapping->{'auth'}){
-      # load the user data if there's a user_id set in the session
-      if ( my $id = $req->session->{'user_id'} ) {
-        my $user = $self->user_repository->find_by_id($id);
-        if($user){
-            $req->session->{'user'} = $user;
-        }
-      }else{
-         return return $req->new_response(status => 401)->finalize;
+  if($route_match){
+      my $route_mapping = $route_match->mapping();
+      if($route_mapping->{'auth'}){
+          # load the user data if there's a user_id set in the session
+          if ( my $id = $req->session->{'user_id'} ) {
+            my $user = $self->user_repository->find_by_id($id);
+            if($user){
+                $req->session->{'user'} = $user;
+            }
+          }else{
+             return return $req->new_response(status => 401)->finalize;
+          }
       }
   }
 
