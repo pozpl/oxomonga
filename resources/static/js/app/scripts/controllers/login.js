@@ -12,12 +12,27 @@ angular.module('GeoHashingApp')
             showLoginPage();
 
             $scope.submit = function () {
-                AuthenticationService.setLoggedIn(true);
-                if (AuthenticationService.getLastUnauthenticatedState()) {
-                    $state.go(AuthenticationService.getLastUnauthenticatedState(), AuthenticationService.getLastUnauthenticatedStateParams());
-                } else{
-                    $state.go('main_state');
-                }
+                var authData = {
+                    'login': $scope.userName,
+                    'password': $scope.password
+                };
+                $http({method: 'POST', url: '/login', data: authData}).
+                    success(function (data, status, headers, config) {
+                        if (data && data.status == 'ok') {
+                            AuthenticationService.setLoggedIn(true);
+                            if (AuthenticationService.getLastUnauthenticatedState()) {
+                                $state.go(AuthenticationService.getLastUnauthenticatedState(), AuthenticationService.getLastUnauthenticatedStateParams());
+                            } else {
+                                $state.go('main_state');
+                            }
+                        }
+                    }).
+                    error(function (data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+
+
             };
 
         }
