@@ -4,8 +4,8 @@ use Moose;
 use MooseX::NonMoose;
 extends 'Plack::Middleware';
 
-use HTTP::Throwable::Factory 'http_exception';
 use OX::Request;
+use Data::Dump qw(dump);
 
 has 'user_repository' => (
     'is'  => 'ro',
@@ -30,7 +30,7 @@ sub call {
             $req->session->{'user'} = $user;
         }
       }else{
-         http_exception('Forbidden');
+         return return $req->new_response(status => 401)->finalize;
       }
   }
 
