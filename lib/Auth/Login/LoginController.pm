@@ -39,7 +39,7 @@ sub login {
 }
 
 sub logout(){
-
+    delete($req->session->{'user_id'});
 }
 
 1;
