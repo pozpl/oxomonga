@@ -6,7 +6,6 @@ extends 'Plack::Middleware';
 
 use HTTP::Throwable::Factory 'http_exception';
 use OX::Request;
-use Auth::UserToken;
 
 has 'user_repository' => (
     'is'  => 'ro',
