@@ -20,6 +20,7 @@ angular.module('GeoHashingApp')
                     success(function (data, status, headers, config) {
                         if (data && data.status == 'ok') {
                             AuthenticationService.setLoggedIn(true);
+                            AuthenticationService.setUserId(data.user_id);
                             if (AuthenticationService.getLastUnauthenticatedState()) {
                                 $state.go(AuthenticationService.getLastUnauthenticatedState(), AuthenticationService.getLastUnauthenticatedStateParams());
                             } else {
