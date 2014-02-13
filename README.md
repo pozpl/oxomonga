@@ -5,7 +5,7 @@ Where Are Kittens is a boilerplate for Perl, MongoDB and AngularJS projects with
 
 This code can be useful as a start for modern web applications with a stack of auxiliary technologies and frameworks to
 speed up development.
-Out of the the box it provides integration of different parts of a technologies stack along with a useful programming
+Out of the the box it provides integration of libraries in core functionality along with a useful programming
 model that can be utilized to build robust and extensible products.
 As an example the project contained API for geohashing markers manipulation and simple AngularJS frontend, that can be styled for
 different kinds of specialized applications.
