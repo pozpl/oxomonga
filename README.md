@@ -1,16 +1,20 @@
 where_are_kittens
 =================
 
-Geohashing application boilerplate for Perl and AngularJS.
+Where Are Kittens is a boilerplate for Perl, MongoDB and AngularJS projects with geohashing functionality.
 
-This code can be useful as a start for geohashing applications. From the box it provides API for markers manipulation  and simple AngularJS frontend, that can be styled for
+This code can be useful as a start for modern web applications with a stack of auxiliary technologies and frameworks to
+speed up development.
+Out of the the box it provides integration of different parts of a technologies stack along with a useful programming
+model that can be utilized to build robust and extensible products.
+As an example the project contained API for geohashing markers manipulation and simple AngularJS frontend, that can be styled for
 different kinds of specialized applications.
 
 TECHNOLOGIES
 ------------
 * Backend language - Perl
 * Database - MongoDb
-* Web frontend - AngularJS
+* Web frontend - AngularJS, Bootstrap
 
 PREREQUISITES
 -------------
