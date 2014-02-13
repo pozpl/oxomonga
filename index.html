@@ -31,37 +31,64 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="where_are_kittens" class="anchor" href="#where_are_kittens"><span class="octicon octicon-link"></span></a>where_are_kittens</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Where Are Kittens is a boilerplate for Perl, MongoDB and AngularJS projects with example of geohashing functionality.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>This code can be useful as a start for modern web applications with a stack of auxiliary technologies and frameworks to
+speed up development.
+Out of the the box it provides integration of libraries in core functionality along with a useful programming
+model that can be utilized to build robust and extensible products.
+As an example the project contained API for geohashing markers manipulation and simple AngularJS frontend, that can be styled for
+different kinds of specialized applications.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h2>
+<a name="technologies" class="anchor" href="#technologies"><span class="octicon octicon-link"></span></a>TECHNOLOGIES</h2>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<ul>
+<li>Backend language - Perl</li>
+<li>Database - MongoDb</li>
+<li>Web frontend - AngularJS, Bootstrap</li>
+</ul><p>The backend part is based on <a href="https://github.com/iinteractive/OX">OX</a>  web framework. The main features of this framework is
+usage of Dependency Injection pattern and PSGI support. Due to DI paradigm we can achieve decoupling of components and
+good modularity. PSGI make this framework compatible with modern perl web techniques and technologies including wide
+variety of application servers such as starman and twiggy.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<h2>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>PREREQUISITES</h2>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>In order to run backend part you need perl &gt;= 5.10 installed, and mongodb.
+To run and develop frontend you need node and yeoman.</p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>INSTALLATION</h2>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>Go to the project directory
+<em>cd project_folder</em></p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Install dependencies via cpanm</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p><em>cpanm --installdeps .</em></p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>If you want to use JS frontend,  you have to populate dependencies in  resources/static/js
+with help of bower tool.</p>
+
+<p><em>cd resources/static/js</em></p>
+
+<p><em>bower install</em></p>
+
+<p>When all dependencies are installed application can be run with this command from project directory</p>
+
+<p><em>perl -I ~/perl5/lib/perl5/ -I lib/ ~/perl5/bin/plackup -R ./lib/ -R scripts/  scripts/app_dev.psgi</em></p>
+
+<p>This run command assumes that all your dependencies are installed by non root user via cpanm + liblocal
+It will appear on address <em><a href="http://127.0.0.1:5000/js/app/index.html">http://127.0.0.1:5000/js/app/index.html</a></em></p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>LICENSE</h2>
+
+<p>Apache License Version 2.0</p>
       </section>
     </div>
 
