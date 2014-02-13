@@ -16,6 +16,11 @@ TECHNOLOGIES
 * Database - MongoDb
 * Web frontend - AngularJS, Bootstrap
 
+The backend part is based on [OX](https://github.com/iinteractive/OX)  web framework. The main features of this framework is
+usage of Dependency Injection pattern and PSGI support. Due to DI paradigm we can achieve decoupling of components and
+good modularity. PSGI make this framework compatible with modern perl web techniques and technologies including wide
+variety of application server such as starman and twiggy.
+
 PREREQUISITES
 -------------
 In order to run backend part you need perl installation >= 5.10, and mongodb.
