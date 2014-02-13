@@ -6,6 +6,8 @@ angular.module('GeoHashingApp').factory('AuthenticationService', [function () {
     var userIsAuthenticated = false;
     var lastUnauthenticatedState = null;
     var lastUnauthenticatedStateParams = null;
+    var userId = null;
+
     return {
         setLoggedIn: function (value) {
             userIsAuthenticated = value;
@@ -29,6 +31,14 @@ angular.module('GeoHashingApp').factory('AuthenticationService', [function () {
 
         getLastUnauthenticatedStateParams: function(){
             return lastUnauthenticatedStateParams;
+        },
+
+        setUserId : function(userId){
+            this.userId = userId;
+        },
+
+        getUserId : function(){
+            return userId;
         }
     };
 }]
