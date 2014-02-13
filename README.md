@@ -19,36 +19,36 @@ TECHNOLOGIES
 The backend part is based on [OX](https://github.com/iinteractive/OX)  web framework. The main features of this framework is
 usage of Dependency Injection pattern and PSGI support. Due to DI paradigm we can achieve decoupling of components and
 good modularity. PSGI make this framework compatible with modern perl web techniques and technologies including wide
-variety of application server such as starman and twiggy.
+variety of application servers such as starman and twiggy.
 
 PREREQUISITES
 -------------
-In order to run backend part you need perl installation >= 5.10, and mongodb.
+In order to run backend part you need perl >= 5.10 installed, and mongodb.
 To run and develop frontend you need node and yeoman.
 
 
 INSTALLATION
 ------------
 Go to the project directory
-cd project_folder
+*cd project_folder*
 
 Install dependencies via cpanm
 
-cpanm --installdeps .
+*cpanm --installdeps .*
 
 If you want to use JS frontend,  you have to populate dependencies in  resources/static/js
 with help of bower tool.
 
-cd resources/static/js
+*cd resources/static/js*
 
-bower install
+*bower install*
 
 When all dependencies are installed application can be run with this command from project directory
 
-perl -I ~/perl5/lib/perl5/ -I lib/ ~/perl5/bin/plackup -R ./lib/ -R scripts/  scripts/app_dev.psgi
+*perl -I ~/perl5/lib/perl5/ -I lib/ ~/perl5/bin/plackup -R ./lib/ -R scripts/  scripts/app_dev.psgi*
 
 This run command assumes that all your dependencies are installed by non root user via cpanm + liblocal
-It will appear on address http://127.0.0.1:5000/js/app/index.html
+It will appear on address *http://127.0.0.1:5000/js/app/index.html*
 
 LICENSE
 --------
