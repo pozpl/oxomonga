@@ -15,3 +15,4 @@ requires 'Crypt::PBKDF2', '>=0.133330';
 requires 'MooseX::ClassAttribute', '>=0.27';
 requires 'Plack::Middleware::Session ', '>=0.21';
 requires 'HTTP::Throwable::Factory', '>=0.018';
+requires 'Config::JFDI', '>=0.065';
