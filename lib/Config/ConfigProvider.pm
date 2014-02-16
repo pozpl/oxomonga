@@ -4,10 +4,21 @@ use 5.16.0;
 use Moose;
 use Config::JFDI;
 
+has mode => (
+    is => 'ro',
+    isa => 'Str',
+    required => 1,
+);
+
 has filename => (
     is => 'ro',
     isa => 'Str',
-    default => sub { "myapp.$ENV{MYAPP_CONFIG_SUFFIX}" },
+    lazy => 1,
+    default => sub {
+        my ($self) = @_;
+        my $mode = $self->mode;
+        "config.$mode.yml"
+    },
 );
 
 has config => (
