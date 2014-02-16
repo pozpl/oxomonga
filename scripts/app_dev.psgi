@@ -1,8 +1,14 @@
 use WhereAreKittens;
+use Config::ConfigProvider;
+
 #use Plack::Middleware::Profiler::NYTProf;
 #use  Plack::Middleware::InteractiveDebugger;
-
-my $app = WhereAreKittens->new()->to_app;
+my $config = Config::ConfigProvider->new(
+                        'mode' => 'dev',
+                    );
+my $app = WhereAreKittens->new(
+                         %{ $config->as_hash },
+                    )->to_app;
 #$app = Plack::Middleware::Profiler::NYTProf->wrap($app);
 
 
