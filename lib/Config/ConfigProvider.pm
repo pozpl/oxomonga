@@ -43,3 +43,5 @@ sub as_hash {
     my ($self) = @_;
     return $self->config->config;
 }
+
+1;
