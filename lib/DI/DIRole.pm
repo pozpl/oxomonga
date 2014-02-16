@@ -11,8 +11,7 @@ has mongo =>(
 has mongo_database_name => (
     is       => 'ro',
     isa      => 'Str',
-    default => 'development',
-    lifecycle => 'Singleton',
+    required => 1,
 );
 
 has mongo_database => (
@@ -49,7 +48,6 @@ has 'users_collection' => (
     'block' => sub{
         my $s = shift;
         my $collection =  $s->param('database')->get_collection('users');
-#        $collection->ensure_index({'loc' => '2dsphere'});
         return $collection;
     },
     dependencies => {
