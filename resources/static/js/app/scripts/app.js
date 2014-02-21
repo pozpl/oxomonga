@@ -1,7 +1,7 @@
 'use strict';
 
 var geoHashingApp = angular.module('GeoHashingApp',
-            ['ngRoute', 'yaMap', 'textAngular', 'ui.router', 'angularFileUpload']);
+            ['ngRoute', 'yaMap', 'textAngular', 'ui.router', 'angularFileUpload', 'ngCookies']);
 
 geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
 
