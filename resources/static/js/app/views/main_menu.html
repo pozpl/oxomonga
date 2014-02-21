@@ -14,7 +14,11 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#/add/marker">Add marker</a></li>
                 <li><a href="#/registration">Registration</a></li>
-                <li><a href="#/login">Login</a></li>
+
+                <li>
+                    <a ng-if="user.isLoggedIn" href="#/logout">Logout</a>
+                    <a ng-if="!user.isLoggedIn" href="#/login">Login</a>
+                </li>
             </ul>
         </div>
         <!--/.nav-collapse -->
