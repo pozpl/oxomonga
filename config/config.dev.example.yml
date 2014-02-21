@@ -1,0 +1,3 @@
+mongo_database_name : 'development'
+images_store_path : '/tmp/image/stroage'
+images_store_url : 'http://127.0.0.1:5000/user/images'
