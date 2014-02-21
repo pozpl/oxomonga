@@ -1,9 +1,8 @@
 <div class="container">
 
     <form role="form" ng-submit="submit()">
-        <div class="form-group">
-            <label for="user">Имя пользователя</label>
-            <input type="text" class="form-control" id="user" placeholder="" ng-model="user">
+        <div ng-if="user">
+            Пользователь <div>{{user}}</div>
         </div>
         <div class="form-group">
             <label for="longitude">Долгота</label>
