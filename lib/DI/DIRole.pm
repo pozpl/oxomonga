@@ -137,8 +137,8 @@ has 'file_store' => (
     'is' => 'ro',
     'isa' => 'FileStore::FileStoreService',
     'dependencies' => {
-        'root_path' => literal('/home/pozpl/tmp/image_store'),
-        'url_base' => literal('http://127.0.0.1:5000/user/images'),
+        'root_path' => 'images_store_path',
+        'url_base' => 'images_store_url',
     }
 );
 
