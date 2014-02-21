@@ -14,6 +14,18 @@ has mongo_database_name => (
     required => 1,
 );
 
+has images_store_path => (
+    is       => 'ro',
+    isa      => 'Str',
+    required => 1,
+);
+
+has images_store_url => (
+    is       => 'ro',
+    isa      => 'Str',
+    required => 1,
+);
+
 has mongo_database => (
     is => 'ro',
     #isa => 'Misc::MongoDatabase',
