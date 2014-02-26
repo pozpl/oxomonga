@@ -14,13 +14,12 @@ angular.module('GeoHashingApp')
 
                 $scope.beforeInit = function(){
 
-                    var coords = [];
-                    if($scope.longitude && $scope.longitude){
-                        coords = [$scope.longitude, $scope.longitude]
-                    }else{
+                    if(! ($scope.longitude && $scope.longitude) ){
                         var geolocation = ymaps.geolocation;
-                        coords = [geolocation.longitude, geolocation.latitude];
+                        $scope.longitude = geolocation.longitude;
+                        $scope.latitude =  geolocation.latitude;
                     }
+                    var coords = [$scope.longitude, $scope.longitude];
                     $scope.center = coords;
 
                     $scope.makerObject =  {
@@ -29,8 +28,8 @@ angular.module('GeoHashingApp')
                             coordinates: coords //[$scope.longitude, $scope.latitude]
                         },
                         properties: {
-                            iconContent: 'Метка',
-                            balloonContent: 'Меня можно перемещать',
+                            iconContent: 'Marker',
+                            balloonContent: 'Ypu can move me',
                             draggable: true
                         }
                     }
