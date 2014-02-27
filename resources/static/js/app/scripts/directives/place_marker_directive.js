@@ -25,11 +25,11 @@ angular.module('GeoHashingApp')
                     $scope.makerObject =  {
                         geometry: {
                             type: 'Point',
-                            coordinates: coords //[$scope.longitude, $scope.latitude]
+                            coordinates: coords
                         },
                         properties: {
                             iconContent: 'Marker',
-                            balloonContent: 'Ypu can move me',
+                            balloonContent: 'You can move me',
                             draggable: true
                         }
                     }
