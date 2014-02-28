@@ -19,7 +19,7 @@ angular.module('GeoHashingApp')
                         $scope.longitude = geolocation.longitude;
                         $scope.latitude =  geolocation.latitude;
                     }
-                    var coords = [$scope.longitude, $scope.longitude];
+                    var coords = [$scope.longitude, $scope.latitude];
                     $scope.center = coords;
 
                     $scope.makerObject =  {
@@ -29,8 +29,7 @@ angular.module('GeoHashingApp')
                         },
                         properties: {
                             iconContent: 'Marker',
-                            balloonContent: 'You can move me',
-                            draggable: true
+                            balloonContent: 'You can move me'
                         }
                     }
                 }
