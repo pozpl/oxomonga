@@ -4,16 +4,10 @@
         <div ng-if="user">
             Пользователь <div>{{user}}</div>
         </div>
-        <div class="form-group">
-            <label for="longitude">Долгота</label>
-            <input type="text" class="form-control" id="longitude" placeholder="" ng-model="longitude">
-        </div>
-        <div class="form-group">
-            <label for="latitude">Широта</label>
-            <input type="text" class="form-control" id="latitude" placeholder="" ng-model="latitude">
-        </div>
 
-        <div>
+        <div class="form-group">
+            <input type="hidden" class="form-control" id="longitude" placeholder="" ng-model="longitude">
+            <input type="hidden" class="form-control" id="latitude" placeholder="" ng-model="latitude">
             <div place-marker latitude="latitude" longitude="longitude" style="height: 400px; width: 100%"></div>
         </div>
 
