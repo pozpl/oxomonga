@@ -26,7 +26,7 @@ sub login {
     if ( $self->user_repository->check_login_password($username, $password, Auth::User->internal_provider)) {
       my $user = $self->user_repository->find_by_login_provider($username, Auth::User->internal_provider);
 
-      $req->session->{'user_id'} = $user->id();
+      $req->session->{Auth::Middleware::Token->user_id_session_key} = $user->id();
 
       $authentication_status = {
             'status' => 'ok',
@@ -40,7 +40,7 @@ sub login {
 
 sub logout(){
     my ($self, $req) = @_;
-    delete($req->session->{'user_id'});
+    delete($req->session->{Auth::Middleware::Token->user_id_session_key});
 
     return JSON->new->encode({'status' => 'ok'});
 }
