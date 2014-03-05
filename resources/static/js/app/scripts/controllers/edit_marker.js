@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('GeoHashingApp')
-    .controller('EditMarkerCtrl', ['$scope', '$rootScope', '$stateParams', '$http', '$upload',
-        function ($scope, $rootScope, $stateParams, $http, $upload) {
+    .controller('EditMarkerCtrl', ['$scope', '$rootScope', '$stateParams', '$http', '$upload', 'AuthenticationService',
+        function ($scope, $rootScope, $stateParams, $http, $upload, AuthenticationService) {
 
             $rootScope.textAngularOpts = {
                 toolbar: [
@@ -20,7 +20,7 @@ angular.module('GeoHashingApp')
             };
 
             $scope.id = $stateParams.id;
-            $scope.user = '';
+            $scope.user = AuthenticationService.getUserId();
             $scope.latitude = '';
             $scope.longitude = '';
             $scope.description = '';
