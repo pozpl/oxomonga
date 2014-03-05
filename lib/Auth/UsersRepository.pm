@@ -75,8 +75,6 @@ sub check_login_password(){
     my $user_hash = $self->users_collection->find_one({'login' =>  $user_login, 'provider' => $user_provider });
     my $password_hash = $user_hash->{'password'};
 
-    print "\n\n\n\n\n  $password_hash  $user_password $user_login \n\n\n\n\n\n";
-
     my $check_status = $self->password_crypt->validate($password_hash, $user_password);
     return $check_status;
 

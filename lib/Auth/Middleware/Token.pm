@@ -5,7 +5,7 @@ use MooseX::NonMoose;
 extends 'Plack::Middleware';
 
 use OX::Request;
-use Data::Dump qw(dump);
+
 
 has 'user_repository' => (
     'is'  => 'ro',
