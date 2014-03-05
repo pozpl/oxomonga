@@ -33,7 +33,7 @@ sub call {
                 $req->session->{Auth::Middleware::Token->user_session_key} = $user;
             }
           }else{
-             return return $req->new_response(status => 401)->finalize;
+             return $req->new_response(status => 401)->finalize;
           }
       }
   }
