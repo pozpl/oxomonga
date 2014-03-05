@@ -28,6 +28,13 @@ sub edit_marker(){
     my $marker_json = JSON->new->decode($marker_json_string);
     my $marker_to_save = $self->_hash_to_marker($marker_json);
 
+    $user = $request->session->{Auth::Middleware::Token->user_session_key}
+    if($marker->id){#only user can edit marker
+        unless( $user && $user->id == $marker->user){
+            return $req->new_response(status => 401)->finalize;
+        }
+    }
+
     my $saved_marker = $self->markers_repository->save_marker($marker_to_save);
     return JSON->new->encode($self->_marker_to_hash($saved_marker));
 }
