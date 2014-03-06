@@ -1,16 +1,56 @@
 angular.module('GeoHashingApp')
-    .controller('MainMenuController',['$scope', '$location', 'AuthenticationService', function($scope, $location, AuthenticationService) {
+    .controller('MainMenuController', ['$scope', '$location', 'AuthenticationService', function ($scope, $location, AuthenticationService) {
         $scope.user = {
             isLoggedIn: AuthenticationService.isLoggedIn(),
             userId: AuthenticationService.getUserId()
         };
-
-        $scope.isActive = function (viewLocation) {
-            return viewLocation === $location.path();
-        };
     }])
-    .directive('mainMenu', function() {
+    .directive('mainMenu', [function () {
         return {
             templateUrl: 'views/main_menu.html'
         };
+    }])
+    .directive('navMenu', function ($location) {
+        return function (scope, element, attrs) {
+            var links = element.find('a'),
+                onClass = attrs.navMenu || 'on',
+                routePattern,
+                link,
+                url,
+                currentItem,
+                urlMap = {},
+                i;
+
+            if (!$location.$$html5) {
+                routePattern = /^#[^/]*/;
+            }
+
+            for (i = 0; i < links.length; i++) {
+                link = angular.element(links[i]);
+                url = link.attr('href');
+
+                if ($location.$$html5) {
+                    urlMap[url] = link;
+                } else {
+                    urlMap[url.replace(routePattern, '')] = link;
+                }
+            }
+
+            scope.$on('$stateChangeStart', function () {
+                var pathLink = urlMap[$location.path()];
+                var pathItem = pathLink.parent();
+                if (pathLink) {
+                    if (currentItem) {
+                        currentItem.removeClass(onClass);
+                    }
+                    currentItem = pathItem;
+                    currentItem.addClass(onClass);
+                }
+            });
+        };
+
+//        return {
+////            templateUrl: 'views/main_menu.html',
+//            link: link
+//        };
     });
