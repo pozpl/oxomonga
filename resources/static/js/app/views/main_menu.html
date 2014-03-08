@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav" nav-menu="active">
                 <li><a href="#/">Home</a></li>
                 <li><a href="#/add/marker">Add marker</a></li>
-                <li><a href="#/registration">Registration</a></li>
+                <li><a ng-if="!user.isLoggedIn" href="#/registration">Registration</a></li>
 
                 <li>
                     <a ng-if="user.isLoggedIn" href="#/logout">Logout</a>
