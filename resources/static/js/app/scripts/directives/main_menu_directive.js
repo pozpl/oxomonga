@@ -28,18 +28,19 @@ angular.module('GeoHashingApp')
                 routePattern = /^#[^/]*/;
             }
 
-            for (i = 0; i < links.length; i++) {
-                link = angular.element(links[i]);
-                url = link.attr('href');
-
-                if ($location.$$html5) {
-                    urlMap[url] = link;
-                } else {
-                    urlMap[url.replace(routePattern, '')] = link;
-                }
-            }
 
             scope.$on('$stateChangeStart', function () {
+                for (i = 0; i < links.length; i++) {
+                    link = angular.element(links[i]);
+                    url = link.attr('href');
+
+                    if ($location.$$html5) {
+                        urlMap[url] = link;
+                    } else {
+                        urlMap[url.replace(routePattern, '')] = link;
+                    }
+                }
+
                 var pathLink = urlMap[$location.path()];
                 if (pathLink) {
                     var pathItem = pathLink.parent();
