@@ -25,6 +25,13 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
                 needAuth:  false
             }
         })
+        .state('logout_state', {
+            url: "/logout",
+            controller: 'LogOutCtrl',
+            data:{
+                needAuth:  false
+            }
+        })
         .state('edit_marker', {
             url: '/edit/marker/:id',
             templateUrl: 'views/edit_marker.html',
