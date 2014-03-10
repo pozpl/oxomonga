@@ -154,7 +154,8 @@ ya-map{
 
 .file-drop-area{
     height: 170px;
-    border-width: 2px;
+    border: 2px black solid;
+
 
 }
 
