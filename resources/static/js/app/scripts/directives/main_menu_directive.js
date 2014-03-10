@@ -38,8 +38,8 @@ angular.module('GeoHashingApp')
 
             scope.$on('$stateChangeStart', function () {
                 var pathLink = urlMap[$location.path()];
-                var pathItem = pathLink.parent();
                 if (pathLink) {
+                    var pathItem = pathLink.parent();
                     if (currentItem) {
                         currentItem.removeClass(onClass);
                     }
