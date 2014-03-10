@@ -41,6 +41,7 @@ sub login {
 sub logout(){
     my ($self, $req) = @_;
     delete($req->session->{Auth::Middleware::Token->user_id_session_key});
+    delete($req->session->{Auth::Middleware::Token->user_session_key});
 
     return JSON->new->encode({'status' => 'ok'});
 }
