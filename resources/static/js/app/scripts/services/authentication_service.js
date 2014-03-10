@@ -15,7 +15,8 @@ angular.module('GeoHashingApp').factory('AuthenticationService', ['$cookies', fu
         },
 
         isLoggedIn: function () {
-            if($cookies.loggedIn){
+            userIsAuthenticated = false;
+            if($cookies.loggedIn == 1){
                 userIsAuthenticated = true;
             }
 

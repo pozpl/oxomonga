@@ -1,9 +1,12 @@
 angular.module('GeoHashingApp')
     .controller('MainMenuController', ['$scope', '$location', 'AuthenticationService', function ($scope, $location, AuthenticationService) {
-        $scope.user = {
-            isLoggedIn: AuthenticationService.isLoggedIn(),
-            userId: AuthenticationService.getUserId()
-        };
+
+        $scope.$on('$stateChangeStart', function () {
+            $scope.user = {
+                isLoggedIn: AuthenticationService.isLoggedIn(),
+                userId: AuthenticationService.getUserId()
+            };
+        });
     }])
     .directive('mainMenu', [function () {
         return {
