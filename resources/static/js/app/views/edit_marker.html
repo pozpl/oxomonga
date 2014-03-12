@@ -36,6 +36,7 @@
                  ng-show="!dropSupported">HTML5 Drop File is not supported!
             </div>
         </div>
-        <button style="margin-top: 30px" type="submit" class="btn btn-default">Save changes</button>
+        <button ng-if="id" style="margin-top: 30px" type="submit" class="btn btn-default">Save changes</button>
+        <button ng-if="! id" style="margin-top: 30px" type="submit" class="btn btn-default">Continue</button>
     </form>
 </div>
