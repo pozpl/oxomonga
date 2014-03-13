@@ -30,7 +30,7 @@ sub edit_marker(){
 
     my $user = $request->session->{Auth::Middleware::Token->user_session_key};
     if($marker_to_save->id){#only user can edit marker
-        unless( $user && $user->id == $marker_to_save->user){
+        unless( $user && $user->id eq $marker_to_save->user){
             return $request->new_response(status => 401)->finalize;
         }
     }
