@@ -45,7 +45,6 @@ angular.module('GeoHashingApp')
                         var timer = $timeout(function () {
                             if (!($scope.makerObject.geometry.coordinates[0]
                                 && $scope.makerObject.geometry.coordinates[1])) {
-                                navigatorGeolocationPromise.cancel();
                                 var yandexMapsGeolocation = ymaps.geolocation;
                                 $scope.makerObject.geometry.coordinates = [yandexMapsGeolocation.longitude, yandexMapsGeolocation.latitude];
                                 $scope.center = $scope.makerObject.geometry.coordinates;
