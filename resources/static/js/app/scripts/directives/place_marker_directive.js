@@ -2,7 +2,7 @@ angular.module('GeoHashingApp')
     .controller('PlaceMarkerController',['$scope', function($scope) {
 
     }])
-    .directive('placeMarker',[function() {
+    .directive('placeMarker',['geolocation', '$timeout', function(geolocation, $timeout) {
 
         return {
             scope: {
@@ -22,17 +22,20 @@ angular.module('GeoHashingApp')
                     }
                 }
 
+//                INIT Yandex maps geolocation
                 $scope.beforeInit = function(){
 
                     if(! ($scope.longitude && $scope.longitude) ){
-                        var geolocation = ymaps.geolocation;
-                        $scope.longitude = geolocation.longitude;
-                        $scope.latitude =  geolocation.latitude;
-                    }
-                    var coords = [$scope.longitude, $scope.latitude];
-                    $scope.center = coords;
+                        geolocation.getLocation().then(function(data){
+                            $scope.makerObject.geometry.coordinates = [data.coords.longitude, data.coords.latitude ];
+                            $scope.center = $scope.makerObject.geometry.coordinates;
+                        });
 
-                    $scope.makerObject.geometry.coordinates = coords;
+                        var yandexMapsGeolocation = ymaps.geolocation;
+                        $scope.makerObject.geometry.coordinates = [yandexMapsGeolocation.longitude, yandexMapsGeolocation.latitude];
+                   }
+
+                    $scope.center = $scope.makerObject.geometry.coordinates;
                 };
 
                 $scope.dragEnd = function($event){

@@ -1,6 +1,6 @@
 <div class="right">
     <div class="right">
-        <ya-map ya-zoom="14" ya-before-init="beforeInit()">
+        <ya-map ya-zoom="14" ya-before-init="beforeInit()" ya-center="{{center}}">
             <ya-toolbar ya-name="zoomControl"></ya-toolbar>
             <ya-geo-object ya-source="makerObject"
                            ya-event-dragend="dragEnd($event)"
