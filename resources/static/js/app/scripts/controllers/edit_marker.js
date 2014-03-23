@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('GeoHashingApp')
-    .controller('EditMarkerCtrl', ['$scope', '$rootScope', '$stateParams', '$http', '$upload',
-        function ($scope, $rootScope, $stateParams, $http, $upload) {
+    .controller('EditMarkerCtrl', ['$scope', '$rootScope', '$state','$stateParams', '$http', '$upload', 'AuthenticationService',
+        function ($scope, $rootScope, $state, $stateParams, $http, $upload, AuthenticationService) {
 
             $rootScope.textAngularOpts = {
                 toolbar: [
@@ -20,7 +20,7 @@ angular.module('GeoHashingApp')
             };
 
             $scope.id = $stateParams.id;
-            $scope.user = '';
+            $scope.user = AuthenticationService.getUserId();
             $scope.latitude = '';
             $scope.longitude = '';
             $scope.description = '';
@@ -42,7 +42,7 @@ angular.module('GeoHashingApp')
                 getMarker($scope.id);
             }
 
-            $scope.submit = function () {
+            $scope.submit = function (markerId) {
                 var markerJson = {
                     'id': $scope.id,
                     'user': $scope.user,
@@ -54,7 +54,11 @@ angular.module('GeoHashingApp')
                 $http({method: 'POST', url: '/markers/edit/json', data: markerJson }).
                     success(function (data, status, headers, config) {
                         if (data && data.id) {
-                            showMarker(data);
+                            if(markerId){
+                                $state.go('show_marker', {'id' : data.id});
+                            }else{
+                                showMarker(data);
+                            }
                         }
                     }).
                     error(function (data, status, headers, config) {

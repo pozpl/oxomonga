@@ -2,7 +2,7 @@
  * Created by pozpl on 16.12.13.
  */
 
-angular.module('GeoHashingApp').factory('AuthenticationService', [function () {
+angular.module('GeoHashingApp').factory('AuthenticationService', ['$cookies', function ($cookies) {
     var userIsAuthenticated = false;
     var lastUnauthenticatedState = null;
     var lastUnauthenticatedStateParams = null;
@@ -11,9 +11,15 @@ angular.module('GeoHashingApp').factory('AuthenticationService', [function () {
     return {
         setLoggedIn: function (value) {
             userIsAuthenticated = value;
+            $cookies.loggedIn = value ? "1" : "0";
         },
 
         isLoggedIn: function () {
+            userIsAuthenticated = false;
+            if($cookies.loggedIn == 1){
+                userIsAuthenticated = true;
+            }
+
             return userIsAuthenticated;
         },
 
@@ -35,9 +41,13 @@ angular.module('GeoHashingApp').factory('AuthenticationService', [function () {
 
         setUserId : function(userId){
             this.userId = userId;
+            $cookies.userId = userId;
         },
 
         getUserId : function(){
+            if(! userId){
+                userId = $cookies.userId;
+            }
             return userId;
         }
     };

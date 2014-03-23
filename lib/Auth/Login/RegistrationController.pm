@@ -78,6 +78,10 @@ sub edit_user(){
                             );
 
     if($is_user_exists){
+        my $user_id = $request->session->{Auth::Middleware::Token->user_id_session_key};
+        unless( $user_id eq $user_to_save->id){
+            return $request->new_response(status => 401)->finalize;
+        }
         my $saved_user = $self->user_repository->save_user($user_to_save);
         return JSON->new->encode($self->_user_to_hash($saved_user));
     }else{

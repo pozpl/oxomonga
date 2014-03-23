@@ -28,7 +28,6 @@ angular.module('GeoHashingApp')
         };
 
         $scope.map = {
-//            center: [43, 123],
             zoom: 12
         };
 
@@ -49,7 +48,6 @@ angular.module('GeoHashingApp')
                 $scope.geoObjects = [];
                 $scope.shared.markers = [];
                 angular.forEach(data, function (marker, index) {
-//                    addMarkerToSharedMarkers(marker);
                     $scope.shared.markers.push(marker);
                     $scope.geoObjects.push(
                         {
@@ -58,7 +56,6 @@ angular.module('GeoHashingApp')
                                 coordinates: [marker.longitude, marker.latitude]
                             },
                             properties: {
-//                                iconContent: marker.id,
                                 balloonContent: marker.description,
                                 id : marker.id
                             }
@@ -70,19 +67,12 @@ angular.module('GeoHashingApp')
 
 
         $scope.balloonOpen = function($event, geoObject){
-            var foundGeoObject = $event.get('target');
-            console.log(geoObject.properties.id);
             if(geoObject.properties.id == $scope.shared.showBalloonId){
                 $scope.shared.showBalloonId =  geoObject.properties.id;
             }
         }
 
-//        var addMarkerToSharedMarkers = function(marker){
-//             if(! $scope.shared.markersIds[marker.id] ){
-//                $scope.shared.markersIds[marker.id] = true;
-//                $scope.shared.markers.push(marker);
-//             }
-//        };
+
 
     }
 );

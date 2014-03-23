@@ -1,18 +1,13 @@
 <div class="container">
 
-    <form role="form" ng-submit="submit()">
+    <form role="form" ng-submit="submit(id)">
+
         <div class="form-group">
-            <label for="user">Имя пользователя</label>
-            <input type="text" class="form-control" id="user" placeholder="" ng-model="user">
+            <input type="hidden" class="form-control" id="longitude" placeholder="" ng-model="longitude">
+            <input type="hidden" class="form-control" id="latitude" placeholder="" ng-model="latitude">
+            <div place-marker latitude="latitude" longitude="longitude" style="height: 400px; width: 100%"></div>
         </div>
-        <div class="form-group">
-            <label for="longitude">Долгота</label>
-            <input type="text" class="form-control" id="longitude" placeholder="" ng-model="longitude">
-        </div>
-        <div class="form-group">
-            <label for="latitude">Широта</label>
-            <input type="text" class="form-control" id="latitude" placeholder="" ng-model="latitude">
-        </div>
+
         <div class="form-group">
             <label for="description">Описание</label>
             <div id="description" name="description" text-angular ng-model="description"></div>
@@ -29,18 +24,19 @@
             </div>
         </div>
 
-        <div ng-show="id">
-            <input type="file" ng-file-select="onFileSelect($files)">
+        <div ng-show="id" class="upload-image-select">
+            <input type="file" ng-file-select="onFileSelect($files)" >
             <input type="file" ng-file-select="onFileSelect($files)" multiple>
 
-            <div ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class"
+            <div class="file-drop-area col-md-3" ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class"
                  ng-show="dropSupported">drop files here
             </div>
+            <div class="clearfix"></div>
             <div ng-file-drop-available="dropSupported=true"
                  ng-show="!dropSupported">HTML5 Drop File is not supported!
             </div>
-            <button ng-click="upload.abort()">Cancel Upload</button>
         </div>
-        <button type="submit" class="btn btn-default">Сохранить изменения</button>
+        <button ng-if="id" style="margin-top: 30px" type="submit" class="btn btn-default">Save changes</button>
+        <button ng-if="! id" style="margin-top: 30px" type="submit" class="btn btn-default">Continue</button>
     </form>
 </div>

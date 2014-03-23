@@ -1,7 +1,7 @@
 'use strict';
 
 var geoHashingApp = angular.module('GeoHashingApp',
-            ['ngRoute', 'yaMap', 'textAngular', 'ui.router', 'angularFileUpload']);
+            ['ngRoute', 'yaMap', 'textAngular', 'ui.router', 'angularFileUpload', 'ngCookies', 'geolocation']);
 
 geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -21,6 +21,13 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
             url: "/login",
             templateUrl: 'views/login.html',
             controller: 'LoginCtrl',
+            data:{
+                needAuth:  false
+            }
+        })
+        .state('logout_state', {
+            url: "/logout",
+            controller: 'LogOutCtrl',
             data:{
                 needAuth:  false
             }
