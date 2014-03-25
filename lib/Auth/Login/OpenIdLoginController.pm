@@ -62,15 +62,12 @@ sub login(){
     );
 
 
+    my openid_return = $request->uri_for('name' => 'openid_return');
     my $check_url = $claimed_identity->check_url(
-        return_to      => qq{$my_url/openid_return},
+        return_to      => qq{$my_url/} . openid_return,
         trust_root     => qq{$my_url/},
         delayed_return => 1,
     );
-    my $log_url = qq{check_url[$check_url]};
-    $log_url =~ s/\&/\n/g;
-    app->log->debug( $log_url);
-
 
     return $self->redirect_to($check_url);
 };
