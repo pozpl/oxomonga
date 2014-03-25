@@ -69,7 +69,7 @@ sub login(){
         delayed_return => 1,
     );
 
-    return $self->redirect_to($check_url);
+    return $request->redirect($check_url);
 };
 
 sub openid_return() {
