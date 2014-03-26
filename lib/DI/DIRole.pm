@@ -197,7 +197,7 @@ has 'login_controller' => (
     }
 );
 
-has 'openid_login_controller' =(
+has 'openid_login_controller' =>(
     'is' => 'ro',
     'isa' => 'Auth::Login::OpenIdLoginController',
 );
