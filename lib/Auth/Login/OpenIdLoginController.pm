@@ -4,22 +4,19 @@ use Moose;
 use Cache::File;
 use LWPx::ParanoidAgent;
 use Net::OpenID::Consumer;
-use Readonly;
 use URI::Escape;
 use JSON;
 
 has 'CONSUMER_SECRET' => (
     is => 'ro',
-    isa => 'String',
-    default => <<'EOQ';
-Scissors cuts paper, paper covers rock, rock crushes lizard, lizard poisons Spock, Spock smashes scissors, scissors decapitates lizard, lizard eats paper, paper disproves Spock, Spock vaporizes rock, and as it always has, rock crushes scissors.
-EOQ
+    isa => 'Str',
+    default => 'Scissors cuts paper, paper covers rock, rock crushes lizard, lizard poisons Spock, Spock smashes scissors, scissors decapitates lizard, lizard eats paper, paper disproves Spock, Spock vaporizes rock, and as it always has, rock crushes scissors.',
 );
 
 has 'CACHE_ROOT' => (
     is => 'ro',
-    isa => 'String',
-    default => '/tmp/cache',
+    isa => 'Str',
+    default => "/tmp/cache",
 );
 
 #app->secret(
@@ -27,9 +24,7 @@ has 'CACHE_ROOT' => (
 #);
 
 sub login(){
-    my {$self, $request }= @_;
-
-#    my %params = @{ $self->req->params->params };
+    my ($self, $request)= @_;
 
     my $my_url = $request->base_uri->as_string;
 
@@ -37,12 +32,12 @@ sub login(){
     my $csr = Net::OpenID::Consumer->new(
         ua              => LWPx::ParanoidAgent->new,
         cache           => $cache,
-        args            => \%params,
+        args            => $request->parameters,
         consumer_secret => $self->CONSUMER_SECRET,
         required_root   => $my_url
     );
 
-    my $user_identity_site_url = $request->params('identity_site');
+    my $user_identity_site_url = $request->param('identity_site');
 
     my $claimed_identity = $csr->claimed_identity($user_identity_site_url);
 
@@ -57,14 +52,14 @@ sub login(){
         'type.country'    => "http://axschema.org/contact/country/home",
 
         'ns.ui'         => 'http://specs.openid.net/extensions/ui/1.0',
-        'ui.mode'       => 'popup'
+        'ui.mode'       => 'popup',
       }
     );
 
 
-    my openid_return = $request->uri_for('name' => 'openid_return');
+    my $openid_return = $request->uri_for({'name' => 'openid_return'});
     my $check_url = $claimed_identity->check_url(
-        return_to      => qq{$my_url/} . openid_return,
+        return_to      => qq{$my_url/$openid_return},
         trust_root     => qq{$my_url/},
         delayed_return => 1,
     );
@@ -77,17 +72,17 @@ sub openid_return() {
 
     my $my_url = $request->base_uri->as_string;
 
-    my %params = $request->parameters;
+    my %params = %{$request->parameters};
     while ( my ( $k, $v ) = each %params ) {
         $params{$k} = URI::Escape::uri_unescape($v);
     }
 
-    my $cache = Cache::File->new( cache_root => $CACHE_ROOT );
+    my $cache = Cache::File->new( cache_root => $self->CACHE_ROOT );
     my $csr = Net::OpenID::Consumer->new(
         ua              => LWPx::ParanoidAgent->new,
         cache           => $cache,
         args            => \%params,
-        consumer_secret => $CONSUMER_SECRET,
+        consumer_secret => $self->CONSUMER_SECRET,
         required_root   => $my_url
     );
 
@@ -134,11 +129,11 @@ sub openid_return() {
         },
     );
 
-    if(message eq 'verified'){
+    if($msg eq 'verified'){
 #        $request->new_response->redirect($request->uri_for({'name' => 'show_edit_list'}));
-         return JSON->new->encode($authentication_status = {
-                                              'status' => 'ok',
-#                                              'user_id' => $user->id(),
+         return JSON->new->encode({
+                          'status' => 'ok',
+#                         'user_id' => $user->id(),
                  });
     }else{
           return JSON->new->encode({'status' => 'login error'});
@@ -147,3 +142,6 @@ sub openid_return() {
 
 
 };
+
+
+1;
