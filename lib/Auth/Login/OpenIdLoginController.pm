@@ -6,7 +6,7 @@ use LWPx::ParanoidAgent;
 use Net::OpenID::Consumer;
 use Readonly;
 use URI::Escape;
-
+use JSON;
 
 has 'CONSUMER_SECRET' => (
     is => 'ro',
@@ -122,8 +122,8 @@ sub openid_return() {
             );
             # Do something with the VerifiedIdentity object $vident
             $msg = 'verified';
-            use Data::Dumper;
-            $msg .= Dumper $ax_response;
+#            use Data::Dumper;
+#            $msg .= Dumper $ax_response;
         },
         error => sub {
             my $err = shift;
@@ -133,5 +133,17 @@ sub openid_return() {
             die($err);
         },
     );
-    $self->render( text => $msg ) if $msg ne q{};
+
+    if(message eq 'verified'){
+#        $request->new_response->redirect($request->uri_for({'name' => 'show_edit_list'}));
+         return JSON->new->encode($authentication_status = {
+                                              'status' => 'ok',
+#                                              'user_id' => $user->id(),
+                 });
+    }else{
+          return JSON->new->encode({'status' => 'login error'});
+    }
+
+
+
 };
