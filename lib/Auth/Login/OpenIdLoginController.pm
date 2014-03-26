@@ -135,7 +135,3 @@ sub openid_return() {
     );
     $self->render( text => $msg ) if $msg ne q{};
 };
-
-app->start;
-
-__DATA__
