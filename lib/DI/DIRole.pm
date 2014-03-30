@@ -197,4 +197,12 @@ has 'login_controller' => (
     }
 );
 
+has 'index_controller' => (
+    'is' => 'ro',
+    'isa' => 'Aux::MainPageController',
+    'dependencies' => {
+        'template_view_handler' => 'template_view_handler',
+    }
+);
+
 1;

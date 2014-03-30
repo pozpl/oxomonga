@@ -7,11 +7,13 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise("/");
     //
+
+    var templatePrefix = 'js/app/';
     // Now set up the states
     $stateProvider
         .state('main_state', {
             url: "/",
-            templateUrl: 'views/main.html',
+            templateUrl: templatePrefix + 'views/main.html',
             controller: 'MarkersListCtrl',
             data:{
                 needAuth:  false
@@ -19,7 +21,7 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('login_state', {
             url: "/login",
-            templateUrl: 'views/login.html',
+            templateUrl: templatePrefix + 'views/login.html',
             controller: 'LoginCtrl',
             data:{
                 needAuth:  false
@@ -34,7 +36,7 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('edit_marker', {
             url: '/edit/marker/:id',
-            templateUrl: 'views/edit_marker.html',
+            templateUrl: templatePrefix + 'views/edit_marker.html',
             controller: 'EditMarkerCtrl',
             data:{
                 needAuth:  true
@@ -42,7 +44,7 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('add_marker', {
             url: '/add/marker',
-            templateUrl: 'views/edit_marker.html',
+            templateUrl: templatePrefix + 'views/edit_marker.html',
             controller: 'EditMarkerCtrl',
             data:{
                 needAuth:  true
@@ -50,7 +52,7 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('show_marker',{
             url: '/show/:id',
-            templateUrl: 'views/single_marker_view.html',
+            templateUrl: templatePrefix + 'views/single_marker_view.html',
             controller: 'SingleMarkerViewCtrl',
             data:{
                 needAuth:  false
@@ -58,7 +60,7 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('register_user', {
             url: "/registration",
-            templateUrl: 'views/register_user.html',
+            templateUrl: templatePrefix + 'views/register_user.html',
             controller: 'RegisterUserCtrl',
             data:{
                 needAuth:  false
@@ -66,7 +68,7 @@ geoHashingApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('edit_user',{
             url: "/userprofile/:id",
-            templateUrl: 'views/edit_user.html',
+            templateUrl: templatePrefix + 'views/edit_user.html',
             controller: 'EditUserCtrl',
             data:{
                 needAuth:  true
