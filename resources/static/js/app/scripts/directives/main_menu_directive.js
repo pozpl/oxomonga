@@ -10,7 +10,7 @@ angular.module('GeoHashingApp')
     }])
     .directive('mainMenu', [function () {
         return {
-            templateUrl: 'views/main_menu.html'
+            templateUrl: 'js/app/views/main_menu.html'
         };
     }])
     .directive('navMenu', function ($location) {

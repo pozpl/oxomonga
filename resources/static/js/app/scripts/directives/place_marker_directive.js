@@ -9,7 +9,7 @@ angular.module('GeoHashingApp')
                 'longitude': '=',
                 'latitude': '='
             },
-            templateUrl: 'views/place_marker_directive.html',
+            templateUrl: 'js/app/views/place_marker_directive.html',
             controller: function ($scope) {
                 $scope.makerObject = {
                     geometry: {
