@@ -48,7 +48,7 @@ When all dependencies are installed application can be run with this command fro
 *perl -I ~/perl5/lib/perl5/ -I lib/ ~/perl5/bin/plackup -R ./lib/ -R scripts/  scripts/app_dev.psgi*
 
 This run command assumes that all your dependencies are installed by non root user via cpanm + liblocal
-It will appear on address *http://127.0.0.1:5000/js/app/index.html*
+It will appear on address *[http://127.0.0.1:5000/](http://127.0.0.1:5000/)*
 
 LICENSE
 --------
