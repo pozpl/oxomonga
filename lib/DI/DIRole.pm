@@ -205,9 +205,9 @@ has 'index_controller' => (
     }
 );
 
-has 'openid_login_controller' =>(
+has 'oauth_login_controller' =>(
     'is' => 'ro',
-    'isa' => 'Auth::Login::OpenIdLoginController',
+    'isa' => 'Auth::Login::LoginOAuthController',
 );
 
 1;

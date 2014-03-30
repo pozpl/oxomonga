@@ -70,12 +70,12 @@ router as {
             'name' => 'logout',
      );
 
-     route '/login/openid' => 'openid_login_controller.login', (
+     route '/login/oauth' => 'oauth_login_controller.login', (
             'name' => 'openid_login'
      );
 
-     route '/login/openid-return' => 'openid_login_controller.openid_return', (
-           'name' => 'openid_return'
+     route '/login/oauth-callback' => 'oauth_login_controller.callback', (
+           'name' => 'oauth_return'
      );
 
     mount '/static' => Plack::App::File->new(root => $current_working_directory . '/../../resources/static');
