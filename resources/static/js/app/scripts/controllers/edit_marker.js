@@ -49,8 +49,7 @@ angular.module('GeoHashingApp')
                     'user': $scope.user,
                     'latitude': $scope.latitude,
                     'longitude': $scope.longitude,
-                    'description': $scope.description,
-                    'images' : $scope.images
+                    'description': $scope.description
                 };
 
                 $http({method: 'POST', url: '/markers/edit/json', data: markerJson }).
