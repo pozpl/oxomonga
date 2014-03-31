@@ -24,6 +24,7 @@ angular.module('GeoHashingApp')
             $scope.latitude = '';
             $scope.longitude = '';
             $scope.description = '';
+            $scope.images = [];
 
             var getMarker = function (markerId) {
                 $http({method: 'GET', url: '/markers/get/marker/json/' + markerId}).
@@ -48,7 +49,8 @@ angular.module('GeoHashingApp')
                     'user': $scope.user,
                     'latitude': $scope.latitude,
                     'longitude': $scope.longitude,
-                    'description': $scope.description
+                    'description': $scope.description,
+                    'images' : $scope.images
                 };
 
                 $http({method: 'POST', url: '/markers/edit/json', data: markerJson }).

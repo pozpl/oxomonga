@@ -4,6 +4,7 @@ use Moose;
 use MongoDB::OID;
 use Markers::Marker;
 use Tie::IxHash;
+use Data::Dump qw(dump);
 
 has 'markers_collection' => (
     'is'=> 'ro',
@@ -166,7 +167,7 @@ sub _update_marker(){
     my $hash_to_save = $self->_marker_to_hash($marker);
     $self->markers_collection->update(
                     {_id => MongoDB::OID->new('value'=>$marker->id())},
-                    $hash_to_save);
+                    {'$set' => $hash_to_save});
     
     return $marker;
 }
@@ -198,7 +199,8 @@ sub _marker_to_hash(){
     if ($marker->images()) {
         $hash_to_save->{'images'} = $marker->images();
     }
-    
+
+    dump($hash_to_save);
     return $hash_to_save;
 }
 

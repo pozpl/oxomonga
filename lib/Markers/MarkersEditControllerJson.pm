@@ -76,7 +76,6 @@ sub _hash_to_marker(){
              'longitude' => $marker_json->{'longitude'},
              'description' => $marker_json->{'description'},
              'time_of_creation' => $marker_json->{'time_of_creation'},
-             'images' => $marker_json->{'images'}
          );
 }
 
