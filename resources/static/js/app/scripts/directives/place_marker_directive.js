@@ -54,7 +54,7 @@ angular.module('GeoHashingApp')
                         }, 5000);
 
                     } else {
-                        $scope.makerObject.geometry.coordinates = [$scope.longitude , $scope.longitude];
+                        $scope.makerObject.geometry.coordinates = [$scope.longitude , $scope.latitude];
                         $scope.center = $scope.makerObject.geometry.coordinates;
                     }
 
