@@ -1,7 +1,7 @@
-where_are_kittens
+OXoMongA
 =================
 
-Where Are Kittens is a boilerplate for Perl, MongoDB and AngularJS projects with example of geohashing functionality.
+OXoMongA is a boilerplate for Perl, MongoDB and AngularJS projects with example of geohashing functionality.
 
 This code can be useful as a start for modern web applications with a stack of auxiliary technologies and frameworks to
 speed up development.
@@ -13,6 +13,7 @@ different kinds of specialized applications.
 TECHNOLOGIES
 ------------
 * Backend language - Perl
+* Backend framework - OX
 * Database - MongoDb
 * Web frontend - AngularJS, Bootstrap
 
